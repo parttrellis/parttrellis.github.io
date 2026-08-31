@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PartTrellis</title>
+<meta name="description" content="PartTrellis: Extending Native 3D Generators to the Part Level">
+<style>
+:root{--ink:#1a1c22;--body:#3a3d45;--muted:#71757f;--line:#e5e2da;--accent:#0e7c86;--bg:#fbfaf7;--card:#ffffff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--body);font:17px/1.65 Georgia,'Times New Roman',serif}
+.wrap{max-width:960px;margin:0 auto;padding:0 22px}
+header{padding:64px 0 30px;text-align:center}
+h1{font-family:Helvetica,Arial,sans-serif;font-size:2.1rem;letter-spacing:-.02em;color:var(--ink);margin:0 0 6px}
+.sub{font-size:1.15rem;color:var(--muted);margin:0 0 22px}
+.authors{font-size:1.02rem;line-height:1.9;margin:0 0 6px}
+.authors b{font-weight:600;color:var(--ink)}
+sup{font-size:.7em;color:var(--accent)}
+.affil{font-size:.9rem;color:var(--muted);margin:0 0 24px}
+.links{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:8px}
+.btn{display:inline-block;padding:8px 18px;border-radius:999px;border:1px solid var(--ink);color:var(--ink);
+     text-decoration:none;font-family:Helvetica,Arial,sans-serif;font-size:.9rem}
+.btn.primary{background:var(--ink);color:#fff}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.primary:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+section{padding:26px 0}
+h2{font-family:Helvetica,Arial,sans-serif;font-size:1.25rem;color:var(--ink);margin:0 0 12px}
+img{max-width:100%;display:block;border-radius:6px}
+figure{margin:0}
+figcaption{font-size:.88rem;color:var(--muted);margin-top:8px}
+.abstract{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:22px 26px}
+.tblwrap{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;min-width:640px;font:0.83rem/1.5 Menlo,Consolas,monospace}
+th,td{padding:8px 12px;text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left;font-family:Helvetica,Arial,sans-serif}
+thead th{border-bottom:1px solid var(--line);color:var(--muted);font-weight:600}
+tr.ours{background:#eaf4f4}
+tr.ours td{color:#0a5a61;font-weight:600}
+pre{background:#14161c;color:#e8e9ec;border-radius:8px;padding:16px 18px;overflow-x:auto;font:0.82rem/1.55 Menlo,Consolas,monospace}
+footer{padding:34px 0 60px;color:var(--muted);font-size:.88rem;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>PartTrellis</h1>
+  <p class="sub">Extending Native 3D Generators to the Part Level</p>
+  <p class="authors">
+    <b>Ruihan Yu</b><sup>1,2</sup> &nbsp; Lian Fu<sup>1,2</sup> &nbsp; Muyao Niu<sup>1,2</sup> &nbsp;
+    Zheng-hui Huang<sup>1</sup> &nbsp; Yu-Ju Tsai<sup>1,4</sup> &nbsp; Sho Kuno<sup>1,2</sup> &nbsp;
+    Fengbo Lan<sup>1</sup> &nbsp; Erwin Wu<sup>1,3</sup> &nbsp; Ming-Hsuan Yang<sup>4</sup> &nbsp;
+    Kaipeng Zhang<sup>1</sup> &nbsp; Zhixiang Wang<sup>1</sup>
+  </p>
+  <p class="affil"><sup>1</sup>Alaya Lab &nbsp; <sup>2</sup>The University of Tokyo &nbsp;
+     <sup>3</sup>Institute of Science Tokyo &nbsp; <sup>4</sup>University of California, Merced</p>
+  <div class="links">
+    <a class="btn primary" href="#" title="coming soon">Paper (soon)</a>
+    <a class="btn" href="https://github.com/parttrellis/PartTrellis">Code</a>
+    <a class="btn" href="https://huggingface.co/AuroraRyan/PartTrellis">Weights</a>
+  </div>
+</header>
+
+<section>
+  <figure>
+    <img src="assets/teaser.jpg" alt="PartTrellis teaser">
+    <figcaption>Every asset is generated from a single RGB image. Colors mark parts:
+    each is a separate, self-contained mesh that can be moved, retextured or rigged on its own.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2>Abstract</h2>
+  <div class="abstract">
+  <p>Native 3D generators turn one image into a single good mesh. TRELLIS.2 and its
+  peers deliver high-fidelity geometry with materials, but the output is one fused
+  object, while downstream work such as editing, rigging, simulation and reuse
+  operates on parts. The methods that produce parts today attach a segmenter outside
+  such a generator, either before generation or after it. The generator is
+  conditioned on boundaries it cannot correct, and the resulting cascade costs an
+  order of magnitude more compute than the generator alone.</p>
+  <p>We extend the generator instead. PartTrellis is a part-level extension of
+  TRELLIS.2, built on a dual-volume form of its O-Voxel representation. The change
+  of representation is necessary: an O-Voxel grid stores one sheet of surface per
+  voxel, so a single volume cannot represent the interface where two parts touch.
+  The harder question is inheriting a prior trained on undivided objects. Our recipe
+  starts exactly at the pretrained model and adapts the two stages of the cascade
+  differently, because their latents are grouped differently: the layout flow
+  receives per-stream weights, fitted per volume and merged without loss; the
+  refinement flow keeps the backbone untouched and restricts attention to one volume
+  at a time.</p>
+  <p>The extension costs about 2.5&times; the generation compute of the flow it
+  extends, remains cheaper end to end than the backbone's own high-resolution
+  delivery pipeline, and raises whole-object fidelity from 0.830 to 0.919 in strict
+  F-score over the same backbone fine-tuned on the same corpus. No mask and no
+  segmenter appear anywhere in the pipeline, so no segmentation error can reach the
+  output. Against the strongest open pipeline in our comparison, PartTrellis lowers
+  whole-object Chamfer distance by 40% and raises strict part F-score from 0.599
+  to 0.692.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Results</h2>
+  <p>Held-out test set of 986 objects that every method completes. Whole-object (W)
+  and Hungarian-matched part (P) metrics; best in each column belongs to PartTrellis.</p>
+  <div class="tblwrap">
+  <table>
+    <thead><tr><th>Method</th><th>CD<sub>W</sub>&darr;</th><th>F1<sub>W</sub><sup>0.1</sup></th>
+      <th>F1<sub>W</sub><sup>0.05</sup></th><th>mIoU<sub>P</sub></th><th>CD<sub>P</sub>&darr;</th>
+      <th>F1<sub>P</sub><sup>0.1</sup></th><th>F1<sub>P</sub><sup>0.05</sup></th></tr></thead>
+    <tbody>
+      <tr><td>TRELLIS.2@1024 + X-Part</td><td>0.0350</td><td>0.900</td><td>0.780</td><td>0.449</td><td>0.0804</td><td>0.703</td><td>0.559</td></tr>
+      <tr><td>Hunyuan3D-2.1 + X-Part</td><td>0.0314</td><td>0.917</td><td>0.814</td><td>0.489</td><td>0.0764</td><td>0.728</td><td>0.597</td></tr>
+      <tr><td>OmniPart</td><td>0.0366</td><td>0.901</td><td>0.769</td><td>0.456</td><td>0.0913</td><td>0.664</td><td>0.518</td></tr>
+      <tr><td>PartPacker</td><td>0.0389</td><td>0.892</td><td>0.749</td><td>0.449</td><td>0.0986</td><td>0.640</td><td>0.492</td></tr>
+      <tr><td>AutoPartGen</td><td>0.0373</td><td>0.901</td><td>0.771</td><td>0.466</td><td>0.0919</td><td>0.678</td><td>0.535</td></tr>
+      <tr class="ours"><td>PartTrellis (ours)</td><td>0.0186</td><td>0.975</td><td>0.919</td><td>0.521</td><td>0.0613</td><td>0.785</td><td>0.692</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2>Qualitative comparison</h2>
+  <figure>
+    <img src="assets/qual.jpg" alt="Qualitative comparison on the held-out test set">
+    <figcaption>Columns: input image, ground truth, PartTrellis, TRELLIS.2+X-Part,
+    Hunyuan3D-2.1+X-Part, OmniPart, PartPacker. Colors mark parts, not materials;
+    every prediction is rotated into the ground-truth pose before rendering.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2>Citation</h2>
+<pre>@article{parttrellis,
+  title  = {PartTrellis: Extending Native 3D Generators to the Part Level},
+  author = {Yu, Ruihan and Fu, Lian and Niu, Muyao and Huang, Zheng-hui and
+            Tsai, Yu-Ju and Kuno, Sho and Lan, Fengbo and Wu, Erwin and
+            Yang, Ming-Hsuan and Zhang, Kaipeng and Wang, Zhixiang},
+  year   = {2026}
+}</pre>
+</section>
+
+<footer>Built on TRELLIS.2 &middot; dual-volume packing follows PartPacker &middot; 2026</footer>
+</div>
+</body>
+</html>
