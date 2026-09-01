@@ -84,11 +84,11 @@ footer{padding:34px 0 60px;color:var(--muted);font-size:.88rem;text-align:center
   necessary: an O-Voxel grid stores one sheet of surface per voxel, so a single volume
   cannot represent the interface where two parts touch, at any resolution.</p>
   <p>PartTrellis keeps the generation speed and quality of TRELLIS.2 while extending
-  it to the part level: generation cost rises by a small constant factor, whole-object
-  fidelity improves over the same backbone fine-tuned on the same corpus, and no mask
-  or segmenter appears anywhere in the pipeline. Against the strongest open pipeline in
-  our comparison, it lowers whole-object Chamfer distance by 40% and raises strict part
-  F-score from 0.597 to 0.692.</p>
+  it to the part level, with no mask or segmenter in the pipeline. Surprisingly, we
+  also find that whole-object fidelity improves over the same backbone fine-tuned on
+  the same dataset. Against part generation pipelines of different paradigms, it
+  lowers whole-object Chamfer distance by at least 40% and raises strict part
+  F-score from at most 0.597 to 0.692.</p>
   </div>
 </section>
 
