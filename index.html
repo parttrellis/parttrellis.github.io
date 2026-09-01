@@ -73,30 +73,22 @@ footer{padding:34px 0 60px;color:var(--muted);font-size:.88rem;text-align:center
   <h2>Abstract</h2>
   <div class="abstract">
   <p>Native 3D generators turn one image into a single mesh. TRELLIS.2 and its
-  peers deliver high-fidelity geometry with materials, but the output is one fused
-  object, while downstream work such as editing, rigging, simulation and reuse
-  operates on parts. The methods that produce parts today attach a segmenter outside
-  such a generator, either before generation or after it. The generator is
-  conditioned on boundaries it cannot correct, and the resulting cascade costs an
-  order of magnitude more compute than the generator alone.</p>
-  <p>We extend the generator instead. PartTrellis is a part-level extension of
-  TRELLIS.2, built on a dual-volume form of its O-Voxel representation. The change
-  of representation is necessary: an O-Voxel grid stores one sheet of surface per
-  voxel, so a single volume cannot represent the interface where two parts touch.
-  The harder question is inheriting a prior trained on undivided objects. Our recipe
-  starts exactly at the pretrained model and adapts the two stages of the cascade
-  differently, because their latents are grouped differently: the layout flow
-  receives per-stream weights, fitted per volume and merged without loss; the
-  refinement flow keeps the backbone untouched and restricts attention to one volume
-  at a time.</p>
-  <p>The extension costs about 2.5&times; the generation compute of the flow it
-  extends, remains cheaper end to end than the backbone's own high-resolution
-  delivery pipeline, and raises whole-object fidelity from 0.830 to 0.919 in strict
-  F-score over the same backbone fine-tuned on the same corpus. No mask and no
-  segmenter appear anywhere in the pipeline, so no segmentation error can reach the
-  output. Against the strongest open pipeline in our comparison, PartTrellis lowers
-  whole-object Chamfer distance by 40% and raises strict part F-score from 0.597
-  to 0.692.</p>
+  peers deliver high-fidelity non-watertight geometry with materials, but the output
+  is one fused object, while downstream work such as editing, rigging and simulation
+  operates on part-level assets. A naive idea is to run a 3D segmentation network on
+  the fused mesh that TRELLIS.2 generates, but such pipelines are slow and bounded by
+  the accuracy of the segmentation. We want a simple way to extend an existing native
+  3D generator to the part level.</p>
+  <p>We put forward PartTrellis, a part-level extension of TRELLIS.2 built on a
+  dual-volume form of its O-Voxel representation. The change of representation is
+  necessary: an O-Voxel grid stores one sheet of surface per voxel, so a single volume
+  cannot represent the interface where two parts touch, at any resolution.</p>
+  <p>PartTrellis keeps the generation speed and quality of TRELLIS.2 while extending
+  it to the part level: generation cost rises by a small constant factor, whole-object
+  fidelity improves over the same backbone fine-tuned on the same corpus, and no mask
+  or segmenter appears anywhere in the pipeline. Against the strongest open pipeline in
+  our comparison, it lowers whole-object Chamfer distance by 40% and raises strict part
+  F-score from 0.597 to 0.692.</p>
   </div>
 </section>
 
