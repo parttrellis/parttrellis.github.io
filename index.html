@@ -81,8 +81,9 @@ footer{padding:34px 0 60px;color:var(--muted);font-size:.88rem;text-align:center
   3D generator to the part level. But we face a critical problem: the O-Voxel grid
   stores one sheet of surface per voxel, so a single volume cannot represent the
   interface where two parts touch, at any resolution.</p>
-  <p>We put forward PartTrellis, a part-level extension of TRELLIS.2 built on a
-  dual-volume form of its O-Voxel representation.</p>
+  <p>We introduce a dual-volume representation to solve this problem and put forward
+  PartTrellis, a part-level extension of TRELLIS.2 built on a dual-volume form of its
+  O-Voxel representation.</p>
   <p>PartTrellis keeps the generation speed and quality of TRELLIS.2 while extending
   it to the part level, with no mask or segmenter in the pipeline. Its training data
   come from sources of many kinds, including CAD models and assets authored by an
