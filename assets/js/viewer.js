@@ -338,14 +338,21 @@ class Viewer {
 
   /* -------------------- object bookkeeping -------------------- */
   _prepareObjects() {
-    // explode radially from the centroid of all object centers
+    // Explode radially from the centroid of the parts. Use each part's GEOMETRY
+    // bounding-box center in world space, not its node origin: in our GLBs every
+    // part node sits at the origin and carries absolute vertex coordinates, so
+    // node positions are all identical and would give zero direction vectors.
+    const centers = new Map();
+    const box3 = new THREE.Box3();
     const center = new THREE.Vector3();
-    const wp = new THREE.Vector3();
     let n = 0;
     for (const o of this.objects) {
       if (o.userData.noExplode) continue;
-      o.getWorldPosition(wp);
-      center.add(wp); n++;
+      box3.setFromObject(o);
+      if (box3.isEmpty()) continue;
+      const c = box3.getCenter(new THREE.Vector3());
+      centers.set(o, c);
+      center.add(c); n++;
     }
     if (n) center.divideScalar(n);
 
@@ -354,9 +361,12 @@ class Viewer {
 
     for (const o of this.objects) {
       o.userData.homePos = o.position.clone();
-      o.getWorldPosition(wp);
-      const dir = wp.clone().sub(center);
-      if (dir.lengthSq() < 1e-6) dir.set(0, 1, 0);
+      const c = centers.get(o);
+      const dir = c ? c.clone().sub(center) : new THREE.Vector3();
+      if (dir.lengthSq() < 1e-9) {
+        // part centered on the centroid: push it along its dominant local axis
+        dir.set(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5);
+      }
       dir.normalize();
       o.userData.explodeDir = dir;
       o.userData.baseMat = o.material;
@@ -364,7 +374,7 @@ class Viewer {
   }
 
   _applyExplode() {
-    const d = this.explodeT * this.sceneRadius * 0.55;
+    const d = this.explodeT * this.sceneRadius * 1.1;
     for (const o of this.objects) {
       if (!o.userData.homePos) continue;
       if (o.userData.noExplode) continue;
