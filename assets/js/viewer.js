@@ -72,8 +72,8 @@ class Viewer {
     // dark opaque silhouette for non-isolated objects — deliberately NOT
     // wireframe/transparent: on multi-million-face scenes wireframe turns
     // every triangle into 3 blended lines and destroys the frame rate
-    this.ghostMat = new THREE.MeshBasicMaterial({ color: 0x262b3c });
-    this.hoverColor = new THREE.Color(0x8b6cff);
+    this.ghostMat = new THREE.MeshBasicMaterial({ color: 0x2a2c33 });
+    this.hoverColor = new THREE.Color(0xffffff);
 
     this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, antialias: true, alpha: true });
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -92,7 +92,7 @@ class Viewer {
     this.pointer = new THREE.Vector2(-10, -10);
 
     // clay-style lighting
-    this.scene.add(new THREE.HemisphereLight(0xffffff, 0x39415c, 1.15));
+    this.scene.add(new THREE.HemisphereLight(0xffffff, 0x3c3f48, 1.15));
     const keyLight = new THREE.DirectionalLight(0xffffff, 1.6);
     keyLight.position.set(3, 6, 4);
     this.scene.add(keyLight);
@@ -614,7 +614,7 @@ class DatasetViewer extends Viewer {
     const g = new THREE.BufferGeometry();
     g.setAttribute("position", new THREE.BufferAttribute(pos, 3));
     group.add(new THREE.LineSegments(g, new THREE.LineBasicMaterial({
-      color: 0x3fd6ff, transparent: true, opacity: 0.5
+      color: 0xb9bdc6, transparent: true, opacity: 0.55
     })));
     // trajectory line through camera centers (full set, keeps the path smooth)
     const tp = new Float32Array(extras.cams.length * 3);
@@ -622,7 +622,7 @@ class DatasetViewer extends Viewer {
     const tg = new THREE.BufferGeometry();
     tg.setAttribute("position", new THREE.BufferAttribute(tp, 3));
     group.add(new THREE.Line(tg, new THREE.LineBasicMaterial({
-      color: 0x8b6cff, transparent: true, opacity: 0.6
+      color: 0xffffff, transparent: true, opacity: 0.6
     })));
     return group;
   }

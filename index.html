@@ -4,37 +4,38 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PartTrellis: Extending Native 3D Generators to the Part Level</title>
-<meta name="description" content="PartTrellis extends TRELLIS.2 to part-level image-to-3D generation with a dual-volume O-Voxel representation - no masks, no segmenter, native quality.">
+<meta name="description" content="PartTrellis extends TRELLIS.2 to part-level image-to-3D with a dual-volume O-Voxel representation - no masks, no segmenter, native quality.">
 <meta property="og:title" content="PartTrellis: Extending Native 3D Generators to the Part Level">
-<meta property="og:description" content="Part-aware image-to-3D with a dual-volume O-Voxel representation - no masks, no segmenter, native TRELLIS.2 quality.">
-<meta property="og:image" content="assets/figures/teaser.png">
+<meta property="og:description" content="Part-aware image-to-3D generation: dual-volume sparse voxel flow, mask- and segmenter-free.">
+<meta property="og:image" content="https://parttrellis.github.io/assets/figures/teaser.png">
 <link rel="icon" href="assets/figures/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,500;6..12,600;6..12,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
    WorldSculpt — dark premium design system
    ============================================================ */
 :root{
-  --bg:        #07080c;
-  --bg-alt:    #0b0d14;
+  --bg:        #0a0a0c;
+  --bg-alt:    #101014;
   --surface:   rgba(255,255,255,.045);
   --surface-2: rgba(255,255,255,.07);
   --stroke:    rgba(255,255,255,.09);
   --stroke-2:  rgba(255,255,255,.16);
-  --text:      #eceef6;
-  --text-2:    #a2a9bd;
-  --text-3:    #6b7286;
-  --violet:    #8b6cff;
-  --cyan:      #3fd6ff;
-  --pink:      #ff7ac3;
-  --grad:      linear-gradient(100deg,#8b6cff 0%,#3fd6ff 55%,#7df0d2 100%);
-  --grad-soft: linear-gradient(100deg,rgba(139,108,255,.16),rgba(63,214,255,.14));
+  --text:      #eef0f4;
+  --text-2:    #a4a8b4;
+  --text-3:    #6e7280;
+  --violet:    #ffffff;
+  --cyan:      #ffffff;
+  --pink:      #ffffff;
+  --grad:      linear-gradient(100deg,#ffffff 0%,#ffffff 100%);
+  --grad-soft: linear-gradient(100deg,rgba(255,255,255,.10),rgba(255,255,255,.07));
   --radius:    20px;
   --radius-sm: 12px;
-  --font-d:    "Space Grotesk", "Inter", sans-serif;
+  --font-d:    "Nunito Sans", "Avenir Next", Avenir, "Inter", sans-serif;
   --font-b:    "Inter", sans-serif;
+  --font-s:    "Source Serif 4", Georgia, "Times New Roman", serif;
   --font-m:    "JetBrains Mono", monospace;
   --maxw:      1160px;
 }
@@ -43,13 +44,13 @@ html{scroll-behavior:smooth}
 body{
   background:var(--bg);
   color:var(--text);
-  font-family:var(--font-b);
+  font-family:var(--font-s);
   font-size:16.5px;
   line-height:1.65;
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
 }
-::selection{background:rgba(139,108,255,.4)}
+::selection{background:rgba(255,255,255,.3)}
 a{color:var(--cyan);text-decoration:none}
 a:hover{text-decoration:underline}
 img{max-width:100%;display:block}
@@ -57,9 +58,9 @@ img{max-width:100%;display:block}
 /* --- ambient background --- */
 .bg-fx{position:fixed;inset:0;z-index:-2;pointer-events:none;
   background:
-    radial-gradient(900px 520px at 18% -6%, rgba(139,108,255,.14), transparent 60%),
-    radial-gradient(820px 500px at 85% 4%,  rgba(63,214,255,.10), transparent 60%),
-    radial-gradient(700px 700px at 55% 115%, rgba(255,122,195,.06), transparent 65%),
+    radial-gradient(900px 520px at 18% -6%, rgba(255,255,255,.06), transparent 60%),
+    radial-gradient(820px 500px at 85% 4%,  rgba(255,255,255,.045), transparent 60%),
+    radial-gradient(700px 700px at 55% 115%, rgba(255,255,255,.03), transparent 65%),
     var(--bg);
 }
 .bg-grid{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.5;
@@ -75,7 +76,7 @@ img{max-width:100%;display:block}
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
   backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-  background:rgba(7,8,12,.62);
+  background:rgba(10,10,12,.62);
   border-bottom:1px solid rgba(255,255,255,.06);
   transition:background .3s;
 }
@@ -86,7 +87,7 @@ nav{
 .nav-links{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
 .nav-links a{color:var(--text-2);font-size:14px;font-weight:500;padding:7px 13px;border-radius:9px;transition:.2s}
 .nav-links a:hover{color:var(--text);background:var(--surface-2);text-decoration:none}
-.nav-cta{margin-left:6px;font-size:14px;font-weight:600;padding:8px 16px;border-radius:10px;background:var(--grad);color:#0a0a12 !important}
+.nav-cta{margin-left:6px;font-size:14px;font-weight:600;padding:8px 16px;border-radius:10px;background:var(--grad);color:#0a0a0c !important}
 .nav-cta:hover{filter:brightness(1.1);text-decoration:none !important}
 @media(max-width:900px){.nav-links a:not(.nav-cta){display:none}}
 
@@ -98,7 +99,7 @@ section{padding:96px 24px;position:relative}
   color:var(--cyan);display:flex;align-items:center;gap:12px;margin-bottom:18px;font-weight:500;
 }
 .kicker::before{content:"";width:34px;height:1px;background:var(--grad)}
-h2{font-family:var(--font-d);font-size:clamp(30px,4vw,44px);font-weight:700;line-height:1.12;letter-spacing:-.01em;margin-bottom:18px}
+h2{font-family:var(--font-d);font-size:clamp(30px,4vw,44px);font-weight:500;line-height:1.12;margin-bottom:18px}
 .lead{color:var(--text-2);font-size:18px;max-width:820px}
 .grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 
@@ -122,9 +123,9 @@ h2{font-family:var(--font-d);font-size:clamp(30px,4vw,44px);font-weight:700;line
   display:flex;flex-direction:column;justify-content:flex-start;gap:12px;padding-top:84px}
 /* soft dark shield behind the title/author block so text stays readable */
 .hero-bg::before{content:"";position:absolute;inset:0;z-index:1;
-  background:radial-gradient(760px 540px at 50% 340px, rgba(7,8,12,.82), rgba(7,8,12,0) 74%)}
+  background:radial-gradient(760px 540px at 50% 340px, rgba(10,10,12,.82), rgba(10,10,12,0) 74%)}
 .hero-bg::after{content:"";position:absolute;inset:0;z-index:1;
-  background:linear-gradient(180deg, rgba(7,8,12,.76) 0px, rgba(7,8,12,.48) 300px, rgba(7,8,12,.52) 740px, rgba(7,8,12,.74) 850px, var(--bg) 960px)}
+  background:linear-gradient(180deg, rgba(10,10,12,.76) 0px, rgba(10,10,12,.48) 300px, rgba(10,10,12,.52) 740px, rgba(10,10,12,.74) 850px, var(--bg) 960px)}
 .marquee-row{flex:0 0 clamp(110px, 17vh, 178px);min-height:0;overflow:hidden;opacity:.95}
 /* outer edges of the marquee dissolve into the page instead of cutting off */
 .marquee-row:first-child{
@@ -142,21 +143,21 @@ h2{font-family:var(--font-d);font-size:clamp(30px,4vw,44px);font-weight:700;line
 @keyframes mq-right{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 @media (prefers-reduced-motion: reduce){.marquee-track{animation:none}}
 h1{
-  font-family:var(--font-d);font-weight:700;letter-spacing:-.02em;
+  font-family:var(--font-d);font-weight:700;
   font-size:clamp(46px,7.4vw,88px);line-height:1.02;margin-bottom:8px;
 }
 h1 .grad-text{display:inline-block;padding-bottom:6px}
 .hero-sub{
-  font-family:var(--font-d);font-size:clamp(18px,2.4vw,26px);font-weight:500;color:var(--text-2);
+  font-family:var(--font-d);font-size:clamp(20px,2.7vw,30px);font-weight:500;color:var(--text-2);
   max-width:840px;margin:10px auto 34px;line-height:1.35;
 }
-.authors{max-width:900px;margin:0 auto 10px;font-size:16px;line-height:2;color:var(--text-2)}
-.authors a{color:var(--text);font-weight:500;transition:.2s}
+.authors{max-width:980px;margin:0 auto 10px;font-size:18px;line-height:2;color:var(--text-2)}
+.authors a{color:var(--text);font-weight:500;transition:.2s;white-space:nowrap}
 .authors a:hover{color:var(--cyan);text-decoration:none}
-.authors sup{color:var(--text-3);font-size:11px}
-.affil{font-size:14.5px;color:var(--text);margin-bottom:6px}
-.affil sup{font-size:10.5px}
-.hero-venue{font-family:var(--font-m);font-size:13px;color:var(--text);margin-bottom:36px}
+.authors sup{color:var(--text);font-size:12.5px}
+.affil{font-size:17px;color:var(--text);margin-bottom:6px}
+.affil sup{font-size:12px;color:var(--text)}
+.hero-venue{font-family:var(--font-s);font-size:14.5px;color:var(--text);margin-bottom:36px}
 .btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:64px}
 .btn{
   display:inline-flex;align-items:center;gap:9px;
@@ -165,8 +166,8 @@ h1 .grad-text{display:inline-block;padding-bottom:6px}
   border:1px solid var(--stroke-2);color:var(--text);background:var(--surface);
 }
 .btn:hover{background:var(--surface-2);border-color:rgba(255,255,255,.28);transform:translateY(-1px);text-decoration:none}
-.btn.primary{background:var(--grad);color:#0a0a12;border:none}
-.btn.primary:hover{filter:brightness(1.12);box-shadow:0 8px 32px rgba(99,140,255,.35)}
+.btn.primary{background:var(--grad);color:#0a0a0c;border:none}
+.btn.primary:hover{filter:brightness(1.12);box-shadow:0 8px 32px rgba(255,255,255,.2)}
 .btn svg{width:17px;height:17px;flex:none}
 /* borderless teaser: the figure fades out at every edge */
 .teaser-frame{position:relative;line-height:0;
@@ -182,10 +183,11 @@ h1 .grad-text{display:inline-block;padding-bottom:6px}
 }
 .teaser-frame img{width:100%;height:auto;display:block}
 .vid-frame{position:relative;border-radius:var(--radius);overflow:hidden;line-height:0;
-  border:1px solid var(--stroke-2);background:#07080c;
+  border:1px solid var(--stroke-2);background:#0a0a0c;
   box-shadow:0 30px 90px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.02)}
 .vid-frame video{width:100%;height:auto;display:block}
 .fig-cap{font-size:13.5px;color:var(--text);margin-top:14px;text-align:center;max-width:860px;margin-left:auto;margin-right:auto}
+.fig-cap.lg{font-size:17px;line-height:1.6;max-width:920px}
 
 /* ============ STATS BAND ============ */
 #stats{padding:20px 24px 40px}
@@ -204,7 +206,7 @@ h1 .grad-text{display:inline-block;padding-bottom:6px}
 #demo .card{overflow:hidden}
 .viewer-shell{position:relative}
 .ws-canvas{width:100%;height:600px;display:block;cursor:grab;touch-action:none;background:
-  radial-gradient(800px 500px at 50% 0%, rgba(139,108,255,.08), transparent 60%), #0a0c12}
+  radial-gradient(800px 500px at 50% 0%, rgba(255,255,255,.05), transparent 60%), #0b0b0e}
 .ws-canvas:active{cursor:grabbing}
 @media(max-width:700px){.ws-canvas{height:440px}}
 .viewer-hud{
@@ -212,19 +214,19 @@ h1 .grad-text{display:inline-block;padding-bottom:6px}
 }
 .hud-chip{
   font-family:var(--font-m);font-size:12px;color:var(--text-2);
-  background:rgba(7,8,12,.72);border:1px solid var(--stroke);border-radius:99px;padding:6px 13px;
+  background:rgba(10,10,12,.72);border:1px solid var(--stroke);border-radius:99px;padding:6px 13px;
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
 }
-.hud-chip.placeholder{color:#ffd479;border-color:rgba(255,212,121,.3)}
+.hud-chip.placeholder{color:#fff;border-color:rgba(255,255,255,.3)}
 .viewer-tip{
   position:absolute;bottom:16px;left:50%;transform:translateX(-50%);z-index:5;
-  font-size:12.5px;color:var(--text-3);background:rgba(7,8,12,.72);border:1px solid var(--stroke);
+  font-size:12.5px;color:var(--text-3);background:rgba(10,10,12,.72);border:1px solid var(--stroke);
   border-radius:99px;padding:6px 16px;white-space:nowrap;backdrop-filter:blur(8px);
 }
 .ws-tooltip{
   position:absolute;z-index:6;pointer-events:none;display:none;
   font-family:var(--font-m);font-size:12px;color:var(--text);
-  background:rgba(10,12,18,.9);border:1px solid var(--stroke-2);border-radius:8px;padding:5px 10px;
+  background:rgba(14,14,17,.9);border:1px solid var(--stroke-2);border-radius:8px;padding:5px 10px;
   transform:translate(14px,-8px);
 }
 .viewer-bar{
@@ -242,16 +244,16 @@ h1 .grad-text{display:inline-block;padding-bottom:6px}
 .ctrl-lbl{font-family:var(--font-m);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3)}
 input[type=range].explode{
   -webkit-appearance:none;appearance:none;width:150px;height:4px;border-radius:99px;
-  background:linear-gradient(90deg,var(--violet),var(--cyan));outline:none;cursor:pointer;
+  background:var(--grad);outline:none;cursor:pointer;
 }
 input[type=range].explode::-webkit-slider-thumb{
   -webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:#fff;
-  box-shadow:0 0 0 4px rgba(139,108,255,.35);cursor:grab;
+  box-shadow:0 0 0 4px rgba(255,255,255,.35);cursor:grab;
 }
 /* --- loading overlay --- */
 .ws-loader{
   position:absolute;inset:0;z-index:7;display:none;align-items:center;justify-content:center;flex-direction:column;gap:14px;
-  background:rgba(7,8,12,.55);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
+  background:rgba(10,10,12,.55);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
 }
 .ws-loader.show{display:flex}
 .ws-loader-label{font-family:var(--font-m);font-size:13px;color:var(--text-2);letter-spacing:.04em}
@@ -265,18 +267,18 @@ input[type=range].explode::-webkit-slider-thumb{
   cursor:ew-resize;display:flex;align-items:center;justify-content:center;touch-action:none;
 }
 .duo-divider::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:1.5px;margin-left:-.75px;
-  background:linear-gradient(180deg,rgba(139,108,255,.7),rgba(63,214,255,.7))}
+  background:linear-gradient(180deg,rgba(255,255,255,.85),rgba(255,255,255,.6))}
 .duo-handle{
   position:relative;z-index:1;width:30px;height:30px;border-radius:50%;flex:none;
-  background:rgba(10,12,18,.85);border:1px solid var(--stroke-2);color:var(--text-2);
+  background:rgba(14,14,17,.85);border:1px solid var(--stroke-2);color:var(--text-2);
   display:flex;align-items:center;justify-content:center;font-size:14px;
   backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
 }
-.duo-divider:hover .duo-handle{color:var(--text);border-color:rgba(139,108,255,.6)}
+.duo-divider:hover .duo-handle{color:var(--text);border-color:rgba(255,255,255,.6)}
 .duo-label{
   position:absolute;top:16px;z-index:4;pointer-events:none;
   font-family:var(--font-m);font-size:12px;letter-spacing:.08em;color:var(--text-2);
-  background:rgba(7,8,12,.72);border:1px solid var(--stroke);border-radius:99px;padding:6px 14px;
+  background:rgba(10,10,12,.72);border:1px solid var(--stroke);border-radius:99px;padding:6px 14px;
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
 }
 .duo-label.left{left:16px}
@@ -288,14 +290,14 @@ input[type=range].explode::-webkit-slider-thumb{
 }
 .layer-toggle::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--text-3);opacity:.4;transition:.2s}
 .layer-toggle:hover{color:var(--text-2);border-color:var(--stroke-2)}
-.layer-toggle.on{color:var(--text);border-color:rgba(139,108,255,.45)}
-.layer-toggle.on::before{background:linear-gradient(100deg,#8b6cff,#3fd6ff);opacity:1;box-shadow:0 0 9px rgba(139,108,255,.9)}
+.layer-toggle.on{color:var(--text);border-color:rgba(255,255,255,.5)}
+.layer-toggle.on::before{background:#fff;opacity:1;box-shadow:0 0 9px rgba(255,255,255,.8)}
 .icon-btn{
   width:36px;height:36px;border-radius:9px;border:1px solid var(--stroke);background:var(--surface);
   color:var(--text-2);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:.2s;
 }
 .icon-btn:hover{color:var(--text);border-color:var(--stroke-2)}
-.icon-btn.on{color:#0a0a12;background:var(--grad);border-color:transparent}
+.icon-btn.on{color:#0a0a0c;background:var(--grad);border-color:transparent}
 .icon-btn svg{width:17px;height:17px}
 
 /* ============ METHOD ============ */
@@ -318,6 +320,8 @@ input[type=range].explode::-webkit-slider-thumb{
 }
 .step h4{font-family:var(--font-d);font-size:18.5px;font-weight:600;margin-bottom:10px}
 .step p{font-size:14.5px;color:var(--text-2)}
+#contributions .step h4{font-size:22px}
+#contributions .step p{font-size:17px}
 
 /* ============ DATASET ============ */
 .scene-chips{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:28px}
@@ -335,7 +339,7 @@ input[type=range].explode::-webkit-slider-thumb{
   border:1px solid var(--stroke);background:var(--surface);border-radius:99px;padding:9px 20px;cursor:pointer;transition:.2s;
 }
 .tab-btn:hover{color:var(--text)}
-.tab-btn.active{color:#0a0a12;background:var(--grad);border-color:transparent;font-weight:600}
+.tab-btn.active{color:#0a0a0c;background:var(--grad);border-color:transparent;font-weight:600}
 .tab-pane{display:none}
 .tab-pane.active{display:block;animation:fadein .45s}
 @keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
@@ -373,7 +377,7 @@ input[type=range].explode::-webkit-slider-thumb{
 .copy-btn{
   position:absolute;top:14px;right:14px;display:inline-flex;align-items:center;gap:7px;
   font-family:var(--font-m);font-size:12px;color:var(--text-2);cursor:pointer;
-  border:1px solid var(--stroke-2);background:rgba(7,8,12,.7);border-radius:9px;padding:8px 14px;transition:.2s;
+  border:1px solid var(--stroke-2);background:rgba(10,10,12,.7);border-radius:9px;padding:8px 14px;transition:.2s;
 }
 .copy-btn:hover{color:var(--text);border-color:rgba(255,255,255,.3)}
 
@@ -452,15 +456,14 @@ window.WS_CONFIG = {
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
         Paper
       </a>
-      <a class="btn" href="#" target="_blank">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-        arXiv
-      </a>
       <a class="btn" href="https://github.com/parttrellis/PartTrellis" target="_blank">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.6.5.5 5.6.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0C15.7 4.9 16.7 5.2 16.7 5.2c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .4.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.6 18.4.5 12 .5z"/></svg>
         Code
       </a>
-
+      <a class="btn" href="https://huggingface.co/AuroraRyan/PartTrellis" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.3 7L12 12l8.7-5M12 22V12"/></svg>
+        Model
+      </a>
       <a class="btn" href="#bibtex">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 3a2.8 2.8 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5z"/></svg>
         BibTeX
@@ -470,14 +473,13 @@ window.WS_CONFIG = {
     <div class="teaser-frame reveal">
       <img src="assets/figures/teaser.png" alt="PartTrellis teaser: dozens of assets generated from single images, each decomposed into parts" fetchpriority="high">
     </div>
-    <p class="fig-cap reveal">Every asset above is generated by PartTrellis from a <b>single RGB image</b> — no 2D mask, no part segmenter, no per-object optimization. Parts are rendered in distinct colors; each is a separate, individually complete mesh.</p>
+    <p class="fig-cap lg reveal">Every asset above is generated by PartTrellis from a <b>single RGB image</b> — no 2D mask, no part segmenter, no per-object optimization. Parts are rendered in distinct colors; each is a separate, individually complete mesh.</p>
   </div>
 </section>
 
 <!-- ================= CONTRIBUTIONS ================= -->
 <section id="contributions" style="padding-top:0">
   <div class="wrap">
-    <div class="kicker reveal">TL;DR</div>
     <h2 class="reveal"><span class="grad-text">Contributions</span></h2>
     <div class="step-grid" style="margin-top:30px">
       <div class="step card reveal">
@@ -509,7 +511,6 @@ window.WS_CONFIG = {
 <!-- ================= 3D DEMO ================= -->
 <section id="demo">
   <div class="wrap">
-    <div class="kicker reveal">Interactive Results</div>
     <h2 class="reveal">Explore generated assets <span class="grad-text">part by part</span></h2>
     <p class="lead reveal" style="margin-bottom:36px">Each asset below was generated from a single image. Every part is an individually complete mesh. Hover to highlight a part, click to isolate it, and drag the slider to pull the object apart — this is what <i>part-aware</i> means.</p>
     <div class="card reveal ws-viewer" data-scenes="scenes">
@@ -540,7 +541,7 @@ window.WS_CONFIG = {
         </div>
       </div>
     </div>
-    <p class="fig-cap reveal">Each part carries its own color. Parts are generated jointly in one flow pass over two interleaved sparse volumes — not segmented after the fact. GLBs are compressed for web viewing; for original assets see the <a href="https://github.com/parttrellis/PartTrellis" target="_blank">GitHub repository</a>.</p>
+    <p class="fig-cap lg reveal">Each part carries its own color. Parts are generated jointly in one flow pass over two interleaved sparse volumes — not segmented after the fact. <u>GLBs are compressed for web viewing</u>; for original assets see the <a href="https://github.com/parttrellis/PartTrellis" target="_blank">GitHub repository</a>.</p>
   </div>
 </section>
 
@@ -575,7 +576,7 @@ window.WS_CONFIG = {
 
 
 
-<!-- ================= RESULTS ================= -->
+<!-- ================= RESULTS (hidden for now) =================
 <section id="results">
   <div class="wrap">
     <div class="kicker reveal">Results</div>
@@ -619,11 +620,11 @@ window.WS_CONFIG = {
     <p class="fig-cap">In the wild: a single toy photo, all six methods. PartTrellis returns clean, semantically-separated parts where baselines fragment or fuse.</p>
   </div>
 </section>
+================================================================= -->
 
 <!-- ================= BIBTEX ================= -->
 <section id="bibtex">
   <div class="wrap">
-    <div class="kicker reveal">Citation</div>
     <h2 class="reveal">BibTeX</h2>
     <div class="bib-card card reveal">
       <button class="copy-btn" id="copy-bib">
