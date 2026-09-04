@@ -1,0 +1,28 @@
+# ---------------------------------------------------------------
+# WorldSculpt project page — what NOT to publish
+# The deployable site is: index.html + assets/{js,figures,vendor,videos,models}
+# ---------------------------------------------------------------
+
+# macOS junk
+.DS_Store
+**/.DS_Store
+
+# Raw source data — inputs to the asset pipeline, not part of the site
+# dataset/        UE-MeshyScene frames, masks, depth, GT meshes  (~36 GB)
+# assets/glbs/    raw per-object reconstruction GLBs             (~1.3 GB)
+# _source_videos/ original 4-panel result videos                 (~4 GB)
+dataset/
+assets/glbs/
+_source_videos/
+
+# Scratch space from asset transfers — safe to delete entirely (~6.5 GB)
+_to_delete/
+
+# Internal tools, not the public page
+# (inspector/ needs assets/glbs/, so it cannot work on a deployed site anyway)
+inspector/
+inspector_remote/
+
+# Node/editor leftovers, just in case
+node_modules/
+*.log
