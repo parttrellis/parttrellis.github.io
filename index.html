@@ -474,29 +474,7 @@ window.WS_CONFIG = {
 <!-- ================= CONTRIBUTIONS ================= -->
 <section id="contributions" style="padding-top:0">
   <div class="wrap">
-    <h2 class="reveal"><span class="grad-text">Contributions</span></h2>
-    <div class="step-grid" style="margin-top:30px">
-      <div class="step card reveal">
-        <span class="n">01</span>
-        <h4>Dual-volume O-Voxel</h4>
-        <p>An O-Voxel grid stores one sheet of surface per voxel, so a single volume cannot represent the interface where two parts touch — at any resolution. Two interleaved volumes can, at native quality.</p>
-      </div>
-      <div class="step card reveal">
-        <span class="n">02</span>
-        <h4>Mask- and segmenter-free</h4>
-        <p>Part-aware generation end to end: no 2D masks, no segmentation network, no per-object optimization anywhere in the pipeline — and the speed of TRELLIS.2 is kept.</p>
-      </div>
-      <div class="step card reveal">
-        <span class="n">03</span>
-        <h4>Agent-authored training data</h4>
-        <p>The training corpus spans CAD models and part assets authored by an LLM-driven agent — to our knowledge the first 3D generative model trained on agent-authored part data.</p>
-      </div>
-      <div class="step card reveal">
-        <span class="n">04</span>
-        <h4>Better whole objects, too</h4>
-        <p>Against part pipelines of different paradigms: whole-object Chamfer distance −40%, strict part F-score +16%. Surprisingly, whole-object fidelity also improves over the same backbone fine-tuned on the same data.</p>
-      </div>
-    </div>
+    <div class="method-fig reveal"><img src="assets/figures/pipeline.png" alt="PartTrellis pipeline: image conditioner, dual-volume layout flow, SLat flow, part-level mesh" loading="lazy"></div>
   </div>
 </section>
 
@@ -506,7 +484,6 @@ window.WS_CONFIG = {
 <section id="demo">
   <div class="wrap">
     <h2 class="reveal">Explore generated assets <span class="grad-text">part by part</span></h2>
-    <p class="lead reveal" style="margin-bottom:36px">Each asset below was generated from a single image. Every part is an individually complete mesh. Hover to highlight a part, click to isolate it, and drag the slider to pull the object apart — this is what <i>part-aware</i> means.</p>
     <div class="card reveal ws-viewer" data-scenes="scenes">
       <div class="viewer-shell">
         <canvas class="ws-canvas"></canvas>
@@ -535,8 +512,7 @@ window.WS_CONFIG = {
         </div>
       </div>
     </div>
-    <p class="fig-cap lg reveal">Each part carries its own color. Parts are generated jointly in one flow pass over two interleaved sparse volumes — not segmented after the fact. <u>GLBs are compressed for web viewing</u>; for original assets see the <a href="https://github.com/parttrellis/PartTrellis" target="_blank">GitHub repository</a>.</p>
-  </div>
+    </div>
 </section>
 
 
@@ -546,31 +522,13 @@ window.WS_CONFIG = {
   <div class="wrap">
     <div class="kicker reveal">Method</div>
     <h2 class="reveal">One generator, <span class="grad-text">two interleaved volumes</span></h2>
-    <p class="lead reveal" style="margin-bottom:36px">PartTrellis is a dual-volume extension of TRELLIS.2. Parts of an object are packed into <b>two interleaved O-Voxel volumes</b> by a bipartite coloring of the part-contact graph, so no two touching parts ever share a voxel sheet. One flow model generates both volumes jointly — per-stream weights with zero-initialized cross-volume attention — conditioned on a single image via DINOv3.</p>
     <div class="method-fig reveal"><img src="assets/figures/method_strip.png" alt="PartTrellis: input image, dual occupancy volumes A and B, final part mesh" loading="lazy"></div>
-    <div class="step-grid">
-      <div class="step card reveal">
-        <span class="n">01 / PACK</span>
-        <h4>Dual-volume packing</h4>
-        <p>Contacting parts are separated by a bipartite 2-coloring of the part contact graph (odd cycles resolved by contraction). Each volume is a valid O-Voxel field; their union is the full object with exact part interfaces.</p>
-      </div>
-      <div class="step card reveal">
-        <span class="n">02 / GENERATE</span>
-        <h4>Joint dual-volume flow</h4>
-        <p>The two-stage TRELLIS.2 flow (sparse-structure layout, then structured-latent refinement) runs over both volumes at once, with per-stream weights and zero-initialized cross-volume attention. A disjointness penalty keeps the volumes from claiming the same space.</p>
-      </div>
-      <div class="step card reveal">
-        <span class="n">03 / EXTRACT</span>
-        <h4>Parts by connected components</h4>
-        <p>Dual contouring extracts each volume's surface directly — never remeshed, never watertight-repaired. Connected components across the two volumes are the parts: complete, separable meshes with crisp contact interfaces.</p>
-      </div>
-    </div>
   </div>
 </section>
 
 
 
-<!-- ================= RESULTS (hidden for now) =================
+
 <section id="results">
   <div class="wrap">
     <div class="kicker reveal">Results</div>
@@ -614,7 +572,7 @@ window.WS_CONFIG = {
     <p class="fig-cap">In the wild: a single toy photo, all six methods. PartTrellis returns clean, semantically-separated parts where baselines fragment or fuse.</p>
   </div>
 </section>
-================================================================= -->
+================================================================= 
 
 <!-- ================= BIBTEX ================= -->
 <section id="bibtex">
