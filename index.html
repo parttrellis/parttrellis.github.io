@@ -397,6 +397,12 @@ window.WS_CONFIG = {
   scenes: [
     { id: "res-1", label: "Sofa", glb: "assets/models/results/sofa.glb", dist: 1.45 }
   ],
+  methodScenes: [
+    { id: "mv-1", label: "Volume A",     glb: "assets/models/results/dv_volA.glb",  dist: 1.45 },
+    { id: "mv-2", label: "Volume B",     glb: "assets/models/results/dv_volB.glb",  dist: 1.45 },
+    { id: "mv-3", label: "A + B",        glb: "assets/models/results/dv_both.glb",  dist: 1.45 },
+    { id: "mv-4", label: "Parts",        glb: "assets/models/results/dv_parts.glb", dist: 1.45 }
+  ],
   marbleScenes: [],
   datasetScenes: [],
   heroRows: []
@@ -527,7 +533,34 @@ window.WS_CONFIG = {
   <div class="wrap">
     <div class="kicker reveal">Method</div>
     <h2 class="reveal">One generator, <span class="grad-text">two interleaved volumes</span></h2>
-    <div class="method-fig reveal"><img src="assets/figures/truck_strip.png" alt="Input image, O-Voxel volume A, volume B, and the resulting part-level mesh of the same truck" loading="lazy"></div>
+    <div class="card reveal ws-viewer" data-scenes="methodScenes">
+      <div class="viewer-shell">
+        <canvas class="ws-canvas"></canvas>
+        <div class="viewer-hud">
+          <span class="hud-chip hud-count">— parts</span>
+          <span class="hud-chip placeholder hud-ph" style="display:none">loading…</span>
+        </div>
+        <div class="ws-tooltip"></div>
+        <div class="ws-loader">
+          <div class="ws-loader-label">Loading…</div>
+          <div class="ws-loader-bar"><div class="ws-loader-fill"></div></div>
+        </div>
+        <div class="viewer-tip">drag to orbit · right-drag to pan · scroll to zoom · switch between volume A, volume B, their union, and the final parts</div>
+      </div>
+      <div class="viewer-bar">
+        <div class="scene-tabs"></div>
+        <div class="viewer-ctrl">
+          <span class="ctrl-lbl">Explode</span>
+          <input type="range" class="explode" min="0" max="100" value="0">
+          <button class="icon-btn btn-rotate" title="Auto-rotate">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6"/><path d="M2.5 22v-6h6"/><path d="M2 11.5a10 10 0 0 1 18.8-4.3"/><path d="M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
+          </button>
+          <button class="icon-btn btn-reset" title="Reset view">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 4v5h5"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
