@@ -56,6 +56,18 @@ function clayMaterial(i) {
   return new THREE.MeshStandardMaterial({ color, roughness: 0.88, metalness: 0.0 });
 }
 
+/* Some GLBs bake a meaningful per-part color into COLOR_0 (e.g. the two O-Voxel
+   volumes, red vs blue). Honour it instead of the golden-angle clay palette;
+   fall back to clay when the file carries no vertex colors. */
+function partMaterial(geometry, i) {
+  if (geometry && geometry.attributes && geometry.attributes.color) {
+    return new THREE.MeshStandardMaterial({
+      vertexColors: true, roughness: 0.88, metalness: 0.0,
+    });
+  }
+  return clayMaterial(i);
+}
+
 class Viewer {
   constructor(container) {
     this.container = container;
@@ -243,7 +255,7 @@ class Viewer {
           gltf.scene.traverse((o) => {
             if (o.isMesh) {
               if (!o.geometry.attributes.normal) o.geometry.computeVertexNormals();
-              o.material = clayMaterial(this.objects.length); // per-object base color
+              o.material = partMaterial(o.geometry, this.objects.length);
               this.objects.push(o);
             }
           });
@@ -530,7 +542,7 @@ class DatasetViewer extends Viewer {
         gltf.scene.traverse((o) => {
           if (o.isMesh) {
             if (!o.geometry.attributes.normal) o.geometry.computeVertexNormals();
-            o.material = clayMaterial(this.objects.length);
+            o.material = partMaterial(o.geometry, this.objects.length);
             this.objects.push(o);
           }
         });
@@ -776,7 +788,7 @@ class MarbleViewer extends Viewer {
         gltf.scene.traverse((o) => {
           if (o.isMesh) {
             if (!o.geometry.attributes.normal) o.geometry.computeVertexNormals();
-            o.material = clayMaterial(this.objects.length);
+            o.material = partMaterial(o.geometry, this.objects.length);
             this.objects.push(o);
           }
         });
