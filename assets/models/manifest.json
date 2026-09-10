@@ -1,0 +1,158 @@
+{
+  "inference_commit": "c8adb7819d9797cf1c7e67e901ddb394b4217228",
+  "checkpoint_repository": "AuroraRyan/PartTrellis",
+  "checkpoints": [
+    "stage1_layout_sepocc_100k.pt",
+    "stage2_slat_orig_100k.pt",
+    "shape_dec_next_dc_f16c32_fp16.pt"
+  ],
+  "inference": {
+    "steps": 50,
+    "guidance": 3.0,
+    "seed_rule": "crc32(object_id) % 100000",
+    "p1_variant": "separate",
+    "per_stream_io": true,
+    "p1_dedup": true,
+    "part_relabel_eps_voxels": 2.0
+  },
+  "web_export": {
+    "simplification": false,
+    "orientation": "coherent triangle winding and recalculated smooth normals; no vertex movement",
+    "compression": "Draco, 16-bit position / 12-bit normal quantization",
+    "triangle_count_preserved": true
+  },
+  "assets": [
+    {
+      "id": "truck",
+      "label": "Delivery truck",
+      "oid": "005b4182ef0694aed6c1ec6010dde7fd",
+      "faces": 1559138,
+      "parts": 12,
+      "input": "assets/images/truck-input.webp",
+      "glb": "assets/models/results/truck.glb"
+    },
+    {
+      "id": "race-car",
+      "label": "Race car",
+      "oid": "97c70cd5f794e7de9e244ffa60a909c3",
+      "faces": 979768,
+      "parts": 12,
+      "input": "assets/images/race-car-input.webp",
+      "glb": "assets/models/results/race-car.glb"
+    },
+    {
+      "id": "chair",
+      "label": "Dining chair",
+      "oid": "3466bf8546fd4f30a79e7e45f7147dc9",
+      "faces": 732256,
+      "parts": 15,
+      "input": "assets/images/chair-input.webp",
+      "glb": "assets/models/results/chair.glb"
+    },
+    {
+      "id": "teapot",
+      "label": "Teapot",
+      "oid": "0e8a3c257f9d47f0899b0be900f16428",
+      "faces": 956644,
+      "parts": 5,
+      "input": "assets/images/teapot-input.webp",
+      "glb": "assets/models/results/teapot.glb"
+    },
+    {
+      "id": "swing",
+      "label": "Playground swing",
+      "oid": "rec_playground_swing_1ccb2e94810e44459d9c5c20a103f514",
+      "faces": 625100,
+      "parts": 4,
+      "input": "assets/images/swing-input.webp",
+      "glb": "assets/models/results/swing.glb"
+    },
+    {
+      "id": "stool",
+      "label": "Bar stool",
+      "oid": "713c32d7122d4d01962e0462fe5bfeb5",
+      "faces": 1630312,
+      "parts": 4,
+      "input": "assets/images/stool-input.webp",
+      "glb": "assets/models/results/stool.glb"
+    },
+    {
+      "id": "magic-lamp",
+      "label": "Magic lamp",
+      "oid": "007504cbe0c94042b191021ec41bc246",
+      "faces": 1201752,
+      "parts": 3,
+      "input": "assets/images/magic-lamp-input.webp",
+      "glb": "assets/models/results/magic-lamp.glb"
+    },
+    {
+      "id": "table",
+      "label": "Writing table",
+      "oid": "51f0d0a9aa934af09083473fc3158cad",
+      "faces": 1142322,
+      "parts": 5,
+      "input": "assets/images/table-input.webp",
+      "glb": "assets/models/results/table.glb"
+    },
+    {
+      "id": "microwave",
+      "label": "Microwave",
+      "oid": "rec_microwave_oven_761f4adfd2814137a9425ea26b95e4d2",
+      "faces": 6311870,
+      "parts": 13,
+      "input": "assets/images/microwave-input.webp",
+      "glb": "assets/models/results/microwave.glb"
+    },
+    {
+      "id": "top-hat",
+      "label": "Top hat",
+      "oid": "0228981cd37f4a21962403b936f54629",
+      "faces": 2410974,
+      "parts": 4,
+      "input": "assets/images/top-hat-input.webp",
+      "glb": "assets/models/results/top-hat.glb"
+    },
+    {
+      "id": "window",
+      "label": "Casement window",
+      "oid": "027345ad8cdf47569b12e33973b1d9fc",
+      "faces": 1682218,
+      "parts": 7,
+      "input": "assets/images/window-input.webp",
+      "glb": "assets/models/results/window.glb"
+    },
+    {
+      "id": "bottle",
+      "label": "Potion bottle",
+      "oid": "0453707ab0ed4cd4bd704f77d62bbc92",
+      "faces": 2885044,
+      "parts": 2,
+      "input": "assets/images/bottle-input.webp",
+      "glb": "assets/models/results/bottle.glb"
+    },
+    {
+      "id": "round-chair",
+      "label": "Shell chair",
+      "oid": "5dd8628a9e1449669d28504180d39980",
+      "faces": 759116,
+      "parts": 3,
+      "input": "assets/images/round-chair-input.webp",
+      "glb": "assets/models/results/round-chair.glb"
+    },
+    {
+      "id": "kettle",
+      "label": "Geometric teapot",
+      "oid": "7656b5d7e1104fdea1e40cdc85193c47",
+      "faces": 1310456,
+      "parts": 10,
+      "input": "assets/images/kettle-input.webp",
+      "glb": "assets/models/results/kettle.glb"
+    }
+  ],
+  "application_video": {
+    "source_file": "parttrellis_demo_v3.mp4",
+    "created": "2026-08-10",
+    "duration_seconds": 51.667,
+    "note": "Archived application demonstration: image-guided PBR and hand-authored articulation. Predates the release checkpoint used in the interactive collection."
+  }
+}
