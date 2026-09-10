@@ -28,9 +28,16 @@ for asset in manifest['assets']:
     assert path.stat().st_size < 100_000_000
     print(f"{asset['id']}: {asset['parts']} parts, {faces:,} triangles, {path.stat().st_size / 1e6:.2f} MB")
 
-_, whole = glb(ROOT / 'assets/models/results/truck-volumes.glb')
-_, a = glb(ROOT / 'assets/models/results/truck-a.glb')
-_, b = glb(ROOT / 'assets/models/results/truck-b.glb')
-_, parts = glb(ROOT / 'assets/models/results/truck.glb')
+_, whole = glb(ROOT / 'assets/models/results/method-volumes.glb')
+_, a = glb(ROOT / 'assets/models/results/method-a.glb')
+_, b = glb(ROOT / 'assets/models/results/method-b.glb')
+_, parts = glb(ROOT / ('assets/models/results/' + manifest['method_asset'] + '.glb'))
 assert a + b == whole == parts, 'Volume views must retain the same complete geometry.'
 print(f'PASS: {len(manifest["assets"])} assets; A + B and parts have identical triangle counts.')
+
+quality = json.loads((ROOT / manifest["selection_report"]).read_text())
+assert {a["id"] for a in quality["accepted"]} == {a["id"] for a in manifest["assets"]}
+for a in quality["accepted"]:
+ assert len(a["surface_proximity"]) == a["parts"]
+ assert sum(p["faces"] for p in a["surface_proximity"]) == a["faces"]
+print("PASS: per-part inspection records cover every published triangle.")

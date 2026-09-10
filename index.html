@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PartTrellis — One image. Every part in 3D.</title>
+<title>PartTrellis: Extending Native 3D Generators to the Part Level</title>
 <meta name="description" content="Generate 3D assets with separate, editable parts from one image. Explore the interactive collection and see PartTrellis in motion.">
-<meta property="og:title" content="PartTrellis — One image. Every part in 3D.">
-<meta property="og:description" content="One image becomes a 3D asset made of individual parts. Explore the collection and watch the film.">
+<meta property="og:title" content="PartTrellis: Extending Native 3D Generators to the Part Level">
+<meta property="og:description" content="Part-structured image-to-3D generation. Explore curated results, the method and application demonstrations.">
 <meta property="og:url" content="https://parttrellis.github.io/">
 <meta name="twitter:card" content="summary_large_image">
-<meta property="og:image" content="https://parttrellis.github.io/assets/images/collection-hero.webp">
+<meta property="og:image" content="https://parttrellis.github.io/assets/images/paper-share.webp">
 <link rel="icon" href="assets/figures/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,500;6..12,600;6..12,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   WorldSculpt — dark premium design system
+   PartTrellis — project page
    ============================================================ */
 :root{
   --bg:        #0a0a0c;
@@ -397,24 +397,6 @@ footer .fnote{font-size:12.5px;margin-top:10px}
 window.WS_CONFIG = {
   "scenes": [
     {
-      "id": "truck",
-      "label": "Delivery truck",
-      "category": "Vehicles",
-      "glb": "assets/models/results/truck.glb",
-      "input": "assets/images/truck-input.webp",
-      "preview": "assets/images/truck-preview.jpg",
-      "parts": 12
-    },
-    {
-      "id": "race-car",
-      "label": "Race car",
-      "category": "Vehicles",
-      "glb": "assets/models/results/race-car.glb",
-      "input": "assets/images/race-car-input.webp",
-      "preview": "assets/images/race-car-preview.jpg",
-      "parts": 12
-    },
-    {
       "id": "chair",
       "label": "Dining chair",
       "category": "Furniture",
@@ -424,40 +406,49 @@ window.WS_CONFIG = {
       "parts": 15
     },
     {
-      "id": "teapot",
-      "label": "Teapot",
+      "id": "ceramic-teapot",
+      "label": "Ceramic teapot",
       "category": "Everyday objects",
-      "glb": "assets/models/results/teapot.glb",
-      "input": "assets/images/teapot-input.webp",
-      "preview": "assets/images/teapot-preview.jpg",
+      "glb": "assets/models/results/ceramic-teapot.glb",
+      "input": "assets/images/ceramic-teapot-input.webp",
+      "preview": "assets/images/ceramic-teapot-preview.jpg",
       "parts": 5
     },
     {
-      "id": "swing",
-      "label": "Playground swing",
-      "category": "Game props",
-      "glb": "assets/models/results/swing.glb",
-      "input": "assets/images/swing-input.webp",
-      "preview": "assets/images/swing-preview.jpg",
-      "parts": 4
+      "id": "pendant-light",
+      "label": "Pendant light",
+      "category": "Lighting",
+      "glb": "assets/models/results/pendant-light.glb",
+      "input": "assets/images/pendant-light-input.webp",
+      "preview": "assets/images/pendant-light-preview.jpg",
+      "parts": 7
     },
     {
-      "id": "stool",
-      "label": "Bar stool",
-      "category": "Furniture",
-      "glb": "assets/models/results/stool.glb",
-      "input": "assets/images/stool-input.webp",
-      "preview": "assets/images/stool-preview.jpg",
-      "parts": 4
-    },
-    {
-      "id": "magic-lamp",
-      "label": "Magic lamp",
-      "category": "Game props",
-      "glb": "assets/models/results/magic-lamp.glb",
-      "input": "assets/images/magic-lamp-input.webp",
-      "preview": "assets/images/magic-lamp-preview.jpg",
+      "id": "umbrella",
+      "label": "Umbrella",
+      "category": "Everyday objects",
+      "glb": "assets/models/results/umbrella.glb",
+      "input": "assets/images/umbrella-input.webp",
+      "preview": "assets/images/umbrella-preview.jpg",
       "parts": 3
+    },
+    {
+      "id": "round-table",
+      "label": "Round table",
+      "category": "Furniture",
+      "glb": "assets/models/results/round-table.glb",
+      "input": "assets/images/round-table-input.webp",
+      "preview": "assets/images/round-table-preview.jpg",
+      "parts": 5
+    },
+    {
+      "id": "pitcher",
+      "label": "Pitcher",
+      "category": "Everyday objects",
+      "glb": "assets/models/results/pitcher.glb",
+      "input": "assets/images/pitcher-input.webp",
+      "preview": "assets/images/pitcher-preview.jpg",
+      "parts": 2
     },
     {
       "id": "table",
@@ -469,31 +460,22 @@ window.WS_CONFIG = {
       "parts": 5
     },
     {
-      "id": "microwave",
-      "label": "Microwave",
+      "id": "soap-pump",
+      "label": "Soap dispenser",
       "category": "Everyday objects",
-      "glb": "assets/models/results/microwave.glb",
-      "input": "assets/images/microwave-input.webp",
-      "preview": "assets/images/microwave-preview.jpg",
-      "parts": 13
+      "glb": "assets/models/results/soap-pump.glb",
+      "input": "assets/images/soap-pump-input.webp",
+      "preview": "assets/images/soap-pump-preview.jpg",
+      "parts": 3
     },
     {
-      "id": "top-hat",
-      "label": "Top hat",
-      "category": "Game props",
-      "glb": "assets/models/results/top-hat.glb",
-      "input": "assets/images/top-hat-input.webp",
-      "preview": "assets/images/top-hat-preview.jpg",
-      "parts": 4
-    },
-    {
-      "id": "window",
-      "label": "Casement window",
-      "category": "Architecture",
-      "glb": "assets/models/results/window.glb",
-      "input": "assets/images/window-input.webp",
-      "preview": "assets/images/window-preview.jpg",
-      "parts": 7
+      "id": "ladder-chair",
+      "label": "Ladder-back chair",
+      "category": "Furniture",
+      "glb": "assets/models/results/ladder-chair.glb",
+      "input": "assets/images/ladder-chair-input.webp",
+      "preview": "assets/images/ladder-chair-preview.jpg",
+      "parts": 8
     },
     {
       "id": "bottle",
@@ -505,47 +487,65 @@ window.WS_CONFIG = {
       "parts": 2
     },
     {
-      "id": "round-chair",
-      "label": "Shell chair",
-      "category": "Furniture",
-      "glb": "assets/models/results/round-chair.glb",
-      "input": "assets/images/round-chair-input.webp",
-      "preview": "assets/images/round-chair-preview.jpg",
-      "parts": 3
+      "id": "metal-bin",
+      "label": "Metal bin",
+      "category": "Everyday objects",
+      "glb": "assets/models/results/metal-bin.glb",
+      "input": "assets/images/metal-bin-input.webp",
+      "preview": "assets/images/metal-bin-preview.jpg",
+      "parts": 4
     },
     {
-      "id": "kettle",
-      "label": "Geometric teapot",
-      "category": "Everyday objects",
-      "glb": "assets/models/results/kettle.glb",
-      "input": "assets/images/kettle-input.webp",
-      "preview": "assets/images/kettle-preview.jpg",
-      "parts": 10
+      "id": "glasses",
+      "label": "Round spectacles",
+      "category": "Accessories",
+      "glb": "assets/models/results/glasses.glb",
+      "input": "assets/images/glasses-input.webp",
+      "preview": "assets/images/glasses-preview.jpg",
+      "parts": 9
+    },
+    {
+      "id": "tree",
+      "label": "Stylized tree",
+      "category": "Game props",
+      "glb": "assets/models/results/tree.glb",
+      "input": "assets/images/tree-input.webp",
+      "preview": "assets/images/tree-preview.jpg",
+      "parts": 2
+    },
+    {
+      "id": "pine-tree",
+      "label": "Pine tree",
+      "category": "Game props",
+      "glb": "assets/models/results/pine-tree.glb",
+      "input": "assets/images/pine-tree-input.webp",
+      "preview": "assets/images/pine-tree-preview.jpg",
+      "parts": 2
     }
   ],
   "methodScenes": [
     {
       "id": "volumes",
       "label": "A + B",
-      "glb": "assets/models/results/truck-volumes.glb",
+      "glb": "assets/models/results/method-volumes.glb",
       "mode": "volumes"
     },
     {
       "id": "volume-a",
       "label": "Volume A",
-      "glb": "assets/models/results/truck-a.glb",
+      "glb": "assets/models/results/method-a.glb",
       "mode": "volumes"
     },
     {
       "id": "volume-b",
       "label": "Volume B",
-      "glb": "assets/models/results/truck-b.glb",
+      "glb": "assets/models/results/method-b.glb",
       "mode": "volumes"
     },
     {
-      "id": "truck-parts",
+      "id": "chair-parts",
       "label": "Individual parts",
-      "glb": "assets/models/results/truck.glb",
+      "glb": "assets/models/results/chair.glb",
       "mode": "parts"
     }
   ]
@@ -562,8 +562,8 @@ window.WS_CONFIG = {
   <div class="nav-inner">
     <a class="nav-logo" href="#hero"><img src="assets/figures/logo.png" alt=""><span>PartTrellis</span></a>
     <div class="nav-links">
-      <a href="#demo">Collection</a>
-      <a href="#showcase">Film</a>
+      <a href="#demo">Demos</a>
+      <a href="#showcase">Video</a>
       <a href="#method">Method</a>
       <a href="#results">Results</a>
       <a href="#bibtex">BibTeX</a>
@@ -574,30 +574,26 @@ window.WS_CONFIG = {
 
 <!-- ================= HERO ================= -->
 <section id="hero">
-  <div class="wrap hero-grid">
-    <div class="hero-copy">
-      <div class="eyebrow reveal"><span class="status-dot"></span> PART-AWARE IMAGE-TO-3D</div>
-      <h1 class="reveal">One image.<br>Every part<br><em>in 3D.</em></h1>
-      <p class="hero-description reveal">A whole new way to build with 3D.<br>Generate assets with separate, editable parts — ready to explore, assemble and bring to life.</p>
-      <div class="hero-actions reveal">
-        <a class="btn primary" href="#demo">Explore the collection <span aria-hidden="true">↗</span></a>
-        <a class="text-link" href="#showcase"><span class="play-small" aria-hidden="true">▶</span> Watch the film <small>0:52</small></a>
-      </div>
-      <div class="hero-proof reveal"><span>ONE IMAGE</span><i></i><span>SEPARATE MESHES</span><i></i><span>NATIVE 3D</span></div>
+  <div class="wrap paper-header">
+    <h1 class="reveal"><span>PartTrellis</span><br>Extending Native 3D Generators<br>to the Part Level</h1>
+    <div class="authors reveal"><span class="author"><a href="https://auroraryan0301.github.io/" target="_blank" rel="noopener">Ruihan Yu</a><sup>1,2</sup></span><span class="author"><a href="https://scholar.google.com/citations?user=CbWYuIEAAAAJ" target="_blank" rel="noopener">Lian Fu</a><sup>1,2</sup></span><span class="author"><a href="https://myniuuu.github.io/" target="_blank" rel="noopener">Muyao Niu</a><sup>1,2</sup></span><span class="author"><a href="https://brian90709.github.io/" target="_blank" rel="noopener">Zheng-Hui Huang</a><sup>1</sup></span><span class="author"><a href="https://liagm.github.io/" target="_blank" rel="noopener">Yu-Ju Tsai</a><sup>1,4</sup></span><span class="author"><span>Sho Kuno</span><sup>1,2</sup></span><span class="author"><a href="https://openreview.net/profile?id=%7EFengbo_Lan1" target="_blank" rel="noopener">Fengbo Lan</a><sup>1</sup></span><span class="author"><span>Yonghao Yu</span><sup>1</sup></span><span class="author"><a href="https://erwinwu.com/" target="_blank" rel="noopener">Erwin Wu</a><sup>1,3</sup></span><span class="author"><a href="https://faculty.ucmerced.edu/mhyang/" target="_blank" rel="noopener">Ming-Hsuan Yang</a><sup>4</sup></span><span class="author"><a href="https://kpzhang93.github.io/" target="_blank" rel="noopener">Kaipeng Zhang</a><sup>1</sup></span><span class="author"><a href="https://lightchaserx.github.io/" target="_blank" rel="noopener">Zhixiang Wang</a><sup>1</sup></span></div>
+    <p class="affil reveal"><sup>1</sup> Alaya Lab &nbsp;&nbsp; <sup>2</sup> The University of Tokyo &nbsp;&nbsp; <sup>3</sup> Institute of Science Tokyo &nbsp;&nbsp; <sup>4</sup> University of California, Merced</p>
+    <div class="btn-row reveal">
+      <a class="btn" href="https://github.com/parttrellis/PartTrellis" target="_blank" rel="noopener">Code <small>· access required</small></a>
+      <a class="btn" href="https://huggingface.co/AuroraRyan/PartTrellis" target="_blank" rel="noopener">Model <small>· access required</small></a>
+      <a class="btn" href="#showcase">Video</a>
+      <a class="btn" href="#bibtex">BibTeX</a>
     </div>
-    <div class="hero-art reveal">
-      <img src="assets/images/collection-hero.webp" alt="A curated collection of PartTrellis-generated 3D assets, with individually colored parts" fetchpriority="high" width="1100" height="1100">
-      <div class="hero-art-caption"><span>THE PARTTRELLIS COLLECTION</span><span>Generated. Part by part.</span></div>
-    </div>
+    <p class="paper-summary reveal">PartTrellis extends native 3D generation to produce part-structured assets from a single image, representing distinct components in complementary volumes.</p>
   </div>
 </section>
 <!-- ================= 3D DEMO ================= -->
 <section id="demo">
   <div class="wrap">
-    <div class="section-heading reveal"><div><div class="kicker">THE COLLECTION</div><h2>Look closer.<br><em>There’s more to every object.</em></h2></div><p>14 generated assets. Furniture, vehicles and game props.<br>Pick an asset. Rotate it. Discover how the parts fit together.</p></div>
+    <div class="section-heading reveal"><div><div class="kicker">INTERACTIVE RESULTS</div><h2>Part-structured 3D generation</h2></div><p>14 curated outputs from the release checkpoints. Rotate each object, separate its parts, or select a component to inspect it.</p></div>
     <div class="card reveal ws-viewer" data-scenes="scenes">
       <div class="viewer-shell">
-        <div class="asset-heading"><span>GENERATED ASSET</span><h3 class="asset-title">Delivery truck</h3></div>
+        <div class="asset-heading"><span>GENERATED ASSET</span><h3 class="asset-title">Dining chair</h3></div>
         <figure class="input-reference"><img alt="Input image" width="112" height="112"><figcaption>INPUT IMAGE</figcaption></figure>
         <canvas class="ws-canvas"></canvas>
         <div class="viewer-hud">
@@ -630,8 +626,8 @@ window.WS_CONFIG = {
 
 <section id="showcase">
   <div class="wrap">
-    <div class="section-heading reveal"><div><div class="kicker">FROM ASSET TO APPLICATION</div><h2>Made of parts.<br><em>Made for possibilities.</em></h2></div><p>A closer look at material styling, part assembly<br>and bringing generated assets into motion.</p></div>
-    <div class="film-frame reveal"><video controls playsinline preload="none" poster="assets/images/video-poster.jpg" aria-label="PartTrellis application showcase: part assembly, materials and animation"><source src="assets/videos/parttrellis-showcase.mp4" type="video/mp4"><track kind="captions" src="assets/videos/showcase.en.vtt" srclang="en" label="English">Your browser does not support this video. <a href="assets/videos/parttrellis-showcase.mp4">Download the film</a>.</video></div>
+    <div class="section-heading reveal"><div><div class="kicker">APPLICATIONS</div><h2>Part assembly, materials and motion</h2></div><p>A closer look at material styling, part assembly<br>and bringing generated assets into motion.</p></div>
+    <div class="film-frame reveal"><video controls playsinline preload="none" poster="assets/images/video-poster.jpg" aria-label="PartTrellis application showcase: part assembly, materials and animation"><source src="assets/videos/parttrellis-showcase.mp4" type="video/mp4"><track kind="captions" src="assets/videos/showcase.en.vtt" srclang="en" label="English">Your browser does not support this video. <a href="assets/videos/parttrellis-showcase.mp4">Download the video</a>.</video></div>
     <div class="film-caption"><span>PARTTRELLIS IN MOTION <i>·</i> 52 SECONDS</span><p>Application demonstration with image-guided PBR materials and hand-authored joints applied to generated parts.</p></div>
     <div class="use-cases"><div><span>01 / CREATION</span><h3>Build with the parts.</h3><p>Separate meshes make each piece accessible for scene assembly and editing.</p></div><div><span>02 / MATERIALS</span><h3>Give every piece character.</h3><p>Explore material styling on the generated geometry.</p></div><div><span>03 / MOTION</span><h3>Bring the asset to life.</h3><p>Add joints and behaviors to turn individual parts into moving objects.</p></div></div>
   </div>
@@ -641,7 +637,7 @@ window.WS_CONFIG = {
 <section id="method">
   <div class="wrap">
     <div class="kicker reveal">Method</div>
-    <h2 class="reveal">The whole object.<br><em>Every individual part.</em></h2>
+    <h2 class="reveal">Complementary volumes, distinct parts</h2>
     <p class="section-intro">Two interleaved volumes preserve the surfaces where parts meet. Switch views to see the structure behind the asset.</p>
     <div class="card reveal ws-viewer" data-scenes="methodScenes">
       <div class="viewer-shell">
@@ -718,21 +714,7 @@ window.WS_CONFIG = {
 </section>
 
 <!-- ================= BIBTEX ================= -->
-<section id="research"><div class="wrap"><div class="kicker">THE RESEARCH</div><h2>Extending Native 3D Generators<br>to the Part Level</h2>    <div class="authors reveal">
-      <a href="https://auroraryan0301.github.io/" target="_blank" rel="noopener">Ruihan Yu</a><sup>1,2</sup> ·
-      <a href="https://scholar.google.com/citations?user=CbWYuIEAAAAJ" target="_blank" rel="noopener">Lian Fu</a><sup>1,2</sup> ·
-      <a href="https://myniuuu.github.io/" target="_blank" rel="noopener">Muyao Niu</a><sup>1,2</sup> ·
-      <a href="https://brian90709.github.io/" target="_blank" rel="noopener">Zheng-Hui Huang</a><sup>1</sup> ·
-      <a href="https://liagm.github.io/" target="_blank" rel="noopener">Yu-Ju Tsai</a><sup>1,4</sup> ·
-      <span>Sho Kuno</span><sup>1,2</sup> ·
-      <a href="https://openreview.net/profile?id=%7EFengbo_Lan1" target="_blank" rel="noopener">Fengbo Lan</a><sup>1</sup> ·
-      <span>Yonghao Yu</span><sup>1</sup> ·
-      <a href="https://erwinwu.com/" target="_blank" rel="noopener">Erwin Wu</a><sup>1,3</sup> ·
-      <a href="https://faculty.ucmerced.edu/mhyang/" target="_blank" rel="noopener">Ming-Hsuan Yang</a><sup>4</sup> ·
-      <a href="https://kpzhang93.github.io/" target="_blank" rel="noopener">Kaipeng Zhang</a><sup>1</sup> ·
-      <a href="https://lightchaserx.github.io/" target="_blank" rel="noopener">Zhixiang Wang</a><sup>1</sup>
-    </div>
-    <p class="affil reveal"><sup>1</sup> Alaya Lab &nbsp;&nbsp; <sup>2</sup> The University of Tokyo &nbsp;&nbsp; <sup>3</sup> Institute of Science Tokyo &nbsp;&nbsp; <sup>4</sup> University of California, Merced</p><div class="btn-row"><a class="btn" href="https://github.com/parttrellis/PartTrellis" target="_blank" rel="noopener">Code · access required ↗</a><a class="btn" href="https://huggingface.co/AuroraRyan/PartTrellis" target="_blank" rel="noopener">Weights · access required ↗</a></div></div></section>
+
 <section id="bibtex">
   <div class="wrap">
     <h2 class="reveal">BibTeX</h2>

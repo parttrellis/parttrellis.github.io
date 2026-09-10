@@ -132,7 +132,7 @@ class PartViewer {
         let color=PALETTE[i%PALETTE.length];
         if(this.method&&cfg.mode!=='parts')color=(o.userData.volume===1||/Volume[_ ]B/.test(o.name))?0xc69d65:0x527e8b;
         o.name=o.name.replaceAll('_',' ');
-        o.material=new THREE.MeshStandardMaterial({color,roughness:.62,metalness:.035,side:THREE.DoubleSide});
+        o.material=new THREE.MeshStandardMaterial({color,roughness:.9,metalness:0,side:THREE.DoubleSide});
         if(old)old.dispose();
         if(!o.geometry.attributes.normal)o.geometry.computeVertexNormals();
         o.castShadow=true;o.receiveShadow=false;
