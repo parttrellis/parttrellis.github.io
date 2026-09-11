@@ -1,28 +1,28 @@
 WEBVTT
 
-00:00.000 --> 00:04.333
-PartTrellis — Part-aware image-to-3D with PBR materials.
+00:00.000 --> 00:08.000
+PartTrellis — Part-aware image-to-3D.
 
-00:04.333 --> 00:08.333
+00:08.000 --> 00:12.000
 One image becomes a part-aware 3D asset.
 
-00:08.333 --> 00:13.000
+00:12.000 --> 00:16.667
 Image-guided PBR materials.
 
-00:13.000 --> 00:20.000
+00:16.667 --> 00:23.667
 Generated parts separate and reassemble.
 
-00:20.000 --> 00:26.667
+00:23.667 --> 00:30.333
 Hand-authored joints animate the microwave door and dials.
 
-00:26.667 --> 00:33.333
+00:30.333 --> 00:37.000
 The swing assembly moves around its joint.
 
-00:33.333 --> 00:40.000
+00:37.000 --> 00:43.667
 Individual wheels and hub caps rotate.
 
-00:40.000 --> 00:46.667
+00:43.667 --> 00:50.333
 Generated geometry in an application demonstration.
 
-00:46.667 --> 00:51.667
+00:50.333 --> 00:55.333
 PartTrellis — generated parts, image-guided materials.
