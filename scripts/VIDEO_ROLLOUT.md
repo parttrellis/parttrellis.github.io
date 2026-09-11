@@ -1,16 +1,20 @@
 # Homepage video and branding
 
 The eight-second opening retains the original near-black background. The
-provided Alaya triangle icon plus white lowercase `alayalab` appears above the
-pink-blue PartTrellis title. Yellow-gray studio backgrounds are confined to
+provided Alaya triangle icon plus white `AlayaLab` appears above the
+pink-blue PartTrellis title, with the paper subtitle
+“Extending Native 3D Generators to the Part Level”. Yellow-gray studio backgrounds are confined to
 rounded image cards. Their objects rotate in 3D at 10 degrees/second while the
 cards travel right to left at 175 pixels/second. A queue extends offscreen;
-there is no loop, visible queue endpoint, slowdown, or fade-out before the cut.
+there is no loop, visible queue endpoint, or slowdown. The complete opening
+fades in over 20 frames; at the scene boundary it fades out over 20 frames
+and the demonstration fades in over 20 frames, using a smoothstep curve
+through the original near-black background.
 
 The right-corner branding in every demonstration segment and the ending card
 use the same supplied icon and white wordmark. The old cyan wordmarks and the
 spaced-out Alaya footer name are removed. Demonstration scenes, motion, and
-caption timing are retained. Branding is the only tail edit; the movie is
+caption timing are retained. The tail receives new branding and its first 20 frames fade in; the movie is
 re-encoded to H.264 for playback. Total: 1660 frames, 55.333333 seconds,
 1920 x 1088, 30 fps, no audio.
 
