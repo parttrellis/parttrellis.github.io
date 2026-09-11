@@ -1,8 +1,8 @@
-# Homepage video and branding
+# KaiNinja homepage video and branding
 
 The eight-second opening retains the original near-black background. The
 provided Alaya triangle icon plus white `AlayaLab` appears above the
-pink-blue PartTrellis title, with the paper subtitle
+pink-blue KaiNinja title, with the paper subtitle
 “Extending Native 3D Generators to the Part Level”. Yellow-gray studio backgrounds are confined to
 rounded image cards. Their objects rotate in 3D at 20 degrees/second while the
 cards travel right to left at 175 pixels/second. A queue extends offscreen;
@@ -32,7 +32,7 @@ Current editable source:
 - `compose_video.py`: black opening, studio cards, and tail branding
 - `branded-rollout.mp4`, `manifest.json`: final output and settings
 
-The graphic is extracted from `assets/figures/logo.png`; it is not redrawn.
+The supplied transparent graphic is loaded from `assets/figures/alayalab-logo.png`; it is not redrawn.
 The original movie remains backed up as `../original.mp4`. The current tail
 starts at 8 seconds, corresponding to original frame 130. Only the title card
 was lengthened; subtitles were shifted by 110 frames in the earlier revision.
