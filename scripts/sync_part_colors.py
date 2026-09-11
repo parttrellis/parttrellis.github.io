@@ -4,7 +4,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 # qfig_jobs.jsonl: part_colors_linear=true, roughness=.9, studio exposure=.92.
 PAPER_HEX = '1F78B5 FF800D 2BA12B D62629 9466BD 8C574A E378C2 737373 BDBD21 17BFCF ADC7E8 FFBA78 4C4CE6 991A66 33CC66 F24C26 66C2A6 FC8C61 8CA1CC E88AC2 A6D954 FFD92E E6C494 B2B2B2'.split()
-PALETTE = [[int(h[i:i+2],16)/255 for i in (0,2,4)]+[1.0] for h in PAPER_HEX]
+# Gently reduce chroma at constant linear luminance, shared by both viewers.
+CHROMA = 0.85
+PALETTE = []
+for h in PAPER_HEX:
+    rgb = [int(h[i:i+2],16)/255 for i in (0,2,4)]
+    luminance = sum(c*w for c,w in zip(rgb,(.2126,.7152,.0722)))
+    PALETTE.append([luminance + CHROMA*(c-luminance) for c in rgb]+[1.0])
 def recolor(source, destination):
     raw=source.read_bytes();size,kind=struct.unpack_from('<II',raw,12)
     assert kind==0x4e4f534a

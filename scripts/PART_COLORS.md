@@ -3,7 +3,9 @@
 The palette in `sync_part_colors.py` comes from the paper's `qfig_jobs.jsonl`:
 `part_colors_linear=true`, roughness 0.9, studio exposure 0.92. Those hex bytes
 were authored as linear shader inputs; do not decode them as sRGB. No extra
-white mix is applied. The former website palette was a separate muted palette.
+white mix is applied. For the homepage, chroma is reduced by 15% toward
+Rec.709 linear luminance to soften the paper palette without changing luminance.
+The former website palette was a separate muted palette.
 
 `sync_part_colors.py` assigns these linear colors to stable part names in the
 published GLBs and optionally to an uncompressed preview copy. It changes only
