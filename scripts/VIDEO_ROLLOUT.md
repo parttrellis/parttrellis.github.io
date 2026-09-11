@@ -4,7 +4,7 @@ The eight-second opening retains the original near-black background. The
 provided Alaya triangle icon plus white `AlayaLab` appears above the
 pink-blue PartTrellis title, with the paper subtitle
 “Extending Native 3D Generators to the Part Level”. Yellow-gray studio backgrounds are confined to
-rounded image cards. Their objects rotate in 3D at 10 degrees/second while the
+rounded image cards. Their objects rotate in 3D at 20 degrees/second while the
 cards travel right to left at 175 pixels/second. A queue extends offscreen;
 there is no loop, visible queue endpoint, or slowdown. The complete opening
 fades in over 20 frames; at the scene boundary it fades out over 20 frames
@@ -26,7 +26,7 @@ Current editable source:
 `/gs/fs/tga-koike-shanda4/yurh/parttrellis-showcase-work/video-rollout/branded/`
 - `brand.py`: supplied triangle icon + white wordmark, and tail brand placement
 - `render_turntables.py`: genuine 3D studio rotation frames, split across GPUs
-- `turntables_v2/`: transparent rendered objects and shadows
+- `turntables_v3/`: transparent rendered objects and shadows
 - `compose_video.py`: black opening, studio cards, and tail branding
 - `branded-rollout.mp4`, `manifest.json`: final output and settings
 
