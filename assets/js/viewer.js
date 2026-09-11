@@ -3,9 +3,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 
-// Muted ceramic, brass, terracotta and mineral hues. Colors identify parts.
-const PALETTE = [0x497d86,0xd6b783,0xbe8575,0x8c98ae,0x8d9d82,0xd8cdb7,
-  0x9d8caa,0x6a929a,0xcba49b,0xb2b897,0x7d899c,0xbaa480,0xa9c0bd,0xac939d,0xc4c9cb,0x879887];
+// Embedded GLB materials are shared with the paper-style Blender thumbnails.
 const draco = new DRACOLoader().setDecoderPath('assets/vendor/three/addons/libs/draco/gltf/').setWorkerLimit(2);
 const loader = new GLTFLoader().setDRACOLoader(draco);
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -30,7 +28,8 @@ class PartViewer {
     this.renderer=new THREE.WebGLRenderer({canvas:this.canvas,alpha:true,antialias:true,preserveDrawingBuffer:true});
     this.renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));
     this.renderer.setClearColor(0x000000,0);
-    this.renderer.toneMapping=THREE.ACESFilmicToneMapping;this.renderer.toneMappingExposure=1.12;
+    this.renderer.outputColorSpace=THREE.SRGBColorSpace;
+    this.renderer.toneMapping=THREE.NoToneMapping;this.renderer.toneMappingExposure=1;
     this.renderer.shadowMap.enabled=true;this.renderer.shadowMap.type=THREE.VSMShadowMap;
     this.renderer.shadowMap.autoUpdate=false;
     this.scene=new THREE.Scene();this.root=new THREE.Group();this.scene.add(this.root);
@@ -38,14 +37,15 @@ class PartViewer {
     this.controls=new OrbitControls(this.camera,this.canvas);
     this.controls.enableDamping=true;this.controls.autoRotate=!reducedMotion;this.controls.autoRotateSpeed=.55;
     this.controls.maxPolarAngle=Math.PI*.49;this.controls.minDistance=.35;this.controls.maxDistance=8;
-    // Soft neutral key, amber bounce and a cool rim echo the paper's studio rig.
-    this.scene.add(new THREE.HemisphereLight(0xf5f3ed,0x8d8171,2.0));
+    // Calibrated against the paper-style Blender previews: soft fill and a warm key,
+    // with Standard/sRGB output instead of a second cinematic tone curve.
+    this.scene.add(new THREE.HemisphereLight(0xffffff,0xffffff,1.3));
     this.key=new THREE.DirectionalLight(0xfff4df,3.2);this.key.position.set(-3,5,4);
     this.key.castShadow=true;this.key.shadow.mapSize.set(1024,1024);
     Object.assign(this.key.shadow.camera,{left:-1.4,right:1.4,top:1.4,bottom:-1.4,near:.1,far:15});
     this.key.shadow.bias=-.00015;this.key.shadow.normalBias=.007;this.key.shadow.radius=5;this.key.shadow.blurSamples=12;this.scene.add(this.key);
-    const fill=new THREE.DirectionalLight(0xd6e3f6,1.2);fill.position.set(3,2,-4);this.scene.add(fill);
-    const warm=new THREE.DirectionalLight(0xffd9a1,.55);warm.position.set(2,.7,3);this.scene.add(warm);
+    const fill=new THREE.DirectionalLight(0xffffff,.8);fill.position.set(3,2,-4);this.scene.add(fill);
+    const warm=new THREE.DirectionalLight(0xffffff,.25);warm.position.set(2,.7,3);this.scene.add(warm);
     this.floor=new THREE.Mesh(new THREE.PlaneGeometry(20,20),new THREE.ShadowMaterial({color:0x51463b,opacity:.13}));
     this.floor.rotation.x=-Math.PI/2;this.floor.receiveShadow=true;this.scene.add(this.floor);
     this.ray=new THREE.Raycaster();this.pointer=new THREE.Vector2();
@@ -129,8 +129,9 @@ class PartViewer {
       gltf.scene.traverse(o=>{if(o.isMesh)this.parts.push(o);});
       this.parts.forEach((o,i)=>{
         const old=o.material;
-        let color=PALETTE[i%PALETTE.length];
-        if(this.method&&cfg.mode!=='parts')color=(o.userData.volume===1||/Volume[_ ]B/.test(o.name))?0xc69d65:0x527e8b;
+        // GLTFLoader already reads baseColorFactor as linear RGB. Never reinterpret
+        // it as an sRGB hex color or replace it according to mesh traversal order.
+        const color=old.color.clone();
         o.name=o.name.replaceAll('_',' ');
         o.material=new THREE.MeshStandardMaterial({color,roughness:.9,metalness:0,side:THREE.DoubleSide});
         if(old)old.dispose();
