@@ -1,31 +1,32 @@
-# Homepage video opening
+# Homepage video and branding
 
-The opening is an eight-second, unbroken right-to-left procession on the
-homepage's yellow-gray studio background. Fourteen unique generated assets
-form an offscreen queue; only a portion passes through the viewport. There is
-no wrap, repeated object, deceleration, final fade, or visible queue endpoint.
-Objects have transparent paper-studio renders instead of white thumbnail cards.
-The title uses a muted pink-to-blue gradient with one short subtitle.
+The eight-second opening retains the original near-black background. The
+provided Alaya triangle icon plus white lowercase `alayalab` appears above the
+pink-blue PartTrellis title. Yellow-gray studio backgrounds are confined to
+rounded image cards. Their objects rotate in 3D at 10 degrees/second while the
+cards travel right to left at 175 pixels/second. A queue extends offscreen;
+there is no loop, visible queue endpoint, slowdown, or fade-out before the cut.
 
-Motion is 175 px/s, down from approximately 488 px/s in the first rollout.
-The original 47.333333-second demonstration follows at 8 seconds. Its 1420
-frames are stream-copied and retain identical decoded pixels. Captions shift
-by exactly 110 frames (3.666667 seconds). Total: 1660 frames, 55.333333 seconds,
+The right-corner branding in every demonstration segment and the ending card
+use the same supplied icon and white wordmark. The old cyan wordmarks and the
+spaced-out Alaya footer name are removed. Demonstration scenes, motion, and
+caption timing are retained. Branding is the only tail edit; the movie is
+re-encoded to H.264 for playback. Total: 1660 frames, 55.333333 seconds,
 1920 x 1088, 30 fps, no audio.
 
 Original editable project:
 `/gs/bs/tga-koike-shanda2/yurh/KaiNinja_v2/eval_gamepage/demo_video/`
-- `compose.py`: original compositor
-- `storyboard_v3.json`: original timeline
-- `anim_render.py`: original 3D animation renderer
-- `final_frames_v3/`: original composed frame sequence
+- `compose.py`, `storyboard_v3.json`, `anim_render.py`, `final_frames_v3/`
 
-Current opening sources and verification:
-`/gs/fs/tga-koike-shanda4/yurh/parttrellis-showcase-work/video-rollout/`
-- `render_rollout_studio.py`: transparent studio renders with shadow catchers
-- `compose_rollout.py`: current animation, writes `studio_intro_frames/`
-- `rollout.json`: assets, speed, frame count and splice metadata
-- `studio-intro.mp4`, `tail.mp4`, `studio-concat.txt`, `studio-rollout.mp4`
-- `original.mp4`: original homepage movie before either opening revision
-- `original-tail.md5`, `studio-tail.md5`: tail pixel hashes (timestamps differ
-  by exactly the added 110 frames)
+Current editable source:
+`/gs/fs/tga-koike-shanda4/yurh/parttrellis-showcase-work/video-rollout/branded/`
+- `brand.py`: supplied triangle icon + white wordmark, and tail brand placement
+- `render_turntables.py`: genuine 3D studio rotation frames, split across GPUs
+- `turntables_v2/`: transparent rendered objects and shadows
+- `compose_video.py`: black opening, studio cards, and tail branding
+- `branded-rollout.mp4`, `manifest.json`: final output and settings
+
+The graphic is extracted from `assets/figures/logo.png`; it is not redrawn.
+The original movie remains backed up as `../original.mp4`. The current tail
+starts at 8 seconds, corresponding to original frame 130. Only the title card
+was lengthened; subtitles were shifted by 110 frames in the earlier revision.
