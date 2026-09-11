@@ -14,7 +14,9 @@ through the original near-black background.
 The right-corner branding in every demonstration segment and the ending card
 use the same supplied icon and white wordmark. The old cyan wordmarks and the
 spaced-out Alaya footer name are removed. Demonstration scenes, motion, and
-caption timing are retained. The tail receives new branding and its first 20 frames fade in; the movie is
+caption timing are retained. Text is reviewed against the active paper (see
+CONTENT_AUDIT.md). The tail receives revised captions, neutral part callouts,
+explicit hand-authored motion badges, new branding and a 20-frame fade-in; the movie is
 re-encoded to H.264 for playback. Total: 1660 frames, 55.333333 seconds,
 1920 x 1088, 30 fps, no audio.
 
@@ -34,3 +36,5 @@ The graphic is extracted from `assets/figures/logo.png`; it is not redrawn.
 The original movie remains backed up as `../original.mp4`. The current tail
 starts at 8 seconds, corresponding to original frame 130. Only the title card
 was lengthened; subtitles were shifted by 110 frames in the earlier revision.
+
+Paper-aligned tail source: `storyboard-reviewed.json` and `reviewed_tail.py`.

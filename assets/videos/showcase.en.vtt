@@ -1,28 +1,28 @@
 WEBVTT
 
 00:00.000 --> 00:08.000
-PartTrellis — Part-aware image-to-3D.
+PartTrellis: Extending Native 3D Generators to the Part Level.
 
 00:08.000 --> 00:12.000
-One image becomes a part-aware 3D asset.
+One image to separate part meshes.
 
 00:12.000 --> 00:16.667
-Image-guided PBR materials.
+Downstream image-guided material styling on generated geometry.
 
 00:16.667 --> 00:23.667
-Generated parts separate and reassemble.
+Generated part meshes shown in an exploded-view animation.
 
 00:23.667 --> 00:30.333
-Hand-authored joints animate the microwave door and dials.
+Animation with hand-authored joints: microwave door and dials.
 
 00:30.333 --> 00:37.000
-The swing assembly moves around its joint.
+Swing animation with a hand-authored joint.
 
 00:37.000 --> 00:43.667
-Individual wheels and hub caps rotate.
+Wheel animation with hand-authored joints.
 
 00:43.667 --> 00:50.333
-Generated geometry in an application demonstration.
+Driving animation with hand-authored motion.
 
 00:50.333 --> 00:55.333
-PartTrellis — generated parts, image-guided materials.
+From one image to separate part meshes.
