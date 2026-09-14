@@ -27,13 +27,13 @@
       "id": "chair",
       "label": "Dining chair",
       "oid": "3466bf8546fd4f30a79e7e45f7147dc9",
-      "faces": 846109,
+      "faces": 838557,
       "parts": 15,
       "input": "assets/images/chair-input.webp",
       "glb": "assets/models/results/chair.glb",
       "checkpoint_stack": "zup_v2_rope4 30k (HY3D ft) + slatorig100k + original decoder",
       "seed": 5,
-      "postprocess": "weld-split parts (0.004 grid), meshopt cap 200k, CGAL hole fill <=300 edges, dust <0.5% area folded into largest same-volume part"
+      "postprocess": "weld-split parts (0.004 grid), meshopt cap 200k, CGAL hole fill <=300 edges, floater components <0.5% area culled (766 components, 7552 faces)"
     },
     {
       "id": "ceramic-teapot",

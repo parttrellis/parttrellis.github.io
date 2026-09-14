@@ -10,18 +10,19 @@
       "id": "chair",
       "oid": "3466bf8546fd4f30a79e7e45f7147dc9",
       "parts": 15,
-      "faces": 846109,
+      "faces": 838557,
       "inspection": [
-        "eight-seed screening",
-        "four rotation views",
-        "top-view seat/leg interpenetration check",
+        "ten-seed screening",
+        "five verification renders (four azimuths + top view)",
+        "no floaters above the seat after culling",
+        "no leg/seat interpenetration",
         "per-part isolation in viewer"
       ],
       "source_geometry_edited": false,
       "seed": 5,
       "checkpoint_stack": "zup_v2_rope4 30k (HY3D ft) + slatorig100k + original decoder",
       "note": "colors applied via sync_part_colors.py (paper linear palette, chroma 0.85); surface-proximity and ray-parity audits not re-run for this refresh",
-      "postprocess": "postprocess_parts.py: per-volume weld split, meshopt simplify cap 200k, CGAL hole fill <=300 edges; dust <0.5% area merged into largest same-volume part"
+      "postprocess": "postprocess_parts.py: per-volume weld split, meshopt simplify cap 200k, CGAL hole fill <=300 edges; floater components <0.5% area culled (renderids convention)"
     },
     {
       "id": "ceramic-teapot",
