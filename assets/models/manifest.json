@@ -19,21 +19,20 @@
     "simplification": false,
     "orientation": "coherent triangle winding and recalculated smooth normals; no vertex movement",
     "compression": "Draco, 20-bit position / 14-bit normal quantization, shared scene bounds",
-    "triangle_count_preserved": true,
-    "chair_note": "the refreshed dining chair is hole-filled and part-capped by the pp pipeline; other assets keep full source triangles"
+    "triangle_count_preserved": true
   },
   "assets": [
     {
       "id": "chair",
       "label": "Dining chair",
       "oid": "3466bf8546fd4f30a79e7e45f7147dc9",
-      "faces": 838557,
+      "faces": 1042482,
       "parts": 15,
       "input": "assets/images/chair-input.webp",
       "glb": "assets/models/results/chair.glb",
       "checkpoint_stack": "zup_v2_rope4 30k (HY3D ft) + slatorig100k + original decoder",
       "seed": 5,
-      "postprocess": "weld-split parts (0.004 grid), meshopt cap 200k, CGAL hole fill <=300 edges, floater components <0.5% area culled (766 components, 7552 faces)"
+      "part_relabel_eps_voxels": 2.0
     },
     {
       "id": "ceramic-teapot",
