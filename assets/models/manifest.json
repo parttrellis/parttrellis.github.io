@@ -1,162 +1,164 @@
 {
- "inference_commit": "c8adb7819d9797cf1c7e67e901ddb394b4217228",
- "checkpoint_repository": "AuroraRyan/PartTrellis",
- "checkpoints": [
-  "stage1_layout_sepocc_100k.pt",
-  "stage2_slat_orig_100k.pt",
-  "shape_dec_next_dc_f16c32_fp16.pt"
- ],
- "inference": {
-  "steps": 50,
-  "guidance": 3.0,
-  "seed_rule": "crc32(object_id) % 100000",
-  "p1_variant": "separate",
-  "per_stream_io": true,
-  "p1_dedup": true,
-  "part_relabel_eps_voxels": 2.0
- },
- "web_export": {
-  "simplification": false,
-  "orientation": "coherent triangle winding and recalculated smooth normals; no vertex movement",
-  "compression": "Draco, 20-bit position / 14-bit normal quantization, shared scene bounds",
-  "triangle_count_preserved": true
- },
- "assets": [
-  {
-   "id": "chair",
-   "label": "Dining chair",
-   "oid": "3466bf8546fd4f30a79e7e45f7147dc9",
-   "faces": 1042482,
-   "parts": 15,
-   "input": "assets/images/chair-input.webp",
-   "glb": "assets/models/results/chair.glb",
-   "checkpoint_stack": "zup_v2_rope4 30k (HY3D ft) + slatorig100k + original decoder",
-   "seed": 5
+  "inference_commit": "c8adb7819d9797cf1c7e67e901ddb394b4217228",
+  "checkpoint_repository": "AuroraRyan/PartTrellis",
+  "checkpoints": [
+    "stage1_layout_sepocc_100k.pt",
+    "stage2_slat_orig_100k.pt",
+    "shape_dec_next_dc_f16c32_fp16.pt"
+  ],
+  "inference": {
+    "steps": 50,
+    "guidance": 3.0,
+    "seed_rule": "crc32(object_id) % 100000",
+    "p1_variant": "separate",
+    "per_stream_io": true,
+    "p1_dedup": true,
+    "part_relabel_eps_voxels": 2.0
   },
-  {
-   "id": "ceramic-teapot",
-   "label": "Ceramic teapot",
-   "oid": "74deabd7624b4f8e9e439d02b2582654",
-   "faces": 941226,
-   "parts": 5,
-   "input": "assets/images/ceramic-teapot-input.webp",
-   "glb": "assets/models/results/ceramic-teapot.glb"
+  "web_export": {
+    "simplification": false,
+    "orientation": "coherent triangle winding and recalculated smooth normals; no vertex movement",
+    "compression": "Draco, 20-bit position / 14-bit normal quantization, shared scene bounds",
+    "triangle_count_preserved": true,
+    "chair_note": "the refreshed dining chair is hole-filled and part-capped by the pp pipeline; other assets keep full source triangles"
   },
-  {
-   "id": "pendant-light",
-   "label": "Pendant light",
-   "oid": "76a85ba927f4aed3a8153edcb464231077c3e673",
-   "faces": 266842,
-   "parts": 7,
-   "input": "assets/images/pendant-light-input.webp",
-   "glb": "assets/models/results/pendant-light.glb"
+  "assets": [
+    {
+      "id": "chair",
+      "label": "Dining chair",
+      "oid": "3466bf8546fd4f30a79e7e45f7147dc9",
+      "faces": 846109,
+      "parts": 15,
+      "input": "assets/images/chair-input.webp",
+      "glb": "assets/models/results/chair.glb",
+      "checkpoint_stack": "zup_v2_rope4 30k (HY3D ft) + slatorig100k + original decoder",
+      "seed": 5,
+      "postprocess": "weld-split parts (0.004 grid), meshopt cap 200k, CGAL hole fill <=300 edges, dust <0.5% area folded into largest same-volume part"
+    },
+    {
+      "id": "ceramic-teapot",
+      "label": "Ceramic teapot",
+      "oid": "74deabd7624b4f8e9e439d02b2582654",
+      "faces": 941226,
+      "parts": 5,
+      "input": "assets/images/ceramic-teapot-input.webp",
+      "glb": "assets/models/results/ceramic-teapot.glb"
+    },
+    {
+      "id": "pendant-light",
+      "label": "Pendant light",
+      "oid": "76a85ba927f4aed3a8153edcb464231077c3e673",
+      "faces": 266842,
+      "parts": 7,
+      "input": "assets/images/pendant-light-input.webp",
+      "glb": "assets/models/results/pendant-light.glb"
+    },
+    {
+      "id": "umbrella",
+      "label": "Umbrella",
+      "oid": "65b46cc0b7484736854017be9b3ef6cf",
+      "faces": 1463708,
+      "parts": 3,
+      "input": "assets/images/umbrella-input.webp",
+      "glb": "assets/models/results/umbrella.glb"
+    },
+    {
+      "id": "round-table",
+      "label": "Round table",
+      "oid": "02cd7eee524b41bb8461037485a2b4e6",
+      "faces": 1079254,
+      "parts": 5,
+      "input": "assets/images/round-table-input.webp",
+      "glb": "assets/models/results/round-table.glb"
+    },
+    {
+      "id": "pitcher",
+      "label": "Pitcher",
+      "oid": "74bc3dba9b4a40f4b6fd6b2e20ccc837",
+      "faces": 4741068,
+      "parts": 2,
+      "input": "assets/images/pitcher-input.webp",
+      "glb": "assets/models/results/pitcher.glb"
+    },
+    {
+      "id": "table",
+      "label": "Writing table",
+      "oid": "51f0d0a9aa934af09083473fc3158cad",
+      "faces": 1142322,
+      "parts": 5,
+      "input": "assets/images/table-input.webp",
+      "glb": "assets/models/results/table.glb"
+    },
+    {
+      "id": "soap-pump",
+      "label": "Soap dispenser",
+      "oid": "rec_pump_bottle_06aca7b2b8d14f2a8f6c8c20f9163919",
+      "faces": 1229876,
+      "parts": 3,
+      "input": "assets/images/soap-pump-input.webp",
+      "glb": "assets/models/results/soap-pump.glb"
+    },
+    {
+      "id": "ladder-chair",
+      "label": "Ladder-back chair",
+      "oid": "82469777c98f4fc6920d7bd66839927f",
+      "faces": 643254,
+      "parts": 8,
+      "input": "assets/images/ladder-chair-input.webp",
+      "glb": "assets/models/results/ladder-chair.glb"
+    },
+    {
+      "id": "bottle",
+      "label": "Potion bottle",
+      "oid": "0453707ab0ed4cd4bd704f77d62bbc92",
+      "faces": 2885044,
+      "parts": 2,
+      "input": "assets/images/bottle-input.webp",
+      "glb": "assets/models/results/bottle.glb"
+    },
+    {
+      "id": "metal-bin",
+      "label": "Metal bin",
+      "oid": "03732a8303ea45ecaca9e8770e67a889",
+      "faces": 3278670,
+      "parts": 4,
+      "input": "assets/images/metal-bin-input.webp",
+      "glb": "assets/models/results/metal-bin.glb"
+    },
+    {
+      "id": "glasses",
+      "label": "Round spectacles",
+      "oid": "3a3ffc63c5874046bf2a452be9993dd0",
+      "faces": 122258,
+      "parts": 9,
+      "input": "assets/images/glasses-input.webp",
+      "glb": "assets/models/results/glasses.glb"
+    },
+    {
+      "id": "tree",
+      "label": "Stylized tree",
+      "oid": "01473d5f17fe2f35c103ba98567bffdc3e66cd99e51d7b6c02c5632e896e24ef",
+      "faces": 572604,
+      "parts": 2,
+      "input": "assets/images/tree-input.webp",
+      "glb": "assets/models/results/tree.glb"
+    },
+    {
+      "id": "pine-tree",
+      "label": "Pine tree",
+      "oid": "0067c2938aa934197946f9ddf85d628d01f071bb7dcb1e6b8619613faafa641d",
+      "faces": 650792,
+      "parts": 2,
+      "input": "assets/images/pine-tree-input.webp",
+      "glb": "assets/models/results/pine-tree.glb"
+    }
+  ],
+  "application_video": {
+    "source_file": "parttrellis_demo_v3.mp4",
+    "created": "2026-08-10",
+    "duration_seconds": 51.667,
+    "note": "Archived application demonstration: image-guided PBR and hand-authored articulation. Predates the release checkpoint used in the interactive collection."
   },
-  {
-   "id": "umbrella",
-   "label": "Umbrella",
-   "oid": "65b46cc0b7484736854017be9b3ef6cf",
-   "faces": 1463708,
-   "parts": 3,
-   "input": "assets/images/umbrella-input.webp",
-   "glb": "assets/models/results/umbrella.glb"
-  },
-  {
-   "id": "round-table",
-   "label": "Round table",
-   "oid": "02cd7eee524b41bb8461037485a2b4e6",
-   "faces": 1079254,
-   "parts": 5,
-   "input": "assets/images/round-table-input.webp",
-   "glb": "assets/models/results/round-table.glb"
-  },
-  {
-   "id": "pitcher",
-   "label": "Pitcher",
-   "oid": "74bc3dba9b4a40f4b6fd6b2e20ccc837",
-   "faces": 4741068,
-   "parts": 2,
-   "input": "assets/images/pitcher-input.webp",
-   "glb": "assets/models/results/pitcher.glb"
-  },
-  {
-   "id": "table",
-   "label": "Writing table",
-   "oid": "51f0d0a9aa934af09083473fc3158cad",
-   "faces": 1142322,
-   "parts": 5,
-   "input": "assets/images/table-input.webp",
-   "glb": "assets/models/results/table.glb"
-  },
-  {
-   "id": "soap-pump",
-   "label": "Soap dispenser",
-   "oid": "rec_pump_bottle_06aca7b2b8d14f2a8f6c8c20f9163919",
-   "faces": 1229876,
-   "parts": 3,
-   "input": "assets/images/soap-pump-input.webp",
-   "glb": "assets/models/results/soap-pump.glb"
-  },
-  {
-   "id": "ladder-chair",
-   "label": "Ladder-back chair",
-   "oid": "82469777c98f4fc6920d7bd66839927f",
-   "faces": 643254,
-   "parts": 8,
-   "input": "assets/images/ladder-chair-input.webp",
-   "glb": "assets/models/results/ladder-chair.glb"
-  },
-  {
-   "id": "bottle",
-   "label": "Potion bottle",
-   "oid": "0453707ab0ed4cd4bd704f77d62bbc92",
-   "faces": 2885044,
-   "parts": 2,
-   "input": "assets/images/bottle-input.webp",
-   "glb": "assets/models/results/bottle.glb"
-  },
-  {
-   "id": "metal-bin",
-   "label": "Metal bin",
-   "oid": "03732a8303ea45ecaca9e8770e67a889",
-   "faces": 3278670,
-   "parts": 4,
-   "input": "assets/images/metal-bin-input.webp",
-   "glb": "assets/models/results/metal-bin.glb"
-  },
-  {
-   "id": "glasses",
-   "label": "Round spectacles",
-   "oid": "3a3ffc63c5874046bf2a452be9993dd0",
-   "faces": 122258,
-   "parts": 9,
-   "input": "assets/images/glasses-input.webp",
-   "glb": "assets/models/results/glasses.glb"
-  },
-  {
-   "id": "tree",
-   "label": "Stylized tree",
-   "oid": "01473d5f17fe2f35c103ba98567bffdc3e66cd99e51d7b6c02c5632e896e24ef",
-   "faces": 572604,
-   "parts": 2,
-   "input": "assets/images/tree-input.webp",
-   "glb": "assets/models/results/tree.glb"
-  },
-  {
-   "id": "pine-tree",
-   "label": "Pine tree",
-   "oid": "0067c2938aa934197946f9ddf85d628d01f071bb7dcb1e6b8619613faafa641d",
-   "faces": 650792,
-   "parts": 2,
-   "input": "assets/images/pine-tree-input.webp",
-   "glb": "assets/models/results/pine-tree.glb"
-  }
- ],
- "application_video": {
-  "source_file": "parttrellis_demo_v3.mp4",
-  "created": "2026-08-10",
-  "duration_seconds": 51.667,
-  "note": "Archived application demonstration: image-guided PBR and hand-authored articulation. Predates the release checkpoint used in the interactive collection."
- },
- "method_asset": "chair",
- "selection_report": "assets/models/quality-report.json"
+  "method_asset": "chair",
+  "selection_report": "assets/models/quality-report.json"
 }

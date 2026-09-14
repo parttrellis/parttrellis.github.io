@@ -1,2119 +1,2120 @@
 {
- "selection": "Curated illustrative results, not a representative benchmark sample.",
- "geometry_policy": "Reject poor candidates. No manual shape repair, part deletion, remeshing or decimation of selected outputs.",
- "diagnostics_note": "Proximity includes valid contact interfaces. Ray-parity containment is an approximate screening signal for open meshes, not a watertightness or exact intersection guarantee. Final decisions include visual inspection.",
- "surface_threshold_units": "one voxel = 1/512 of normalized object coordinates",
- "surface_sampling": "Initial collection: area-weighted face-centroid proximity. New candidates: up to 20,000 area-proportional centroid draws per part, seed 4096.",
- "containment_sampling": "48,000 uniform bounding-box samples per part, seed 8912, Embree ray parity.",
- "accepted": [
-  {
-   "id": "chair",
-   "oid": "3466bf8546fd4f30a79e7e45f7147dc9",
-   "parts": 15,
-   "faces": 1042482,
-   "inspection": [
-    "eight-seed screening",
-    "four rotation views",
-    "top-view seat/leg interpenetration check",
-    "per-part isolation in viewer"
-   ],
-   "source_geometry_edited": false,
-   "seed": 5,
-   "checkpoint_stack": "zup_v2_rope4 30k (HY3D ft) + slatorig100k + original decoder",
-   "note": "surface-proximity and ray-parity audits not re-run for this 30k refresh"
-  },
-  {
-   "id": "ceramic-teapot",
-   "oid": "74deabd7624b4f8e9e439d02b2582654",
-   "parts": 5,
-   "faces": 941226,
-   "inspection": [
-    "four rotation views",
-    "each isolated part",
-    "cross-volume surface proximity",
-    "pairwise ray-parity containment"
-   ],
-   "source_geometry_edited": false,
-   "surface_proximity": [
+  "selection": "Curated illustrative results, not a representative benchmark sample.",
+  "geometry_policy": "Reject poor candidates. No manual shape repair, part deletion, remeshing or decimation of selected outputs.",
+  "diagnostics_note": "Proximity includes valid contact interfaces. Ray-parity containment is an approximate screening signal for open meshes, not a watertightness or exact intersection guarantee. Final decisions include visual inspection.",
+  "surface_threshold_units": "one voxel = 1/512 of normalized object coordinates",
+  "surface_sampling": "Initial collection: area-weighted face-centroid proximity. New candidates: up to 20,000 area-proportional centroid draws per part, seed 4096.",
+  "containment_sampling": "48,000 uniform bounding-box samples per part, seed 8912, Embree ray parity.",
+  "accepted": [
     {
-     "part": 1,
-     "volume": 0,
-     "faces": 19956,
-     "samples": 19956,
-     "near_1voxel": 0.0,
-     "near_2voxel": 0.0,
-     "bounds": [
-      [
-       -0.08338849991559982,
-       0.17540450394153595,
-       -0.05284399911761284
+      "id": "chair",
+      "oid": "3466bf8546fd4f30a79e7e45f7147dc9",
+      "parts": 15,
+      "faces": 846109,
+      "inspection": [
+        "eight-seed screening",
+        "four rotation views",
+        "top-view seat/leg interpenetration check",
+        "per-part isolation in viewer"
       ],
-      [
-       0.020386500284075737,
-       0.24599049985408783,
-       0.05275300145149231
-      ]
-     ]
+      "source_geometry_edited": false,
+      "seed": 5,
+      "checkpoint_stack": "zup_v2_rope4 30k (HY3D ft) + slatorig100k + original decoder",
+      "note": "colors applied via sync_part_colors.py (paper linear palette, chroma 0.85); surface-proximity and ray-parity audits not re-run for this refresh",
+      "postprocess": "postprocess_parts.py: per-volume weld split, meshopt simplify cap 200k, CGAL hole fill <=300 edges; dust <0.5% area merged into largest same-volume part"
     },
     {
-     "part": 2,
-     "volume": 1,
-     "faces": 62910,
-     "samples": 20000,
-     "near_1voxel": 0.02095,
-     "near_2voxel": 0.0426,
-     "bounds": [
-      [
-       -0.4971955120563507,
-       -0.14914549887180328,
-       -0.03676600009202957
+      "id": "ceramic-teapot",
+      "oid": "74deabd7624b4f8e9e439d02b2582654",
+      "parts": 5,
+      "faces": 941226,
+      "inspection": [
+        "four rotation views",
+        "each isolated part",
+        "cross-volume surface proximity",
+        "pairwise ray-parity containment"
       ],
-      [
-       -0.2685774862766266,
-       0.10396149754524231,
-       0.03642600029706955
+      "source_geometry_edited": false,
+      "surface_proximity": [
+        {
+          "part": 1,
+          "volume": 0,
+          "faces": 19956,
+          "samples": 19956,
+          "near_1voxel": 0.0,
+          "near_2voxel": 0.0,
+          "bounds": [
+            [
+              -0.08338849991559982,
+              0.17540450394153595,
+              -0.05284399911761284
+            ],
+            [
+              0.020386500284075737,
+              0.24599049985408783,
+              0.05275300145149231
+            ]
+          ]
+        },
+        {
+          "part": 2,
+          "volume": 1,
+          "faces": 62910,
+          "samples": 20000,
+          "near_1voxel": 0.02095,
+          "near_2voxel": 0.0426,
+          "bounds": [
+            [
+              -0.4971955120563507,
+              -0.14914549887180328,
+              -0.03676600009202957
+            ],
+            [
+              -0.2685774862766266,
+              0.10396149754524231,
+              0.03642600029706955
+            ]
+          ]
+        },
+        {
+          "part": 4,
+          "volume": 1,
+          "faces": 77652,
+          "samples": 20000,
+          "near_1voxel": 0.01975,
+          "near_2voxel": 0.03965,
+          "bounds": [
+            [
+              0.24668750166893005,
+              -0.15193849802017212,
+              -0.07634799927473068
+            ],
+            [
+              0.4971955120563507,
+              0.14037950336933136,
+              0.07605499774217606
+            ]
+          ]
+        },
+        {
+          "part": 3,
+          "volume": 1,
+          "faces": 89512,
+          "samples": 20000,
+          "near_1voxel": 0.0,
+          "near_2voxel": 0.0,
+          "bounds": [
+            [
+              -0.2330784946680069,
+              0.1281525045633316,
+              -0.20028600096702576
+            ],
+            [
+              0.17165149748325348,
+              0.16257250308990479,
+              0.20018300414085388
+            ]
+          ]
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "faces": 691196,
+          "samples": 20000,
+          "near_1voxel": 0.00275,
+          "near_2voxel": 0.0072,
+          "bounds": [
+            [
+              -0.3423134982585907,
+              -0.24599049985408783,
+              -0.3106609880924225
+            ],
+            [
+              0.2793545126914978,
+              0.13689349591732025,
+              0.3106609880924225
+            ]
+          ]
+        }
+      ],
+      "containment": [
+        {
+          "part": 2,
+          "volume": 1,
+          "other": 0,
+          "other_volume": 0,
+          "inside_samples": 10615,
+          "contained_fraction": 0.019971738106453134
+        },
+        {
+          "part": 4,
+          "volume": 1,
+          "other": 0,
+          "other_volume": 0,
+          "inside_samples": 7531,
+          "contained_fraction": 0.04089762315761519
+        },
+        {
+          "part": 3,
+          "volume": 1,
+          "other": 0,
+          "other_volume": 0,
+          "inside_samples": 31,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "other": 2,
+          "other_volume": 1,
+          "inside_samples": 19876,
+          "contained_fraction": 0.00030187160394445564
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "other": 4,
+          "other_volume": 1,
+          "inside_samples": 19876,
+          "contained_fraction": 0.0012074864157778226
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "other": 3,
+          "other_volume": 1,
+          "inside_samples": 19876,
+          "contained_fraction": 0.0
+        }
       ]
-     ]
     },
     {
-     "part": 4,
-     "volume": 1,
-     "faces": 77652,
-     "samples": 20000,
-     "near_1voxel": 0.01975,
-     "near_2voxel": 0.03965,
-     "bounds": [
-      [
-       0.24668750166893005,
-       -0.15193849802017212,
-       -0.07634799927473068
+      "id": "pendant-light",
+      "oid": "76a85ba927f4aed3a8153edcb464231077c3e673",
+      "parts": 7,
+      "faces": 266842,
+      "inspection": [
+        "four rotation views",
+        "each isolated part",
+        "cross-volume surface proximity",
+        "pairwise ray-parity containment"
       ],
-      [
-       0.4971955120563507,
-       0.14037950336933136,
-       0.07605499774217606
+      "source_geometry_edited": false,
+      "surface_proximity": [
+        {
+          "part": 6,
+          "volume": 1,
+          "faces": 534,
+          "samples": 534,
+          "near_1voxel": 0.0,
+          "near_2voxel": 0.0,
+          "bounds": [
+            [
+              0.06722500175237656,
+              0.00471699982881546,
+              0.0753600001335144
+            ],
+            [
+              0.0753059983253479,
+              0.11653999984264374,
+              0.08047199994325638
+            ]
+          ]
+        },
+        {
+          "part": 4,
+          "volume": 1,
+          "faces": 1452,
+          "samples": 1452,
+          "near_1voxel": 0.0,
+          "near_2voxel": 0.0,
+          "bounds": [
+            [
+              0.05254000052809715,
+              0.11011400073766708,
+              0.06829600036144257
+            ],
+            [
+              0.0696130022406578,
+              0.40560799837112427,
+              0.0776439979672432
+            ]
+          ]
+        },
+        {
+          "part": 5,
+          "volume": 1,
+          "faces": 2090,
+          "samples": 2090,
+          "near_1voxel": 0.0,
+          "near_2voxel": 0.0,
+          "bounds": [
+            [
+              0.07286400347948074,
+              -0.3955720067024231,
+              0.07771199941635132
+            ],
+            [
+              0.09351199865341187,
+              0.013150000013411045,
+              0.08934500068426132
+            ]
+          ]
+        },
+        {
+          "part": 3,
+          "volume": 1,
+          "faces": 3474,
+          "samples": 3474,
+          "near_1voxel": 0.0,
+          "near_2voxel": 0.0,
+          "bounds": [
+            [
+              -0.003459000028669834,
+              -0.4522089958190918,
+              -0.06300300359725952
+            ],
+            [
+              0.0012519999872893095,
+              0.36479800939559937,
+              -0.05816100165247917
+            ]
+          ]
+        },
+        {
+          "part": 2,
+          "volume": 1,
+          "faces": 4074,
+          "samples": 4074,
+          "near_1voxel": 0.0,
+          "near_2voxel": 0.0,
+          "bounds": [
+            [
+              -0.050558000802993774,
+              -0.45145800709724426,
+              0.07700899988412857
+            ],
+            [
+              -0.04640600085258484,
+              0.450874000787735,
+              0.08406300097703934
+            ]
+          ]
+        },
+        {
+          "part": 1,
+          "volume": 1,
+          "faces": 46480,
+          "samples": 20000,
+          "near_1voxel": 0.0022,
+          "near_2voxel": 0.0061,
+          "bounds": [
+            [
+              -0.08773600310087204,
+              0.3640330135822296,
+              -0.07735099643468857
+            ],
+            [
+              0.09976600110530853,
+              0.49985501170158386,
+              0.11211699992418289
+            ]
+          ]
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "faces": 208738,
+          "samples": 20000,
+          "near_1voxel": 0.00035,
+          "near_2voxel": 0.00035,
+          "bounds": [
+            [
+              -0.22967399656772614,
+              -0.49985501170158386,
+              -0.25196701288223267
+            ],
+            [
+              0.22967399656772614,
+              0.4571180045604706,
+              0.25196701288223267
+            ]
+          ]
+        }
+      ],
+      "containment": [
+        {
+          "part": 6,
+          "volume": 1,
+          "other": 4,
+          "other_volume": 1,
+          "inside_samples": 3819,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 6,
+          "volume": 1,
+          "other": 5,
+          "other_volume": 1,
+          "inside_samples": 3819,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 6,
+          "volume": 1,
+          "other": 0,
+          "other_volume": 0,
+          "inside_samples": 3819,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 4,
+          "volume": 1,
+          "other": 6,
+          "other_volume": 1,
+          "inside_samples": 989,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 4,
+          "volume": 1,
+          "other": 1,
+          "other_volume": 1,
+          "inside_samples": 989,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 4,
+          "volume": 1,
+          "other": 0,
+          "other_volume": 0,
+          "inside_samples": 989,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 5,
+          "volume": 1,
+          "other": 6,
+          "other_volume": 1,
+          "inside_samples": 675,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 5,
+          "volume": 1,
+          "other": 0,
+          "other_volume": 0,
+          "inside_samples": 675,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 3,
+          "volume": 1,
+          "other": 1,
+          "other_volume": 1,
+          "inside_samples": 5293,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 3,
+          "volume": 1,
+          "other": 0,
+          "other_volume": 0,
+          "inside_samples": 5293,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 2,
+          "volume": 1,
+          "other": 1,
+          "other_volume": 1,
+          "inside_samples": 3676,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 2,
+          "volume": 1,
+          "other": 0,
+          "other_volume": 0,
+          "inside_samples": 3676,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 1,
+          "volume": 1,
+          "other": 4,
+          "other_volume": 1,
+          "inside_samples": 12371,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 1,
+          "volume": 1,
+          "other": 3,
+          "other_volume": 1,
+          "inside_samples": 12371,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 1,
+          "volume": 1,
+          "other": 2,
+          "other_volume": 1,
+          "inside_samples": 12371,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 1,
+          "volume": 1,
+          "other": 0,
+          "other_volume": 0,
+          "inside_samples": 12371,
+          "contained_fraction": 8.083420903726457e-05
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "other": 6,
+          "other_volume": 1,
+          "inside_samples": 227,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "other": 4,
+          "other_volume": 1,
+          "inside_samples": 227,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "other": 5,
+          "other_volume": 1,
+          "inside_samples": 227,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "other": 3,
+          "other_volume": 1,
+          "inside_samples": 227,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "other": 2,
+          "other_volume": 1,
+          "inside_samples": 227,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "other": 1,
+          "other_volume": 1,
+          "inside_samples": 227,
+          "contained_fraction": 0.0
+        }
       ]
-     ]
     },
     {
-     "part": 3,
-     "volume": 1,
-     "faces": 89512,
-     "samples": 20000,
-     "near_1voxel": 0.0,
-     "near_2voxel": 0.0,
-     "bounds": [
-      [
-       -0.2330784946680069,
-       0.1281525045633316,
-       -0.20028600096702576
+      "id": "umbrella",
+      "oid": "65b46cc0b7484736854017be9b3ef6cf",
+      "parts": 3,
+      "faces": 1463708,
+      "inspection": [
+        "four rotation views",
+        "each isolated part",
+        "cross-volume surface proximity",
+        "pairwise ray-parity containment"
       ],
-      [
-       0.17165149748325348,
-       0.16257250308990479,
-       0.20018300414085388
+      "source_geometry_edited": false,
+      "surface_proximity": [
+        {
+          "part": 1,
+          "volume": 0,
+          "faces": 10508,
+          "samples": 10508,
+          "near_1voxel": 0.0,
+          "near_2voxel": 0.0,
+          "bounds": [
+            [
+              -0.1047699972987175,
+              -0.3757844865322113,
+              -0.008469000458717346
+            ],
+            [
+              0.015414999797940254,
+              -0.24775849282741547,
+              0.013992000371217728
+            ]
+          ]
+        },
+        {
+          "part": 2,
+          "volume": 1,
+          "faces": 22252,
+          "samples": 20000,
+          "near_1voxel": 0.0241,
+          "near_2voxel": 0.04355,
+          "bounds": [
+            [
+              -0.012555000372231007,
+              -0.23067450523376465,
+              -0.008491000160574913
+            ],
+            [
+              0.012821000069379807,
+              0.34501349925994873,
+              0.015604999847710133
+            ]
+          ]
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "faces": 1430948,
+          "samples": 20000,
+          "near_1voxel": 0.0006,
+          "near_2voxel": 0.00105,
+          "bounds": [
+            [
+              -0.45939400792121887,
+              0.041031498461961746,
+              -0.4565880000591278
+            ],
+            [
+              0.45939400792121887,
+              0.3757844865322113,
+              0.4565880000591278
+            ]
+          ]
+        }
+      ],
+      "containment": [
+        {
+          "part": 2,
+          "volume": 1,
+          "other": 0,
+          "other_volume": 0,
+          "inside_samples": 16190,
+          "contained_fraction": 0.010129709697344039
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "other": 2,
+          "other_volume": 1,
+          "inside_samples": 1500,
+          "contained_fraction": 0.0
+        }
       ]
-     ]
     },
     {
-     "part": 0,
-     "volume": 0,
-     "faces": 691196,
-     "samples": 20000,
-     "near_1voxel": 0.00275,
-     "near_2voxel": 0.0072,
-     "bounds": [
-      [
-       -0.3423134982585907,
-       -0.24599049985408783,
-       -0.3106609880924225
+      "id": "round-table",
+      "oid": "02cd7eee524b41bb8461037485a2b4e6",
+      "parts": 5,
+      "faces": 1079254,
+      "inspection": [
+        "four rotation views",
+        "each isolated part",
+        "cross-volume surface proximity",
+        "pairwise ray-parity containment"
       ],
-      [
-       0.2793545126914978,
-       0.13689349591732025,
-       0.3106609880924225
+      "source_geometry_edited": false,
+      "surface_proximity": [
+        {
+          "part": 4,
+          "volume": 1,
+          "faces": 34806,
+          "samples": 20000,
+          "near_1voxel": 0.03915,
+          "near_2voxel": 0.0728,
+          "bounds": [
+            [
+              0.40552300214767456,
+              -0.13138599693775177,
+              -0.05666700005531311
+            ],
+            [
+              0.4849129915237427,
+              0.1167529970407486,
+              0.05674099922180176
+            ]
+          ]
+        },
+        {
+          "part": 2,
+          "volume": 1,
+          "faces": 34844,
+          "samples": 20000,
+          "near_1voxel": 0.04125,
+          "near_2voxel": 0.07615,
+          "bounds": [
+            [
+              -0.05613800138235092,
+              -0.13124500215053558,
+              0.3949410021305084
+            ],
+            [
+              0.05598499998450279,
+              0.116798996925354,
+              0.48366400599479675
+            ]
+          ]
+        },
+        {
+          "part": 1,
+          "volume": 1,
+          "faces": 35000,
+          "samples": 20000,
+          "near_1voxel": 0.0422,
+          "near_2voxel": 0.07215,
+          "bounds": [
+            [
+              -0.48512399196624756,
+              -0.13135899603366852,
+              -0.05647899955511093
+            ],
+            [
+              -0.4056589901447296,
+              0.11664500087499619,
+              0.05676399916410446
+            ]
+          ]
+        },
+        {
+          "part": 3,
+          "volume": 1,
+          "faces": 35042,
+          "samples": 20000,
+          "near_1voxel": 0.0358,
+          "near_2voxel": 0.06975,
+          "bounds": [
+            [
+              -0.05602100118994713,
+              -0.13127900660037994,
+              -0.4827660024166107
+            ],
+            [
+              0.05598900094628334,
+              0.11679600179195404,
+              -0.3936600089073181
+            ]
+          ]
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "faces": 939562,
+          "samples": 20000,
+          "near_1voxel": 0.00465,
+          "near_2voxel": 0.00895,
+          "bounds": [
+            [
+              -0.49991899728775024,
+              0.08082100003957748,
+              -0.49998000264167786
+            ],
+            [
+              0.49991899728775024,
+              0.13138599693775177,
+              0.49998000264167786
+            ]
+          ]
+        }
+      ],
+      "containment": [
+        {
+          "part": 4,
+          "volume": 1,
+          "other": 0,
+          "other_volume": 0,
+          "inside_samples": 11427,
+          "contained_fraction": 0.0039380414807035965
+        },
+        {
+          "part": 2,
+          "volume": 1,
+          "other": 0,
+          "other_volume": 0,
+          "inside_samples": 9862,
+          "contained_fraction": 0.004968566213749747
+        },
+        {
+          "part": 1,
+          "volume": 1,
+          "other": 0,
+          "other_volume": 0,
+          "inside_samples": 11388,
+          "contained_fraction": 0.004829645240604145
+        },
+        {
+          "part": 3,
+          "volume": 1,
+          "other": 0,
+          "other_volume": 0,
+          "inside_samples": 9732,
+          "contained_fraction": 0.008939580764488286
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "other": 4,
+          "other_volume": 1,
+          "inside_samples": 15181,
+          "contained_fraction": 0.0002634872538040972
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "other": 2,
+          "other_volume": 1,
+          "inside_samples": 15181,
+          "contained_fraction": 6.58718134510243e-05
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "other": 1,
+          "other_volume": 1,
+          "inside_samples": 15181,
+          "contained_fraction": 0.0001317436269020486
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "other": 3,
+          "other_volume": 1,
+          "inside_samples": 15181,
+          "contained_fraction": 0.0005928463210592188
+        }
       ]
-     ]
+    },
+    {
+      "id": "pitcher",
+      "oid": "74bc3dba9b4a40f4b6fd6b2e20ccc837",
+      "parts": 2,
+      "faces": 4741068,
+      "inspection": [
+        "four rotation views",
+        "each isolated part",
+        "cross-volume surface proximity",
+        "pairwise ray-parity containment"
+      ],
+      "source_geometry_edited": false,
+      "surface_proximity": [
+        {
+          "part": 1,
+          "volume": 1,
+          "faces": 200306,
+          "samples": 20000,
+          "near_1voxel": 0.0,
+          "near_2voxel": 0.0,
+          "bounds": [
+            [
+              0.17959299683570862,
+              -0.28359851241111755,
+              0.013333500362932682
+            ],
+            [
+              0.49076300859451294,
+              0.26138949394226074,
+              0.2189054936170578
+            ]
+          ]
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "faces": 4540762,
+          "samples": 20000,
+          "near_1voxel": 0.0,
+          "near_2voxel": 0.0,
+          "bounds": [
+            [
+              -0.49076300859451294,
+              -0.4663355052471161,
+              -0.3217965066432953
+            ],
+            [
+              0.18624399602413177,
+              0.4663355052471161,
+              0.3217965066432953
+            ]
+          ]
+        }
+      ],
+      "containment": [
+        {
+          "part": 1,
+          "volume": 1,
+          "other": 0,
+          "other_volume": 0,
+          "inside_samples": 7900,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "other": 1,
+          "other_volume": 1,
+          "inside_samples": 4536,
+          "contained_fraction": 0.0
+        }
+      ]
+    },
+    {
+      "id": "table",
+      "oid": "51f0d0a9aa934af09083473fc3158cad",
+      "parts": 5,
+      "faces": 1142322,
+      "inspection": [
+        "four rotation views",
+        "each isolated part",
+        "cross-volume surface proximity",
+        "pairwise ray-parity containment"
+      ],
+      "source_geometry_edited": false,
+      "surface_proximity": [
+        {
+          "part": 0,
+          "volume": 0,
+          "faces": 960178,
+          "area": 1.7495725785843357,
+          "near_1voxel": 0.0032358694289773018,
+          "near_2voxel": 0.005153896263095891,
+          "boundary_edges": 4280,
+          "nonmanifold_edges": 10205,
+          "bounds": [
+            [
+              -0.326785,
+              0.129906,
+              -0.500064
+            ],
+            [
+              0.326597,
+              0.213075,
+              0.500178
+            ]
+          ]
+        },
+        {
+          "part": 1,
+          "volume": 1,
+          "faces": 45528,
+          "area": 0.06427568196372356,
+          "near_1voxel": 0.020231672719179947,
+          "near_2voxel": 0.03205695249739396,
+          "boundary_edges": 159,
+          "nonmanifold_edges": 438,
+          "bounds": [
+            [
+              -0.310346,
+              -0.210221,
+              0.422662
+            ],
+            [
+              -0.252275,
+              0.160136,
+              0.481708
+            ]
+          ]
+        },
+        {
+          "part": 2,
+          "volume": 1,
+          "faces": 45490,
+          "area": 0.06429774686328257,
+          "near_1voxel": 0.020070052632568707,
+          "near_2voxel": 0.03324107474491175,
+          "boundary_edges": 131,
+          "nonmanifold_edges": 402,
+          "bounds": [
+            [
+              -0.310429,
+              -0.210177,
+              -0.481584
+            ],
+            [
+              -0.252296,
+              0.1601,
+              -0.422399
+            ]
+          ]
+        },
+        {
+          "part": 3,
+          "volume": 1,
+          "faces": 45510,
+          "area": 0.06423275314186512,
+          "near_1voxel": 0.019716180012872165,
+          "near_2voxel": 0.03176968451759777,
+          "boundary_edges": 162,
+          "nonmanifold_edges": 387,
+          "bounds": [
+            [
+              0.252183,
+              -0.210251,
+              0.422761
+            ],
+            [
+              0.310464,
+              0.160146,
+              0.481742
+            ]
+          ]
+        },
+        {
+          "part": 4,
+          "volume": 1,
+          "faces": 45616,
+          "area": 0.06438189550750195,
+          "near_1voxel": 0.019794328273825008,
+          "near_2voxel": 0.031824628860065894,
+          "boundary_edges": 126,
+          "nonmanifold_edges": 482,
+          "bounds": [
+            [
+              0.252197,
+              -0.210211,
+              -0.481647
+            ],
+            [
+              0.310453,
+              0.160087,
+              -0.422385
+            ]
+          ]
+        }
+      ],
+      "containment": [
+        {
+          "part": 3,
+          "volume": 1,
+          "other": 0,
+          "other_volume": 0,
+          "inside_samples": 25501,
+          "contained_fraction": 0.01686208383984942
+        },
+        {
+          "part": 1,
+          "volume": 1,
+          "other": 0,
+          "other_volume": 0,
+          "inside_samples": 25292,
+          "contained_fraction": 0.018187569191839316
+        },
+        {
+          "part": 2,
+          "volume": 1,
+          "other": 0,
+          "other_volume": 0,
+          "inside_samples": 25376,
+          "contained_fraction": 0.015487074401008827
+        },
+        {
+          "part": 4,
+          "volume": 1,
+          "other": 0,
+          "other_volume": 0,
+          "inside_samples": 25320,
+          "contained_fraction": 0.016074249605055293
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "other": 3,
+          "other_volume": 1,
+          "inside_samples": 16820,
+          "contained_fraction": 0.000535077288941736
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "other": 1,
+          "other_volume": 1,
+          "inside_samples": 16820,
+          "contained_fraction": 0.0009512485136741974
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "other": 2,
+          "other_volume": 1,
+          "inside_samples": 16820,
+          "contained_fraction": 0.0004756242568370987
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "other": 4,
+          "other_volume": 1,
+          "inside_samples": 16820,
+          "contained_fraction": 0.000713436385255648
+        }
+      ]
+    },
+    {
+      "id": "soap-pump",
+      "oid": "rec_pump_bottle_06aca7b2b8d14f2a8f6c8c20f9163919",
+      "parts": 3,
+      "faces": 1229876,
+      "inspection": [
+        "four rotation views",
+        "each isolated part",
+        "cross-volume surface proximity",
+        "pairwise ray-parity containment"
+      ],
+      "source_geometry_edited": false,
+      "surface_proximity": [
+        {
+          "part": 2,
+          "volume": 1,
+          "faces": 24492,
+          "samples": 20000,
+          "near_1voxel": 0.0,
+          "near_2voxel": 0.0,
+          "bounds": [
+            [
+              0.001999499974772334,
+              0.4201450049877167,
+              -0.03400599956512451
+            ],
+            [
+              0.22970549762248993,
+              0.49506399035453796,
+              0.033796001225709915
+            ]
+          ]
+        },
+        {
+          "part": 1,
+          "volume": 1,
+          "faces": 70608,
+          "samples": 20000,
+          "near_1voxel": 0.03535,
+          "near_2voxel": 0.07135,
+          "bounds": [
+            [
+              -0.09862949699163437,
+              0.2916179895401001,
+              -0.06210299953818321
+            ],
+            [
+              0.05396449938416481,
+              0.4493919909000397,
+              0.061841998249292374
+            ]
+          ]
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "faces": 1134776,
+          "samples": 20000,
+          "near_1voxel": 0.0024,
+          "near_2voxel": 0.0045,
+          "bounds": [
+            [
+              -0.22970549762248993,
+              -0.49506399035453796,
+              -0.18810300529003143
+            ],
+            [
+              0.14476749300956726,
+              0.29795700311660767,
+              0.18810300529003143
+            ]
+          ]
+        }
+      ],
+      "containment": [
+        {
+          "part": 2,
+          "volume": 1,
+          "other": 1,
+          "other_volume": 1,
+          "inside_samples": 8559,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 1,
+          "volume": 1,
+          "other": 2,
+          "other_volume": 1,
+          "inside_samples": 19593,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 1,
+          "volume": 1,
+          "other": 0,
+          "other_volume": 0,
+          "inside_samples": 19593,
+          "contained_fraction": 0.03113356811106007
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "other": 1,
+          "other_volume": 1,
+          "inside_samples": 6419,
+          "contained_fraction": 0.003583112634366724
+        }
+      ]
+    },
+    {
+      "id": "ladder-chair",
+      "oid": "82469777c98f4fc6920d7bd66839927f",
+      "parts": 8,
+      "faces": 643254,
+      "inspection": [
+        "four rotation views",
+        "each isolated part",
+        "cross-volume surface proximity",
+        "pairwise ray-parity containment"
+      ],
+      "source_geometry_edited": false,
+      "surface_proximity": [
+        {
+          "part": 6,
+          "volume": 1,
+          "faces": 25380,
+          "samples": 20000,
+          "near_1voxel": 0.0424,
+          "near_2voxel": 0.078,
+          "bounds": [
+            [
+              -0.18535049259662628,
+              -0.403874009847641,
+              -0.18708600103855133
+            ],
+            [
+              0.184068500995636,
+              -0.3738330006599426,
+              -0.15373699367046356
+            ]
+          ]
+        },
+        {
+          "part": 5,
+          "volume": 1,
+          "faces": 25584,
+          "samples": 20000,
+          "near_1voxel": 0.0463,
+          "near_2voxel": 0.0943,
+          "bounds": [
+            [
+              -0.18535949289798737,
+              -0.40363600850105286,
+              0.2041960060596466
+            ],
+            [
+              0.1840524971485138,
+              -0.374332994222641,
+              0.23862899839878082
+            ]
+          ]
+        },
+        {
+          "part": 2,
+          "volume": 0,
+          "faces": 32788,
+          "samples": 20000,
+          "near_1voxel": 0.0,
+          "near_2voxel": 0.0,
+          "bounds": [
+            [
+              -0.13371549546718597,
+              0.18353299796581268,
+              -0.20218999683856964
+            ],
+            [
+              0.13367250561714172,
+              0.2497200071811676,
+              -0.1597760021686554
+            ]
+          ]
+        },
+        {
+          "part": 3,
+          "volume": 0,
+          "faces": 34242,
+          "samples": 20000,
+          "near_1voxel": 0.0,
+          "near_2voxel": 0.0,
+          "bounds": [
+            [
+              -0.13368350267410278,
+              0.3777979910373688,
+              -0.24152100086212158
+            ],
+            [
+              0.13367250561714172,
+              0.44928500056266785,
+              -0.20063699781894684
+            ]
+          ]
+        },
+        {
+          "part": 1,
+          "volume": 0,
+          "faces": 30672,
+          "samples": 20000,
+          "near_1voxel": 0.01865,
+          "near_2voxel": 0.04215,
+          "bounds": [
+            [
+              -0.19877949357032776,
+              -0.4978579878807068,
+              0.20219700038433075
+            ],
+            [
+              -0.1626484990119934,
+              -0.11071400344371796,
+              0.23925699293613434
+            ]
+          ]
+        },
+        {
+          "part": 4,
+          "volume": 1,
+          "faces": 45794,
+          "samples": 20000,
+          "near_1voxel": 0.0279,
+          "near_2voxel": 0.03175,
+          "bounds": [
+            [
+              -0.19183549284934998,
+              -0.025307999923825264,
+              -0.2557609975337982
+            ],
+            [
+              -0.1518535017967224,
+              0.49981001019477844,
+              -0.09520100057125092
+            ]
+          ]
+        },
+        {
+          "part": 7,
+          "volume": 1,
+          "faces": 45752,
+          "samples": 20000,
+          "near_1voxel": 0.0319,
+          "near_2voxel": 0.03605,
+          "bounds": [
+            [
+              0.15004150569438934,
+              -0.02528199926018715,
+              -0.2557390034198761
+            ],
+            [
+              0.19050849974155426,
+              0.49980399012565613,
+              -0.09519799798727036
+            ]
+          ]
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "faces": 403042,
+          "samples": 20000,
+          "near_1voxel": 0.0104,
+          "near_2voxel": 0.01575,
+          "bounds": [
+            [
+              -0.2173825055360794,
+              -0.49981001019477844,
+              -0.2007559984922409
+            ],
+            [
+              0.2173825055360794,
+              -0.02352900058031082,
+              0.2557609975337982
+            ]
+          ]
+        }
+      ],
+      "containment": [
+        {
+          "part": 6,
+          "volume": 1,
+          "other": 0,
+          "other_volume": 0,
+          "inside_samples": 45107,
+          "contained_fraction": 0.11667812091249695
+        },
+        {
+          "part": 5,
+          "volume": 1,
+          "other": 1,
+          "other_volume": 0,
+          "inside_samples": 46390,
+          "contained_fraction": 0.06141409786591938
+        },
+        {
+          "part": 5,
+          "volume": 1,
+          "other": 0,
+          "other_volume": 0,
+          "inside_samples": 46390,
+          "contained_fraction": 0.056865703815477474
+        },
+        {
+          "part": 1,
+          "volume": 0,
+          "other": 5,
+          "other_volume": 1,
+          "inside_samples": 47807,
+          "contained_fraction": 0.04334093333612232
+        },
+        {
+          "part": 1,
+          "volume": 0,
+          "other": 0,
+          "other_volume": 0,
+          "inside_samples": 47807,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 4,
+          "volume": 1,
+          "other": 0,
+          "other_volume": 0,
+          "inside_samples": 8831,
+          "contained_fraction": 0.003623598686445476
+        },
+        {
+          "part": 7,
+          "volume": 1,
+          "other": 0,
+          "other_volume": 0,
+          "inside_samples": 8810,
+          "contained_fraction": 0.003972758229284903
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "other": 6,
+          "other_volume": 1,
+          "inside_samples": 4205,
+          "contained_fraction": 0.004518430439952438
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "other": 5,
+          "other_volume": 1,
+          "inside_samples": 4205,
+          "contained_fraction": 0.0030915576694411414
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "other": 1,
+          "other_volume": 0,
+          "inside_samples": 4205,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "other": 4,
+          "other_volume": 1,
+          "inside_samples": 4205,
+          "contained_fraction": 0.00023781212841854935
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "other": 7,
+          "other_volume": 1,
+          "inside_samples": 4205,
+          "contained_fraction": 0.0004756242568370987
+        }
+      ]
+    },
+    {
+      "id": "bottle",
+      "oid": "0453707ab0ed4cd4bd704f77d62bbc92",
+      "parts": 2,
+      "faces": 2885044,
+      "inspection": [
+        "four rotation views",
+        "each isolated part",
+        "cross-volume surface proximity",
+        "pairwise ray-parity containment"
+      ],
+      "source_geometry_edited": false,
+      "surface_proximity": [
+        {
+          "part": 0,
+          "volume": 0,
+          "faces": 2637558,
+          "area": 3.428714900959433,
+          "near_1voxel": 0.010800002754496102,
+          "near_2voxel": 0.015545435500227796,
+          "boundary_edges": 10179,
+          "nonmanifold_edges": 38287,
+          "bounds": [
+            [
+              -0.366708,
+              -0.423823,
+              -0.500041
+            ],
+            [
+              0.366661,
+              0.292539,
+              0.500187
+            ]
+          ]
+        },
+        {
+          "part": 1,
+          "volume": 1,
+          "faces": 247486,
+          "area": 0.3685939722754878,
+          "near_1voxel": 0.10082681211547787,
+          "near_2voxel": 0.14438992737613277,
+          "boundary_edges": 579,
+          "nonmanifold_edges": 1619,
+          "bounds": [
+            [
+              -0.127948,
+              -0.041752,
+              -0.124949
+            ],
+            [
+              0.125152,
+              0.411442,
+              0.125029
+            ]
+          ]
+        }
+      ],
+      "containment": [
+        {
+          "part": 1,
+          "volume": 1,
+          "other": 0,
+          "other_volume": 0,
+          "inside_samples": 24713,
+          "contained_fraction": 0.001416258649293894
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "other": 1,
+          "other_volume": 1,
+          "inside_samples": 3726,
+          "contained_fraction": 0.0008051529790660225
+        }
+      ]
+    },
+    {
+      "id": "metal-bin",
+      "oid": "03732a8303ea45ecaca9e8770e67a889",
+      "parts": 4,
+      "faces": 3278670,
+      "inspection": [
+        "four rotation views",
+        "each isolated part",
+        "cross-volume surface proximity",
+        "pairwise ray-parity containment"
+      ],
+      "source_geometry_edited": false,
+      "surface_proximity": [
+        {
+          "part": 3,
+          "volume": 1,
+          "faces": 14178,
+          "samples": 14178,
+          "near_1voxel": 0.0,
+          "near_2voxel": 0.0,
+          "bounds": [
+            [
+              -0.09850150346755981,
+              0.46115198731422424,
+              -0.02585200034081936
+            ],
+            [
+              0.09900649636983871,
+              0.49583899974823,
+              0.025433000177145004
+            ]
+          ]
+        },
+        {
+          "part": 2,
+          "volume": 1,
+          "faces": 145064,
+          "samples": 20000,
+          "near_1voxel": 0.0,
+          "near_2voxel": 0.0,
+          "bounds": [
+            [
+              -0.26891249418258667,
+              0.37262099981307983,
+              -0.2689020037651062
+            ],
+            [
+              0.26939448714256287,
+              0.41971299052238464,
+              0.26951101422309875
+            ]
+          ]
+        },
+        {
+          "part": 1,
+          "volume": 1,
+          "faces": 414178,
+          "samples": 20000,
+          "near_1voxel": 0.0225,
+          "near_2voxel": 0.0501,
+          "bounds": [
+            [
+              -0.3321644961833954,
+              0.35893499851226807,
+              -0.33095601201057434
+            ],
+            [
+              0.33178651332855225,
+              0.47720301151275635,
+              0.3314239978790283
+            ]
+          ]
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "faces": 2705250,
+          "samples": 20000,
+          "near_1voxel": 0.00425,
+          "near_2voxel": 0.00665,
+          "bounds": [
+            [
+              -0.3366185128688812,
+              -0.49583899974823,
+              -0.3366590142250061
+            ],
+            [
+              0.3366185128688812,
+              0.38346099853515625,
+              0.3366590142250061
+            ]
+          ]
+        }
+      ],
+      "containment": [
+        {
+          "part": 3,
+          "volume": 1,
+          "other": 1,
+          "other_volume": 1,
+          "inside_samples": 15681,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 2,
+          "volume": 1,
+          "other": 1,
+          "other_volume": 1,
+          "inside_samples": 0,
+          "contained_fraction": 0
+        },
+        {
+          "part": 2,
+          "volume": 1,
+          "other": 0,
+          "other_volume": 0,
+          "inside_samples": 0,
+          "contained_fraction": 0
+        },
+        {
+          "part": 1,
+          "volume": 1,
+          "other": 3,
+          "other_volume": 1,
+          "inside_samples": 264,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 1,
+          "volume": 1,
+          "other": 2,
+          "other_volume": 1,
+          "inside_samples": 264,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 1,
+          "volume": 1,
+          "other": 0,
+          "other_volume": 0,
+          "inside_samples": 264,
+          "contained_fraction": 0.10606060606060606
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "other": 2,
+          "other_volume": 1,
+          "inside_samples": 4795,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "other": 1,
+          "other_volume": 1,
+          "inside_samples": 4795,
+          "contained_fraction": 0.0006256517205422315
+        }
+      ]
+    },
+    {
+      "id": "glasses",
+      "oid": "3a3ffc63c5874046bf2a452be9993dd0",
+      "parts": 9,
+      "faces": 122258,
+      "inspection": [
+        "four rotation views",
+        "each isolated part",
+        "cross-volume surface proximity",
+        "pairwise ray-parity containment"
+      ],
+      "source_geometry_edited": false,
+      "surface_proximity": [
+        {
+          "part": 2,
+          "volume": 0,
+          "faces": 576,
+          "samples": 576,
+          "near_1voxel": 0.0,
+          "near_2voxel": 0.0,
+          "bounds": [
+            [
+              0.28789499402046204,
+              -0.14488300681114197,
+              -0.46731698513031006
+            ],
+            [
+              0.30533701181411743,
+              -0.12944500148296356,
+              -0.4476679861545563
+            ]
+          ]
+        },
+        {
+          "part": 7,
+          "volume": 1,
+          "faces": 1612,
+          "samples": 1612,
+          "near_1voxel": 0.08498759305210918,
+          "near_2voxel": 0.17307692307692307,
+          "bounds": [
+            [
+              0.33072999119758606,
+              0.02322000078856945,
+              0.44150298833847046
+            ],
+            [
+              0.36427900195121765,
+              0.07487499713897705,
+              0.47044798731803894
+            ]
+          ]
+        },
+        {
+          "part": 5,
+          "volume": 1,
+          "faces": 1718,
+          "samples": 1718,
+          "near_1voxel": 0.07217694994179279,
+          "near_2voxel": 0.13445867287543656,
+          "bounds": [
+            [
+              -0.36465999484062195,
+              0.02403399907052517,
+              0.44362398982048035
+            ],
+            [
+              -0.33193400502204895,
+              0.07527399808168411,
+              0.4695200026035309
+            ]
+          ]
+        },
+        {
+          "part": 3,
+          "volume": 0,
+          "faces": 2630,
+          "samples": 2630,
+          "near_1voxel": 0.0,
+          "near_2voxel": 0.0,
+          "bounds": [
+            [
+              0.4270929992198944,
+              -0.07368200272321701,
+              -0.47119298577308655
+            ],
+            [
+              0.4541110098361969,
+              -0.044610001146793365,
+              -0.45267200469970703
+            ]
+          ]
+        },
+        {
+          "part": 6,
+          "volume": 1,
+          "faces": 11804,
+          "samples": 11804,
+          "near_1voxel": 0.003303964757709251,
+          "near_2voxel": 0.012622839715350729,
+          "bounds": [
+            [
+              -0.0734729990363121,
+              0.01709900051355362,
+              0.4407550096511841
+            ],
+            [
+              0.07297500222921371,
+              0.09211300313472748,
+              0.4968219995498657
+            ]
+          ]
+        },
+        {
+          "part": 8,
+          "volume": 1,
+          "faces": 14374,
+          "samples": 14374,
+          "near_1voxel": 0.0,
+          "near_2voxel": 0.0,
+          "bounds": [
+            [
+              0.4207240045070648,
+              -0.013817000202834606,
+              -0.4964739978313446
+            ],
+            [
+              0.4968009889125824,
+              0.11334799975156784,
+              -0.14892199635505676
+            ]
+          ]
+        },
+        {
+          "part": 4,
+          "volume": 1,
+          "faces": 14280,
+          "samples": 14280,
+          "near_1voxel": 0.0,
+          "near_2voxel": 0.0,
+          "bounds": [
+            [
+              -0.4968009889125824,
+              -0.013833999633789062,
+              -0.4968219995498657
+            ],
+            [
+              -0.4207249879837036,
+              0.11296900361776352,
+              -0.1512479931116104
+            ]
+          ]
+        },
+        {
+          "part": 1,
+          "volume": 0,
+          "faces": 37596,
+          "samples": 20000,
+          "near_1voxel": 0.0051,
+          "near_2voxel": 0.01375,
+          "bounds": [
+            [
+              0.03438099846243858,
+              -0.09325200319290161,
+              -0.1492529958486557
+            ],
+            [
+              0.4744719862937927,
+              0.14488300681114197,
+              0.46791601181030273
+            ]
+          ]
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "faces": 37668,
+          "samples": 20000,
+          "near_1voxel": 0.0043,
+          "near_2voxel": 0.0115,
+          "bounds": [
+            [
+              -0.47521600127220154,
+              -0.09330599755048752,
+              -0.14905300736427307
+            ],
+            [
+              -0.03622400015592575,
+              0.14485399425029755,
+              0.46786800026893616
+            ]
+          ]
+        }
+      ],
+      "containment": [
+        {
+          "part": 7,
+          "volume": 1,
+          "other": 1,
+          "other_volume": 0,
+          "inside_samples": 681,
+          "contained_fraction": 0.01762114537444934
+        },
+        {
+          "part": 5,
+          "volume": 1,
+          "other": 0,
+          "other_volume": 0,
+          "inside_samples": 5073,
+          "contained_fraction": 0.010053222945002957
+        },
+        {
+          "part": 6,
+          "volume": 1,
+          "other": 1,
+          "other_volume": 0,
+          "inside_samples": 3981,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 6,
+          "volume": 1,
+          "other": 0,
+          "other_volume": 0,
+          "inside_samples": 3981,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 8,
+          "volume": 1,
+          "other": 1,
+          "other_volume": 0,
+          "inside_samples": 961,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 1,
+          "volume": 0,
+          "other": 7,
+          "other_volume": 1,
+          "inside_samples": 128,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 1,
+          "volume": 0,
+          "other": 6,
+          "other_volume": 1,
+          "inside_samples": 128,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 1,
+          "volume": 0,
+          "other": 8,
+          "other_volume": 1,
+          "inside_samples": 128,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "other": 5,
+          "other_volume": 1,
+          "inside_samples": 103,
+          "contained_fraction": 0.0
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "other": 6,
+          "other_volume": 1,
+          "inside_samples": 103,
+          "contained_fraction": 0.0
+        }
+      ]
+    },
+    {
+      "id": "tree",
+      "oid": "01473d5f17fe2f35c103ba98567bffdc3e66cd99e51d7b6c02c5632e896e24ef",
+      "parts": 2,
+      "faces": 572604,
+      "inspection": [
+        "four rotation views",
+        "each isolated part",
+        "cross-volume surface proximity",
+        "pairwise ray-parity containment"
+      ],
+      "source_geometry_edited": false,
+      "surface_proximity": [
+        {
+          "part": 1,
+          "volume": 1,
+          "faces": 40214,
+          "samples": 20000,
+          "near_1voxel": 0.0097,
+          "near_2voxel": 0.01925,
+          "bounds": [
+            [
+              -0.03821349889039993,
+              -0.4994575083255768,
+              -0.04445299878716469
+            ],
+            [
+              0.03821349889039993,
+              -0.22386449575424194,
+              0.04448699951171875
+            ]
+          ]
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "faces": 532390,
+          "samples": 20000,
+          "near_1voxel": 0.00065,
+          "near_2voxel": 0.0015,
+          "bounds": [
+            [
+              -0.161033496260643,
+              -0.24946150183677673,
+              -0.18637700378894806
+            ],
+            [
+              0.161033496260643,
+              0.4994575083255768,
+              0.18637700378894806
+            ]
+          ]
+        }
+      ],
+      "containment": [
+        {
+          "part": 1,
+          "volume": 1,
+          "other": 0,
+          "other_volume": 0,
+          "inside_samples": 20021,
+          "contained_fraction": 0.022426452225163578
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "other": 1,
+          "other_volume": 1,
+          "inside_samples": 25210,
+          "contained_fraction": 0.00015866719555731853
+        }
+      ]
+    },
+    {
+      "id": "pine-tree",
+      "oid": "0067c2938aa934197946f9ddf85d628d01f071bb7dcb1e6b8619613faafa641d",
+      "parts": 2,
+      "faces": 650792,
+      "inspection": [
+        "four rotation views",
+        "each isolated part",
+        "cross-volume surface proximity",
+        "pairwise ray-parity containment"
+      ],
+      "source_geometry_edited": false,
+      "surface_proximity": [
+        {
+          "part": 1,
+          "volume": 1,
+          "faces": 72262,
+          "samples": 20000,
+          "near_1voxel": 0.0147,
+          "near_2voxel": 0.0315,
+          "bounds": [
+            [
+              -0.0812230035662651,
+              -0.5001605153083801,
+              -0.08138199895620346
+            ],
+            [
+              0.08135999739170074,
+              -0.3274975121021271,
+              0.08156000077724457
+            ]
+          ]
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "faces": 578530,
+          "samples": 20000,
+          "near_1voxel": 0.00255,
+          "near_2voxel": 0.00435,
+          "bounds": [
+            [
+              -0.1869720071554184,
+              -0.3438335061073303,
+              -0.18708699941635132
+            ],
+            [
+              0.1869720071554184,
+              0.5001605153083801,
+              0.18708699941635132
+            ]
+          ]
+        }
+      ],
+      "containment": [
+        {
+          "part": 1,
+          "volume": 1,
+          "other": 0,
+          "other_volume": 0,
+          "inside_samples": 29155,
+          "contained_fraction": 0.008814954553249871
+        },
+        {
+          "part": 0,
+          "volume": 0,
+          "other": 1,
+          "other_volume": 1,
+          "inside_samples": 18545,
+          "contained_fraction": 0.0005931517929361014
+        }
+      ]
     }
-   ],
-   "containment": [
-    {
-     "part": 2,
-     "volume": 1,
-     "other": 0,
-     "other_volume": 0,
-     "inside_samples": 10615,
-     "contained_fraction": 0.019971738106453134
-    },
-    {
-     "part": 4,
-     "volume": 1,
-     "other": 0,
-     "other_volume": 0,
-     "inside_samples": 7531,
-     "contained_fraction": 0.04089762315761519
-    },
-    {
-     "part": 3,
-     "volume": 1,
-     "other": 0,
-     "other_volume": 0,
-     "inside_samples": 31,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "other": 2,
-     "other_volume": 1,
-     "inside_samples": 19876,
-     "contained_fraction": 0.00030187160394445564
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "other": 4,
-     "other_volume": 1,
-     "inside_samples": 19876,
-     "contained_fraction": 0.0012074864157778226
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "other": 3,
-     "other_volume": 1,
-     "inside_samples": 19876,
-     "contained_fraction": 0.0
-    }
-   ]
-  },
-  {
-   "id": "pendant-light",
-   "oid": "76a85ba927f4aed3a8153edcb464231077c3e673",
-   "parts": 7,
-   "faces": 266842,
-   "inspection": [
-    "four rotation views",
-    "each isolated part",
-    "cross-volume surface proximity",
-    "pairwise ray-parity containment"
-   ],
-   "source_geometry_edited": false,
-   "surface_proximity": [
-    {
-     "part": 6,
-     "volume": 1,
-     "faces": 534,
-     "samples": 534,
-     "near_1voxel": 0.0,
-     "near_2voxel": 0.0,
-     "bounds": [
-      [
-       0.06722500175237656,
-       0.00471699982881546,
-       0.0753600001335144
-      ],
-      [
-       0.0753059983253479,
-       0.11653999984264374,
-       0.08047199994325638
-      ]
-     ]
-    },
-    {
-     "part": 4,
-     "volume": 1,
-     "faces": 1452,
-     "samples": 1452,
-     "near_1voxel": 0.0,
-     "near_2voxel": 0.0,
-     "bounds": [
-      [
-       0.05254000052809715,
-       0.11011400073766708,
-       0.06829600036144257
-      ],
-      [
-       0.0696130022406578,
-       0.40560799837112427,
-       0.0776439979672432
-      ]
-     ]
-    },
-    {
-     "part": 5,
-     "volume": 1,
-     "faces": 2090,
-     "samples": 2090,
-     "near_1voxel": 0.0,
-     "near_2voxel": 0.0,
-     "bounds": [
-      [
-       0.07286400347948074,
-       -0.3955720067024231,
-       0.07771199941635132
-      ],
-      [
-       0.09351199865341187,
-       0.013150000013411045,
-       0.08934500068426132
-      ]
-     ]
-    },
-    {
-     "part": 3,
-     "volume": 1,
-     "faces": 3474,
-     "samples": 3474,
-     "near_1voxel": 0.0,
-     "near_2voxel": 0.0,
-     "bounds": [
-      [
-       -0.003459000028669834,
-       -0.4522089958190918,
-       -0.06300300359725952
-      ],
-      [
-       0.0012519999872893095,
-       0.36479800939559937,
-       -0.05816100165247917
-      ]
-     ]
-    },
-    {
-     "part": 2,
-     "volume": 1,
-     "faces": 4074,
-     "samples": 4074,
-     "near_1voxel": 0.0,
-     "near_2voxel": 0.0,
-     "bounds": [
-      [
-       -0.050558000802993774,
-       -0.45145800709724426,
-       0.07700899988412857
-      ],
-      [
-       -0.04640600085258484,
-       0.450874000787735,
-       0.08406300097703934
-      ]
-     ]
-    },
-    {
-     "part": 1,
-     "volume": 1,
-     "faces": 46480,
-     "samples": 20000,
-     "near_1voxel": 0.0022,
-     "near_2voxel": 0.0061,
-     "bounds": [
-      [
-       -0.08773600310087204,
-       0.3640330135822296,
-       -0.07735099643468857
-      ],
-      [
-       0.09976600110530853,
-       0.49985501170158386,
-       0.11211699992418289
-      ]
-     ]
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "faces": 208738,
-     "samples": 20000,
-     "near_1voxel": 0.00035,
-     "near_2voxel": 0.00035,
-     "bounds": [
-      [
-       -0.22967399656772614,
-       -0.49985501170158386,
-       -0.25196701288223267
-      ],
-      [
-       0.22967399656772614,
-       0.4571180045604706,
-       0.25196701288223267
-      ]
-     ]
-    }
-   ],
-   "containment": [
-    {
-     "part": 6,
-     "volume": 1,
-     "other": 4,
-     "other_volume": 1,
-     "inside_samples": 3819,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 6,
-     "volume": 1,
-     "other": 5,
-     "other_volume": 1,
-     "inside_samples": 3819,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 6,
-     "volume": 1,
-     "other": 0,
-     "other_volume": 0,
-     "inside_samples": 3819,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 4,
-     "volume": 1,
-     "other": 6,
-     "other_volume": 1,
-     "inside_samples": 989,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 4,
-     "volume": 1,
-     "other": 1,
-     "other_volume": 1,
-     "inside_samples": 989,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 4,
-     "volume": 1,
-     "other": 0,
-     "other_volume": 0,
-     "inside_samples": 989,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 5,
-     "volume": 1,
-     "other": 6,
-     "other_volume": 1,
-     "inside_samples": 675,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 5,
-     "volume": 1,
-     "other": 0,
-     "other_volume": 0,
-     "inside_samples": 675,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 3,
-     "volume": 1,
-     "other": 1,
-     "other_volume": 1,
-     "inside_samples": 5293,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 3,
-     "volume": 1,
-     "other": 0,
-     "other_volume": 0,
-     "inside_samples": 5293,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 2,
-     "volume": 1,
-     "other": 1,
-     "other_volume": 1,
-     "inside_samples": 3676,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 2,
-     "volume": 1,
-     "other": 0,
-     "other_volume": 0,
-     "inside_samples": 3676,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 1,
-     "volume": 1,
-     "other": 4,
-     "other_volume": 1,
-     "inside_samples": 12371,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 1,
-     "volume": 1,
-     "other": 3,
-     "other_volume": 1,
-     "inside_samples": 12371,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 1,
-     "volume": 1,
-     "other": 2,
-     "other_volume": 1,
-     "inside_samples": 12371,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 1,
-     "volume": 1,
-     "other": 0,
-     "other_volume": 0,
-     "inside_samples": 12371,
-     "contained_fraction": 8.083420903726457e-05
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "other": 6,
-     "other_volume": 1,
-     "inside_samples": 227,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "other": 4,
-     "other_volume": 1,
-     "inside_samples": 227,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "other": 5,
-     "other_volume": 1,
-     "inside_samples": 227,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "other": 3,
-     "other_volume": 1,
-     "inside_samples": 227,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "other": 2,
-     "other_volume": 1,
-     "inside_samples": 227,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "other": 1,
-     "other_volume": 1,
-     "inside_samples": 227,
-     "contained_fraction": 0.0
-    }
-   ]
-  },
-  {
-   "id": "umbrella",
-   "oid": "65b46cc0b7484736854017be9b3ef6cf",
-   "parts": 3,
-   "faces": 1463708,
-   "inspection": [
-    "four rotation views",
-    "each isolated part",
-    "cross-volume surface proximity",
-    "pairwise ray-parity containment"
-   ],
-   "source_geometry_edited": false,
-   "surface_proximity": [
-    {
-     "part": 1,
-     "volume": 0,
-     "faces": 10508,
-     "samples": 10508,
-     "near_1voxel": 0.0,
-     "near_2voxel": 0.0,
-     "bounds": [
-      [
-       -0.1047699972987175,
-       -0.3757844865322113,
-       -0.008469000458717346
-      ],
-      [
-       0.015414999797940254,
-       -0.24775849282741547,
-       0.013992000371217728
-      ]
-     ]
-    },
-    {
-     "part": 2,
-     "volume": 1,
-     "faces": 22252,
-     "samples": 20000,
-     "near_1voxel": 0.0241,
-     "near_2voxel": 0.04355,
-     "bounds": [
-      [
-       -0.012555000372231007,
-       -0.23067450523376465,
-       -0.008491000160574913
-      ],
-      [
-       0.012821000069379807,
-       0.34501349925994873,
-       0.015604999847710133
-      ]
-     ]
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "faces": 1430948,
-     "samples": 20000,
-     "near_1voxel": 0.0006,
-     "near_2voxel": 0.00105,
-     "bounds": [
-      [
-       -0.45939400792121887,
-       0.041031498461961746,
-       -0.4565880000591278
-      ],
-      [
-       0.45939400792121887,
-       0.3757844865322113,
-       0.4565880000591278
-      ]
-     ]
-    }
-   ],
-   "containment": [
-    {
-     "part": 2,
-     "volume": 1,
-     "other": 0,
-     "other_volume": 0,
-     "inside_samples": 16190,
-     "contained_fraction": 0.010129709697344039
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "other": 2,
-     "other_volume": 1,
-     "inside_samples": 1500,
-     "contained_fraction": 0.0
-    }
-   ]
-  },
-  {
-   "id": "round-table",
-   "oid": "02cd7eee524b41bb8461037485a2b4e6",
-   "parts": 5,
-   "faces": 1079254,
-   "inspection": [
-    "four rotation views",
-    "each isolated part",
-    "cross-volume surface proximity",
-    "pairwise ray-parity containment"
-   ],
-   "source_geometry_edited": false,
-   "surface_proximity": [
-    {
-     "part": 4,
-     "volume": 1,
-     "faces": 34806,
-     "samples": 20000,
-     "near_1voxel": 0.03915,
-     "near_2voxel": 0.0728,
-     "bounds": [
-      [
-       0.40552300214767456,
-       -0.13138599693775177,
-       -0.05666700005531311
-      ],
-      [
-       0.4849129915237427,
-       0.1167529970407486,
-       0.05674099922180176
-      ]
-     ]
-    },
-    {
-     "part": 2,
-     "volume": 1,
-     "faces": 34844,
-     "samples": 20000,
-     "near_1voxel": 0.04125,
-     "near_2voxel": 0.07615,
-     "bounds": [
-      [
-       -0.05613800138235092,
-       -0.13124500215053558,
-       0.3949410021305084
-      ],
-      [
-       0.05598499998450279,
-       0.116798996925354,
-       0.48366400599479675
-      ]
-     ]
-    },
-    {
-     "part": 1,
-     "volume": 1,
-     "faces": 35000,
-     "samples": 20000,
-     "near_1voxel": 0.0422,
-     "near_2voxel": 0.07215,
-     "bounds": [
-      [
-       -0.48512399196624756,
-       -0.13135899603366852,
-       -0.05647899955511093
-      ],
-      [
-       -0.4056589901447296,
-       0.11664500087499619,
-       0.05676399916410446
-      ]
-     ]
-    },
-    {
-     "part": 3,
-     "volume": 1,
-     "faces": 35042,
-     "samples": 20000,
-     "near_1voxel": 0.0358,
-     "near_2voxel": 0.06975,
-     "bounds": [
-      [
-       -0.05602100118994713,
-       -0.13127900660037994,
-       -0.4827660024166107
-      ],
-      [
-       0.05598900094628334,
-       0.11679600179195404,
-       -0.3936600089073181
-      ]
-     ]
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "faces": 939562,
-     "samples": 20000,
-     "near_1voxel": 0.00465,
-     "near_2voxel": 0.00895,
-     "bounds": [
-      [
-       -0.49991899728775024,
-       0.08082100003957748,
-       -0.49998000264167786
-      ],
-      [
-       0.49991899728775024,
-       0.13138599693775177,
-       0.49998000264167786
-      ]
-     ]
-    }
-   ],
-   "containment": [
-    {
-     "part": 4,
-     "volume": 1,
-     "other": 0,
-     "other_volume": 0,
-     "inside_samples": 11427,
-     "contained_fraction": 0.0039380414807035965
-    },
-    {
-     "part": 2,
-     "volume": 1,
-     "other": 0,
-     "other_volume": 0,
-     "inside_samples": 9862,
-     "contained_fraction": 0.004968566213749747
-    },
-    {
-     "part": 1,
-     "volume": 1,
-     "other": 0,
-     "other_volume": 0,
-     "inside_samples": 11388,
-     "contained_fraction": 0.004829645240604145
-    },
-    {
-     "part": 3,
-     "volume": 1,
-     "other": 0,
-     "other_volume": 0,
-     "inside_samples": 9732,
-     "contained_fraction": 0.008939580764488286
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "other": 4,
-     "other_volume": 1,
-     "inside_samples": 15181,
-     "contained_fraction": 0.0002634872538040972
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "other": 2,
-     "other_volume": 1,
-     "inside_samples": 15181,
-     "contained_fraction": 6.58718134510243e-05
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "other": 1,
-     "other_volume": 1,
-     "inside_samples": 15181,
-     "contained_fraction": 0.0001317436269020486
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "other": 3,
-     "other_volume": 1,
-     "inside_samples": 15181,
-     "contained_fraction": 0.0005928463210592188
-    }
-   ]
-  },
-  {
-   "id": "pitcher",
-   "oid": "74bc3dba9b4a40f4b6fd6b2e20ccc837",
-   "parts": 2,
-   "faces": 4741068,
-   "inspection": [
-    "four rotation views",
-    "each isolated part",
-    "cross-volume surface proximity",
-    "pairwise ray-parity containment"
-   ],
-   "source_geometry_edited": false,
-   "surface_proximity": [
-    {
-     "part": 1,
-     "volume": 1,
-     "faces": 200306,
-     "samples": 20000,
-     "near_1voxel": 0.0,
-     "near_2voxel": 0.0,
-     "bounds": [
-      [
-       0.17959299683570862,
-       -0.28359851241111755,
-       0.013333500362932682
-      ],
-      [
-       0.49076300859451294,
-       0.26138949394226074,
-       0.2189054936170578
-      ]
-     ]
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "faces": 4540762,
-     "samples": 20000,
-     "near_1voxel": 0.0,
-     "near_2voxel": 0.0,
-     "bounds": [
-      [
-       -0.49076300859451294,
-       -0.4663355052471161,
-       -0.3217965066432953
-      ],
-      [
-       0.18624399602413177,
-       0.4663355052471161,
-       0.3217965066432953
-      ]
-     ]
-    }
-   ],
-   "containment": [
-    {
-     "part": 1,
-     "volume": 1,
-     "other": 0,
-     "other_volume": 0,
-     "inside_samples": 7900,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "other": 1,
-     "other_volume": 1,
-     "inside_samples": 4536,
-     "contained_fraction": 0.0
-    }
-   ]
-  },
-  {
-   "id": "table",
-   "oid": "51f0d0a9aa934af09083473fc3158cad",
-   "parts": 5,
-   "faces": 1142322,
-   "inspection": [
-    "four rotation views",
-    "each isolated part",
-    "cross-volume surface proximity",
-    "pairwise ray-parity containment"
-   ],
-   "source_geometry_edited": false,
-   "surface_proximity": [
-    {
-     "part": 0,
-     "volume": 0,
-     "faces": 960178,
-     "area": 1.7495725785843357,
-     "near_1voxel": 0.0032358694289773018,
-     "near_2voxel": 0.005153896263095891,
-     "boundary_edges": 4280,
-     "nonmanifold_edges": 10205,
-     "bounds": [
-      [
-       -0.326785,
-       0.129906,
-       -0.500064
-      ],
-      [
-       0.326597,
-       0.213075,
-       0.500178
-      ]
-     ]
-    },
-    {
-     "part": 1,
-     "volume": 1,
-     "faces": 45528,
-     "area": 0.06427568196372356,
-     "near_1voxel": 0.020231672719179947,
-     "near_2voxel": 0.03205695249739396,
-     "boundary_edges": 159,
-     "nonmanifold_edges": 438,
-     "bounds": [
-      [
-       -0.310346,
-       -0.210221,
-       0.422662
-      ],
-      [
-       -0.252275,
-       0.160136,
-       0.481708
-      ]
-     ]
-    },
-    {
-     "part": 2,
-     "volume": 1,
-     "faces": 45490,
-     "area": 0.06429774686328257,
-     "near_1voxel": 0.020070052632568707,
-     "near_2voxel": 0.03324107474491175,
-     "boundary_edges": 131,
-     "nonmanifold_edges": 402,
-     "bounds": [
-      [
-       -0.310429,
-       -0.210177,
-       -0.481584
-      ],
-      [
-       -0.252296,
-       0.1601,
-       -0.422399
-      ]
-     ]
-    },
-    {
-     "part": 3,
-     "volume": 1,
-     "faces": 45510,
-     "area": 0.06423275314186512,
-     "near_1voxel": 0.019716180012872165,
-     "near_2voxel": 0.03176968451759777,
-     "boundary_edges": 162,
-     "nonmanifold_edges": 387,
-     "bounds": [
-      [
-       0.252183,
-       -0.210251,
-       0.422761
-      ],
-      [
-       0.310464,
-       0.160146,
-       0.481742
-      ]
-     ]
-    },
-    {
-     "part": 4,
-     "volume": 1,
-     "faces": 45616,
-     "area": 0.06438189550750195,
-     "near_1voxel": 0.019794328273825008,
-     "near_2voxel": 0.031824628860065894,
-     "boundary_edges": 126,
-     "nonmanifold_edges": 482,
-     "bounds": [
-      [
-       0.252197,
-       -0.210211,
-       -0.481647
-      ],
-      [
-       0.310453,
-       0.160087,
-       -0.422385
-      ]
-     ]
-    }
-   ],
-   "containment": [
-    {
-     "part": 3,
-     "volume": 1,
-     "other": 0,
-     "other_volume": 0,
-     "inside_samples": 25501,
-     "contained_fraction": 0.01686208383984942
-    },
-    {
-     "part": 1,
-     "volume": 1,
-     "other": 0,
-     "other_volume": 0,
-     "inside_samples": 25292,
-     "contained_fraction": 0.018187569191839316
-    },
-    {
-     "part": 2,
-     "volume": 1,
-     "other": 0,
-     "other_volume": 0,
-     "inside_samples": 25376,
-     "contained_fraction": 0.015487074401008827
-    },
-    {
-     "part": 4,
-     "volume": 1,
-     "other": 0,
-     "other_volume": 0,
-     "inside_samples": 25320,
-     "contained_fraction": 0.016074249605055293
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "other": 3,
-     "other_volume": 1,
-     "inside_samples": 16820,
-     "contained_fraction": 0.000535077288941736
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "other": 1,
-     "other_volume": 1,
-     "inside_samples": 16820,
-     "contained_fraction": 0.0009512485136741974
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "other": 2,
-     "other_volume": 1,
-     "inside_samples": 16820,
-     "contained_fraction": 0.0004756242568370987
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "other": 4,
-     "other_volume": 1,
-     "inside_samples": 16820,
-     "contained_fraction": 0.000713436385255648
-    }
-   ]
-  },
-  {
-   "id": "soap-pump",
-   "oid": "rec_pump_bottle_06aca7b2b8d14f2a8f6c8c20f9163919",
-   "parts": 3,
-   "faces": 1229876,
-   "inspection": [
-    "four rotation views",
-    "each isolated part",
-    "cross-volume surface proximity",
-    "pairwise ray-parity containment"
-   ],
-   "source_geometry_edited": false,
-   "surface_proximity": [
-    {
-     "part": 2,
-     "volume": 1,
-     "faces": 24492,
-     "samples": 20000,
-     "near_1voxel": 0.0,
-     "near_2voxel": 0.0,
-     "bounds": [
-      [
-       0.001999499974772334,
-       0.4201450049877167,
-       -0.03400599956512451
-      ],
-      [
-       0.22970549762248993,
-       0.49506399035453796,
-       0.033796001225709915
-      ]
-     ]
-    },
-    {
-     "part": 1,
-     "volume": 1,
-     "faces": 70608,
-     "samples": 20000,
-     "near_1voxel": 0.03535,
-     "near_2voxel": 0.07135,
-     "bounds": [
-      [
-       -0.09862949699163437,
-       0.2916179895401001,
-       -0.06210299953818321
-      ],
-      [
-       0.05396449938416481,
-       0.4493919909000397,
-       0.061841998249292374
-      ]
-     ]
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "faces": 1134776,
-     "samples": 20000,
-     "near_1voxel": 0.0024,
-     "near_2voxel": 0.0045,
-     "bounds": [
-      [
-       -0.22970549762248993,
-       -0.49506399035453796,
-       -0.18810300529003143
-      ],
-      [
-       0.14476749300956726,
-       0.29795700311660767,
-       0.18810300529003143
-      ]
-     ]
-    }
-   ],
-   "containment": [
-    {
-     "part": 2,
-     "volume": 1,
-     "other": 1,
-     "other_volume": 1,
-     "inside_samples": 8559,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 1,
-     "volume": 1,
-     "other": 2,
-     "other_volume": 1,
-     "inside_samples": 19593,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 1,
-     "volume": 1,
-     "other": 0,
-     "other_volume": 0,
-     "inside_samples": 19593,
-     "contained_fraction": 0.03113356811106007
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "other": 1,
-     "other_volume": 1,
-     "inside_samples": 6419,
-     "contained_fraction": 0.003583112634366724
-    }
-   ]
-  },
-  {
-   "id": "ladder-chair",
-   "oid": "82469777c98f4fc6920d7bd66839927f",
-   "parts": 8,
-   "faces": 643254,
-   "inspection": [
-    "four rotation views",
-    "each isolated part",
-    "cross-volume surface proximity",
-    "pairwise ray-parity containment"
-   ],
-   "source_geometry_edited": false,
-   "surface_proximity": [
-    {
-     "part": 6,
-     "volume": 1,
-     "faces": 25380,
-     "samples": 20000,
-     "near_1voxel": 0.0424,
-     "near_2voxel": 0.078,
-     "bounds": [
-      [
-       -0.18535049259662628,
-       -0.403874009847641,
-       -0.18708600103855133
-      ],
-      [
-       0.184068500995636,
-       -0.3738330006599426,
-       -0.15373699367046356
-      ]
-     ]
-    },
-    {
-     "part": 5,
-     "volume": 1,
-     "faces": 25584,
-     "samples": 20000,
-     "near_1voxel": 0.0463,
-     "near_2voxel": 0.0943,
-     "bounds": [
-      [
-       -0.18535949289798737,
-       -0.40363600850105286,
-       0.2041960060596466
-      ],
-      [
-       0.1840524971485138,
-       -0.374332994222641,
-       0.23862899839878082
-      ]
-     ]
-    },
-    {
-     "part": 2,
-     "volume": 0,
-     "faces": 32788,
-     "samples": 20000,
-     "near_1voxel": 0.0,
-     "near_2voxel": 0.0,
-     "bounds": [
-      [
-       -0.13371549546718597,
-       0.18353299796581268,
-       -0.20218999683856964
-      ],
-      [
-       0.13367250561714172,
-       0.2497200071811676,
-       -0.1597760021686554
-      ]
-     ]
-    },
-    {
-     "part": 3,
-     "volume": 0,
-     "faces": 34242,
-     "samples": 20000,
-     "near_1voxel": 0.0,
-     "near_2voxel": 0.0,
-     "bounds": [
-      [
-       -0.13368350267410278,
-       0.3777979910373688,
-       -0.24152100086212158
-      ],
-      [
-       0.13367250561714172,
-       0.44928500056266785,
-       -0.20063699781894684
-      ]
-     ]
-    },
-    {
-     "part": 1,
-     "volume": 0,
-     "faces": 30672,
-     "samples": 20000,
-     "near_1voxel": 0.01865,
-     "near_2voxel": 0.04215,
-     "bounds": [
-      [
-       -0.19877949357032776,
-       -0.4978579878807068,
-       0.20219700038433075
-      ],
-      [
-       -0.1626484990119934,
-       -0.11071400344371796,
-       0.23925699293613434
-      ]
-     ]
-    },
-    {
-     "part": 4,
-     "volume": 1,
-     "faces": 45794,
-     "samples": 20000,
-     "near_1voxel": 0.0279,
-     "near_2voxel": 0.03175,
-     "bounds": [
-      [
-       -0.19183549284934998,
-       -0.025307999923825264,
-       -0.2557609975337982
-      ],
-      [
-       -0.1518535017967224,
-       0.49981001019477844,
-       -0.09520100057125092
-      ]
-     ]
-    },
-    {
-     "part": 7,
-     "volume": 1,
-     "faces": 45752,
-     "samples": 20000,
-     "near_1voxel": 0.0319,
-     "near_2voxel": 0.03605,
-     "bounds": [
-      [
-       0.15004150569438934,
-       -0.02528199926018715,
-       -0.2557390034198761
-      ],
-      [
-       0.19050849974155426,
-       0.49980399012565613,
-       -0.09519799798727036
-      ]
-     ]
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "faces": 403042,
-     "samples": 20000,
-     "near_1voxel": 0.0104,
-     "near_2voxel": 0.01575,
-     "bounds": [
-      [
-       -0.2173825055360794,
-       -0.49981001019477844,
-       -0.2007559984922409
-      ],
-      [
-       0.2173825055360794,
-       -0.02352900058031082,
-       0.2557609975337982
-      ]
-     ]
-    }
-   ],
-   "containment": [
-    {
-     "part": 6,
-     "volume": 1,
-     "other": 0,
-     "other_volume": 0,
-     "inside_samples": 45107,
-     "contained_fraction": 0.11667812091249695
-    },
-    {
-     "part": 5,
-     "volume": 1,
-     "other": 1,
-     "other_volume": 0,
-     "inside_samples": 46390,
-     "contained_fraction": 0.06141409786591938
-    },
-    {
-     "part": 5,
-     "volume": 1,
-     "other": 0,
-     "other_volume": 0,
-     "inside_samples": 46390,
-     "contained_fraction": 0.056865703815477474
-    },
-    {
-     "part": 1,
-     "volume": 0,
-     "other": 5,
-     "other_volume": 1,
-     "inside_samples": 47807,
-     "contained_fraction": 0.04334093333612232
-    },
-    {
-     "part": 1,
-     "volume": 0,
-     "other": 0,
-     "other_volume": 0,
-     "inside_samples": 47807,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 4,
-     "volume": 1,
-     "other": 0,
-     "other_volume": 0,
-     "inside_samples": 8831,
-     "contained_fraction": 0.003623598686445476
-    },
-    {
-     "part": 7,
-     "volume": 1,
-     "other": 0,
-     "other_volume": 0,
-     "inside_samples": 8810,
-     "contained_fraction": 0.003972758229284903
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "other": 6,
-     "other_volume": 1,
-     "inside_samples": 4205,
-     "contained_fraction": 0.004518430439952438
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "other": 5,
-     "other_volume": 1,
-     "inside_samples": 4205,
-     "contained_fraction": 0.0030915576694411414
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "other": 1,
-     "other_volume": 0,
-     "inside_samples": 4205,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "other": 4,
-     "other_volume": 1,
-     "inside_samples": 4205,
-     "contained_fraction": 0.00023781212841854935
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "other": 7,
-     "other_volume": 1,
-     "inside_samples": 4205,
-     "contained_fraction": 0.0004756242568370987
-    }
-   ]
-  },
-  {
-   "id": "bottle",
-   "oid": "0453707ab0ed4cd4bd704f77d62bbc92",
-   "parts": 2,
-   "faces": 2885044,
-   "inspection": [
-    "four rotation views",
-    "each isolated part",
-    "cross-volume surface proximity",
-    "pairwise ray-parity containment"
-   ],
-   "source_geometry_edited": false,
-   "surface_proximity": [
-    {
-     "part": 0,
-     "volume": 0,
-     "faces": 2637558,
-     "area": 3.428714900959433,
-     "near_1voxel": 0.010800002754496102,
-     "near_2voxel": 0.015545435500227796,
-     "boundary_edges": 10179,
-     "nonmanifold_edges": 38287,
-     "bounds": [
-      [
-       -0.366708,
-       -0.423823,
-       -0.500041
-      ],
-      [
-       0.366661,
-       0.292539,
-       0.500187
-      ]
-     ]
-    },
-    {
-     "part": 1,
-     "volume": 1,
-     "faces": 247486,
-     "area": 0.3685939722754878,
-     "near_1voxel": 0.10082681211547787,
-     "near_2voxel": 0.14438992737613277,
-     "boundary_edges": 579,
-     "nonmanifold_edges": 1619,
-     "bounds": [
-      [
-       -0.127948,
-       -0.041752,
-       -0.124949
-      ],
-      [
-       0.125152,
-       0.411442,
-       0.125029
-      ]
-     ]
-    }
-   ],
-   "containment": [
-    {
-     "part": 1,
-     "volume": 1,
-     "other": 0,
-     "other_volume": 0,
-     "inside_samples": 24713,
-     "contained_fraction": 0.001416258649293894
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "other": 1,
-     "other_volume": 1,
-     "inside_samples": 3726,
-     "contained_fraction": 0.0008051529790660225
-    }
-   ]
-  },
-  {
-   "id": "metal-bin",
-   "oid": "03732a8303ea45ecaca9e8770e67a889",
-   "parts": 4,
-   "faces": 3278670,
-   "inspection": [
-    "four rotation views",
-    "each isolated part",
-    "cross-volume surface proximity",
-    "pairwise ray-parity containment"
-   ],
-   "source_geometry_edited": false,
-   "surface_proximity": [
-    {
-     "part": 3,
-     "volume": 1,
-     "faces": 14178,
-     "samples": 14178,
-     "near_1voxel": 0.0,
-     "near_2voxel": 0.0,
-     "bounds": [
-      [
-       -0.09850150346755981,
-       0.46115198731422424,
-       -0.02585200034081936
-      ],
-      [
-       0.09900649636983871,
-       0.49583899974823,
-       0.025433000177145004
-      ]
-     ]
-    },
-    {
-     "part": 2,
-     "volume": 1,
-     "faces": 145064,
-     "samples": 20000,
-     "near_1voxel": 0.0,
-     "near_2voxel": 0.0,
-     "bounds": [
-      [
-       -0.26891249418258667,
-       0.37262099981307983,
-       -0.2689020037651062
-      ],
-      [
-       0.26939448714256287,
-       0.41971299052238464,
-       0.26951101422309875
-      ]
-     ]
-    },
-    {
-     "part": 1,
-     "volume": 1,
-     "faces": 414178,
-     "samples": 20000,
-     "near_1voxel": 0.0225,
-     "near_2voxel": 0.0501,
-     "bounds": [
-      [
-       -0.3321644961833954,
-       0.35893499851226807,
-       -0.33095601201057434
-      ],
-      [
-       0.33178651332855225,
-       0.47720301151275635,
-       0.3314239978790283
-      ]
-     ]
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "faces": 2705250,
-     "samples": 20000,
-     "near_1voxel": 0.00425,
-     "near_2voxel": 0.00665,
-     "bounds": [
-      [
-       -0.3366185128688812,
-       -0.49583899974823,
-       -0.3366590142250061
-      ],
-      [
-       0.3366185128688812,
-       0.38346099853515625,
-       0.3366590142250061
-      ]
-     ]
-    }
-   ],
-   "containment": [
-    {
-     "part": 3,
-     "volume": 1,
-     "other": 1,
-     "other_volume": 1,
-     "inside_samples": 15681,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 2,
-     "volume": 1,
-     "other": 1,
-     "other_volume": 1,
-     "inside_samples": 0,
-     "contained_fraction": 0
-    },
-    {
-     "part": 2,
-     "volume": 1,
-     "other": 0,
-     "other_volume": 0,
-     "inside_samples": 0,
-     "contained_fraction": 0
-    },
-    {
-     "part": 1,
-     "volume": 1,
-     "other": 3,
-     "other_volume": 1,
-     "inside_samples": 264,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 1,
-     "volume": 1,
-     "other": 2,
-     "other_volume": 1,
-     "inside_samples": 264,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 1,
-     "volume": 1,
-     "other": 0,
-     "other_volume": 0,
-     "inside_samples": 264,
-     "contained_fraction": 0.10606060606060606
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "other": 2,
-     "other_volume": 1,
-     "inside_samples": 4795,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "other": 1,
-     "other_volume": 1,
-     "inside_samples": 4795,
-     "contained_fraction": 0.0006256517205422315
-    }
-   ]
-  },
-  {
-   "id": "glasses",
-   "oid": "3a3ffc63c5874046bf2a452be9993dd0",
-   "parts": 9,
-   "faces": 122258,
-   "inspection": [
-    "four rotation views",
-    "each isolated part",
-    "cross-volume surface proximity",
-    "pairwise ray-parity containment"
-   ],
-   "source_geometry_edited": false,
-   "surface_proximity": [
-    {
-     "part": 2,
-     "volume": 0,
-     "faces": 576,
-     "samples": 576,
-     "near_1voxel": 0.0,
-     "near_2voxel": 0.0,
-     "bounds": [
-      [
-       0.28789499402046204,
-       -0.14488300681114197,
-       -0.46731698513031006
-      ],
-      [
-       0.30533701181411743,
-       -0.12944500148296356,
-       -0.4476679861545563
-      ]
-     ]
-    },
-    {
-     "part": 7,
-     "volume": 1,
-     "faces": 1612,
-     "samples": 1612,
-     "near_1voxel": 0.08498759305210918,
-     "near_2voxel": 0.17307692307692307,
-     "bounds": [
-      [
-       0.33072999119758606,
-       0.02322000078856945,
-       0.44150298833847046
-      ],
-      [
-       0.36427900195121765,
-       0.07487499713897705,
-       0.47044798731803894
-      ]
-     ]
-    },
-    {
-     "part": 5,
-     "volume": 1,
-     "faces": 1718,
-     "samples": 1718,
-     "near_1voxel": 0.07217694994179279,
-     "near_2voxel": 0.13445867287543656,
-     "bounds": [
-      [
-       -0.36465999484062195,
-       0.02403399907052517,
-       0.44362398982048035
-      ],
-      [
-       -0.33193400502204895,
-       0.07527399808168411,
-       0.4695200026035309
-      ]
-     ]
-    },
-    {
-     "part": 3,
-     "volume": 0,
-     "faces": 2630,
-     "samples": 2630,
-     "near_1voxel": 0.0,
-     "near_2voxel": 0.0,
-     "bounds": [
-      [
-       0.4270929992198944,
-       -0.07368200272321701,
-       -0.47119298577308655
-      ],
-      [
-       0.4541110098361969,
-       -0.044610001146793365,
-       -0.45267200469970703
-      ]
-     ]
-    },
-    {
-     "part": 6,
-     "volume": 1,
-     "faces": 11804,
-     "samples": 11804,
-     "near_1voxel": 0.003303964757709251,
-     "near_2voxel": 0.012622839715350729,
-     "bounds": [
-      [
-       -0.0734729990363121,
-       0.01709900051355362,
-       0.4407550096511841
-      ],
-      [
-       0.07297500222921371,
-       0.09211300313472748,
-       0.4968219995498657
-      ]
-     ]
-    },
-    {
-     "part": 8,
-     "volume": 1,
-     "faces": 14374,
-     "samples": 14374,
-     "near_1voxel": 0.0,
-     "near_2voxel": 0.0,
-     "bounds": [
-      [
-       0.4207240045070648,
-       -0.013817000202834606,
-       -0.4964739978313446
-      ],
-      [
-       0.4968009889125824,
-       0.11334799975156784,
-       -0.14892199635505676
-      ]
-     ]
-    },
-    {
-     "part": 4,
-     "volume": 1,
-     "faces": 14280,
-     "samples": 14280,
-     "near_1voxel": 0.0,
-     "near_2voxel": 0.0,
-     "bounds": [
-      [
-       -0.4968009889125824,
-       -0.013833999633789062,
-       -0.4968219995498657
-      ],
-      [
-       -0.4207249879837036,
-       0.11296900361776352,
-       -0.1512479931116104
-      ]
-     ]
-    },
-    {
-     "part": 1,
-     "volume": 0,
-     "faces": 37596,
-     "samples": 20000,
-     "near_1voxel": 0.0051,
-     "near_2voxel": 0.01375,
-     "bounds": [
-      [
-       0.03438099846243858,
-       -0.09325200319290161,
-       -0.1492529958486557
-      ],
-      [
-       0.4744719862937927,
-       0.14488300681114197,
-       0.46791601181030273
-      ]
-     ]
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "faces": 37668,
-     "samples": 20000,
-     "near_1voxel": 0.0043,
-     "near_2voxel": 0.0115,
-     "bounds": [
-      [
-       -0.47521600127220154,
-       -0.09330599755048752,
-       -0.14905300736427307
-      ],
-      [
-       -0.03622400015592575,
-       0.14485399425029755,
-       0.46786800026893616
-      ]
-     ]
-    }
-   ],
-   "containment": [
-    {
-     "part": 7,
-     "volume": 1,
-     "other": 1,
-     "other_volume": 0,
-     "inside_samples": 681,
-     "contained_fraction": 0.01762114537444934
-    },
-    {
-     "part": 5,
-     "volume": 1,
-     "other": 0,
-     "other_volume": 0,
-     "inside_samples": 5073,
-     "contained_fraction": 0.010053222945002957
-    },
-    {
-     "part": 6,
-     "volume": 1,
-     "other": 1,
-     "other_volume": 0,
-     "inside_samples": 3981,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 6,
-     "volume": 1,
-     "other": 0,
-     "other_volume": 0,
-     "inside_samples": 3981,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 8,
-     "volume": 1,
-     "other": 1,
-     "other_volume": 0,
-     "inside_samples": 961,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 1,
-     "volume": 0,
-     "other": 7,
-     "other_volume": 1,
-     "inside_samples": 128,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 1,
-     "volume": 0,
-     "other": 6,
-     "other_volume": 1,
-     "inside_samples": 128,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 1,
-     "volume": 0,
-     "other": 8,
-     "other_volume": 1,
-     "inside_samples": 128,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "other": 5,
-     "other_volume": 1,
-     "inside_samples": 103,
-     "contained_fraction": 0.0
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "other": 6,
-     "other_volume": 1,
-     "inside_samples": 103,
-     "contained_fraction": 0.0
-    }
-   ]
-  },
-  {
-   "id": "tree",
-   "oid": "01473d5f17fe2f35c103ba98567bffdc3e66cd99e51d7b6c02c5632e896e24ef",
-   "parts": 2,
-   "faces": 572604,
-   "inspection": [
-    "four rotation views",
-    "each isolated part",
-    "cross-volume surface proximity",
-    "pairwise ray-parity containment"
-   ],
-   "source_geometry_edited": false,
-   "surface_proximity": [
-    {
-     "part": 1,
-     "volume": 1,
-     "faces": 40214,
-     "samples": 20000,
-     "near_1voxel": 0.0097,
-     "near_2voxel": 0.01925,
-     "bounds": [
-      [
-       -0.03821349889039993,
-       -0.4994575083255768,
-       -0.04445299878716469
-      ],
-      [
-       0.03821349889039993,
-       -0.22386449575424194,
-       0.04448699951171875
-      ]
-     ]
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "faces": 532390,
-     "samples": 20000,
-     "near_1voxel": 0.00065,
-     "near_2voxel": 0.0015,
-     "bounds": [
-      [
-       -0.161033496260643,
-       -0.24946150183677673,
-       -0.18637700378894806
-      ],
-      [
-       0.161033496260643,
-       0.4994575083255768,
-       0.18637700378894806
-      ]
-     ]
-    }
-   ],
-   "containment": [
-    {
-     "part": 1,
-     "volume": 1,
-     "other": 0,
-     "other_volume": 0,
-     "inside_samples": 20021,
-     "contained_fraction": 0.022426452225163578
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "other": 1,
-     "other_volume": 1,
-     "inside_samples": 25210,
-     "contained_fraction": 0.00015866719555731853
-    }
-   ]
-  },
-  {
-   "id": "pine-tree",
-   "oid": "0067c2938aa934197946f9ddf85d628d01f071bb7dcb1e6b8619613faafa641d",
-   "parts": 2,
-   "faces": 650792,
-   "inspection": [
-    "four rotation views",
-    "each isolated part",
-    "cross-volume surface proximity",
-    "pairwise ray-parity containment"
-   ],
-   "source_geometry_edited": false,
-   "surface_proximity": [
-    {
-     "part": 1,
-     "volume": 1,
-     "faces": 72262,
-     "samples": 20000,
-     "near_1voxel": 0.0147,
-     "near_2voxel": 0.0315,
-     "bounds": [
-      [
-       -0.0812230035662651,
-       -0.5001605153083801,
-       -0.08138199895620346
-      ],
-      [
-       0.08135999739170074,
-       -0.3274975121021271,
-       0.08156000077724457
-      ]
-     ]
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "faces": 578530,
-     "samples": 20000,
-     "near_1voxel": 0.00255,
-     "near_2voxel": 0.00435,
-     "bounds": [
-      [
-       -0.1869720071554184,
-       -0.3438335061073303,
-       -0.18708699941635132
-      ],
-      [
-       0.1869720071554184,
-       0.5001605153083801,
-       0.18708699941635132
-      ]
-     ]
-    }
-   ],
-   "containment": [
-    {
-     "part": 1,
-     "volume": 1,
-     "other": 0,
-     "other_volume": 0,
-     "inside_samples": 29155,
-     "contained_fraction": 0.008814954553249871
-    },
-    {
-     "part": 0,
-     "volume": 0,
-     "other": 1,
-     "other_volume": 1,
-     "inside_samples": 18545,
-     "contained_fraction": 0.0005931517929361014
-    }
-   ]
-  }
- ],
- "excluded_from_previous_collection": [
-  "truck",
-  "race-car",
-  "teapot",
-  "swing",
-  "stool",
-  "magic-lamp",
-  "microwave",
-  "top-hat",
-  "window",
-  "round-chair",
-  "kettle"
- ],
- "screened_new_candidates": 38
+  ],
+  "excluded_from_previous_collection": [
+    "truck",
+    "race-car",
+    "teapot",
+    "swing",
+    "stool",
+    "magic-lamp",
+    "microwave",
+    "top-hat",
+    "window",
+    "round-chair",
+    "kettle"
+  ],
+  "screened_new_candidates": 38
 }
