@@ -26,13 +26,14 @@
       "id": "chair",
       "label": "Dining chair",
       "oid": "3466bf8546fd4f30a79e7e45f7147dc9",
-      "faces": 1042482,
+      "faces": 1030474,
       "parts": 15,
       "input": "assets/images/chair-input.webp",
       "glb": "assets/models/results/chair.glb",
       "checkpoint_stack": "zup_v2_rope4 30k (HY3D ft) + slatorig100k + original decoder",
       "seed": 5,
-      "part_relabel_eps_voxels": 2.0
+      "part_relabel_eps_voxels": 2.0,
+      "floater_cull": "face-adjacency components <0.5% volume area removed (1,445 components, 12,008 faces)"
     },
     {
       "id": "ceramic-teapot",
