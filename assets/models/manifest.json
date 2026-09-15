@@ -75,10 +75,14 @@
       "id": "pitcher",
       "label": "Pitcher",
       "oid": "74bc3dba9b4a40f4b6fd6b2e20ccc837",
-      "faces": 4741068,
+      "faces": 4886546,
       "parts": 2,
       "input": "assets/images/pitcher-input.webp",
-      "glb": "assets/models/results/pitcher.glb"
+      "glb": "assets/models/results/pitcher.glb",
+      "seed": 0,
+      "checkpoint_stack": "zup_v2_rope4 30k (HY3D ft) + slatorig100k + original decoder",
+      "part_relabel_eps_voxels": 2.0,
+      "skin_patch_fix": "9,015 face-adjacency components <0.5% volume area attached to their truly nearest part across volumes (182 relabeled); all source triangles kept"
     },
     {
       "id": "table",

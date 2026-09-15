@@ -800,12 +800,13 @@
       "id": "pitcher",
       "oid": "74bc3dba9b4a40f4b6fd6b2e20ccc837",
       "parts": 2,
-      "faces": 4741068,
+      "faces": 4886546,
       "inspection": [
-        "four rotation views",
-        "each isolated part",
-        "cross-volume surface proximity",
-        "pairwise ray-parity containment"
+        "ten-seed screening (user pick: seed 0)",
+        "three screening views per seed",
+        "five verification renders",
+        "hollow interior check from top view",
+        "per-part isolation in viewer"
       ],
       "source_geometry_edited": false,
       "surface_proximity": [
@@ -867,7 +868,11 @@
           "inside_samples": 4536,
           "contained_fraction": 0.0
         }
-      ]
+      ],
+      "seed": 0,
+      "checkpoint_stack": "zup_v2_rope4 30k (HY3D ft) + slatorig100k + original decoder",
+      "postprocess": "release pipeline verbatim (decode-time fill_holes, relabel_parts.py eps 2.0, no simplification); skin patches attached to nearest part across volumes",
+      "note": "surface-proximity and ray-parity audits not re-run for this refresh"
     },
     {
       "id": "table",
